@@ -29,8 +29,8 @@ class LoginActivity : AppCompatActivity() {
       loading.openDialog()
       Timer().schedule(1000) {
         move = Intent(applicationContext, NavigationActivity::class.java)
-        loading.closeDialog()
         startActivity(move)
+        loading.closeDialog()
       }
     }
 
@@ -38,8 +38,8 @@ class LoginActivity : AppCompatActivity() {
       loading.openDialog()
       Timer().schedule(1000) {
         move = Intent(applicationContext, RegisterActivity::class.java)
-        loading.closeDialog()
         startActivity(move)
+        loading.closeDialog()
       }
     }
   }

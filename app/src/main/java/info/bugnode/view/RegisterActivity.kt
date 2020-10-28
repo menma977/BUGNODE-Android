@@ -1,10 +1,7 @@
 package info.bugnode.view
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import info.bugnode.R
 import info.bugnode.config.Loading
@@ -28,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
   private lateinit var leftRadioButton: RadioButton
   private lateinit var rightRadioButton: RadioButton
   private lateinit var registerButton: Button
+  private lateinit var loginTextView: TextView
   private lateinit var jsonObject: JSONObject
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +46,7 @@ class RegisterActivity : AppCompatActivity() {
     leftRadioButton = findViewById(R.id.radioButtonLeft)
     rightRadioButton = findViewById(R.id.radioButtonRight)
     registerButton = findViewById(R.id.buttonRegister)
+    loginTextView = findViewById(R.id.textVIewLogin)
 
     registerButton.setOnClickListener {
       if (!leftRadioButton.isChecked && !rightRadioButton.isChecked) {
@@ -84,6 +83,10 @@ class RegisterActivity : AppCompatActivity() {
         loading.openDialog()
         onRegister()
       }
+    }
+
+    loginTextView.setOnClickListener {
+      finish()
     }
   }
 
