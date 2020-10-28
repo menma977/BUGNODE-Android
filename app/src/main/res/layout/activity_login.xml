@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.LoginActivity"
+    android:background="@color/colorSecondary">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="vertical">
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"/>
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:srcCompat="@drawable/logo_dark"
+        android:id="@+id/imageView"
+        android:contentDescription="@string/logo"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/card"
+        android:padding="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:elevation="10dp">
+
+
+      <TextView
+          android:text="@string/login_account"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textColor="@color/textPrimary"
+          android:textStyle="bold"
+          android:textSize="20sp"
+          android:gravity="center"/>
+
+      <TextView
+          android:text="@string/version"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textColor="@color/textPrimary"
+          android:textStyle="bold"
+          android:textSize="12sp"
+          android:gravity="end"
+          android:id="@+id/textViewVersion"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="10dp"/>
+
+      <EditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPersonName"
+          android:ems="10"
+          android:id="@+id/editTextUsername"
+          android:background="@drawable/edit_text"
+          android:gravity="center"
+          android:hint="@string/username"
+          android:autofillHints="@string/username"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="10dp"/>
+
+      <EditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPassword"
+          android:ems="10"
+          android:id="@+id/editTextPassword"
+          android:background="@drawable/edit_text"
+          android:gravity="center"
+          android:hint="@string/password"
+          android:autofillHints="@string/password"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="25dp"/>
+
+      <Button
+          android:text="@string/log_in"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/buttonLogin"
+          android:background="@drawable/button"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="10dp"/>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"/>
+
+    <TextView
+        android:text="@string/don_t_have_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/White"/>
+
+    <TextView
+        android:text="@string/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/textViewRegister"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"/>
+
+  </LinearLayout>
+
+</ScrollView>
