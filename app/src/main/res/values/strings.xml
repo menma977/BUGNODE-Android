@@ -24,4 +24,7 @@
   <string name="notification">Notification</string>
   <string name="register_account">Register Account</string>
   <string name="example_doge">99999.99999999</string>
+  <string name="sponsor">Sponsor</string>
+  <string name="right">Right</string>
+  <string name="left">Left</string>
 </resources>

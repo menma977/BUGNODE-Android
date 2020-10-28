@@ -58,6 +58,21 @@
           android:layout_height="wrap_content"
           android:inputType="textPersonName"
           android:ems="10"
+          android:id="@+id/editTextSponsor"
+          android:hint="@string/sponsor"
+          android:background="@drawable/edit_text"
+          android:gravity="center"
+          android:importantForAutofill="no"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="10dp"/>
+
+      <EditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPersonName"
+          android:ems="10"
           android:id="@+id/editTextName"
           android:hint="@string/name"
           android:background="@drawable/edit_text"
@@ -152,7 +167,8 @@
           android:hint="@string/secondary_password"
           android:background="@drawable/edit_text"
           android:gravity="center"
-          android:importantForAutofill="no"/>
+          android:importantForAutofill="no"
+          android:maxLength="6"/>
 
       <Space
           android:layout_width="wrap_content"
@@ -167,17 +183,50 @@
           android:hint="@string/confirmation_secondary_password"
           android:background="@drawable/edit_text"
           android:gravity="center"
-          android:importantForAutofill="no"/>
+          android:importantForAutofill="no"
+          android:maxLength="6"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="10dp"/>
+
+      <RadioGroup
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal">
+
+        <RadioButton
+            android:text="@string/left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/radioButtonLeft"
+            android:checked="true"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <RadioButton
+            android:text="@string/right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/radioButtonRight"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+      </RadioGroup>
 
       <Space
           android:layout_width="wrap_content"
           android:layout_height="20dp"/>
 
       <Button
-          android:text="@string/log_in"
+          android:text="@string/register"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:id="@+id/button"
+          android:id="@+id/buttonRegister"
           android:background="@drawable/button"/>
 
       <Space
