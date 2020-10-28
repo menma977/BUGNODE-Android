@@ -188,7 +188,7 @@
             android:contentDescription="@string/icon"/>
 
         <TextView
-            android:text="@string/example_doge"
+            android:hint="@string/example_doge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textViewDogeBalance"
@@ -230,7 +230,7 @@
             android:contentDescription="@string/icon"/>
 
         <TextView
-            android:text="@string/example_doge"
+            android:hint="@string/example_doge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textViewDogeBugBalance"

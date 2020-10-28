@@ -35,4 +35,23 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    /**
+     * @new dependencies contention
+     */
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'org.conscrypt:conscrypt-android:2.5.1'
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+
+    /**
+     * @new dependencies* barcode Generator
+     */
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    /**
+     * @new dependencies chart
+     */
+    implementation 'com.github.blackfizz:eazegraph:1.2.3@aar'
 }
