@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit
 
 class WebController {
   companion object {
-    val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build()
-    val request = Request.Builder()
+    private val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build()
+    private val request = Request.Builder()
 
     fun declareRequest(targetUrl: String, token: String) {
       request.url(Url.web(targetUrl))
