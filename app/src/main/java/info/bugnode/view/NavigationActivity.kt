@@ -1,10 +1,10 @@
-package info.bugnode.menu
+package info.bugnode.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import info.bugnode.R
-import info.bugnode.fragment.HomeFragment
+import info.bugnode.view.fragment.HomeFragment
 
 class NavigationActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {

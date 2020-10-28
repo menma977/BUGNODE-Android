@@ -3,8 +3,7 @@ package info.bugnode
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import info.bugnode.menu.LoginActivity
-import info.bugnode.menu.NavigationActivity
+import info.bugnode.view.NavigationActivity
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {

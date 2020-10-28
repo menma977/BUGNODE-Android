@@ -1,4 +1,4 @@
-package info.bugnode.fragment
+package info.bugnode.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

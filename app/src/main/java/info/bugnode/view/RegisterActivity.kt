@@ -1,4 +1,4 @@
-package info.bugnode.menu
+package info.bugnode.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
