@@ -8,13 +8,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TableRow
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import info.bugnode.view.settings.ChangePassword
+import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
@@ -32,12 +30,12 @@ class SettingFragment : Fragment() {
   private lateinit var balanceDogeBugTextView: TextView
   private lateinit var notification: LinearLayout
   private lateinit var notificationMessage: TextView
-
-
   private lateinit var editPassword: TableRow
   private lateinit var editPasswordKey: TableRow
   private lateinit var editPhone: TableRow
   private lateinit var logout: TableRow
+  private lateinit var progressBar: ProgressBar
+  private lateinit var progressBarTextVIew: TextView
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_setting, container, false)
@@ -52,7 +50,8 @@ class SettingFragment : Fragment() {
     balanceDogeBugTextView = root.findViewById(R.id.textViewDogeBugBalance)
     notification = root.findViewById(R.id.notification)
     notificationMessage = root.findViewById(R.id.textViewNotification)
-
+    progressBar = root.findViewById(R.id.progressBar)
+    progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
     editPassword = root.findViewById(R.id.edit_password)
     editPasswordKey = root.findViewById(R.id.edit_password_key)
     editPhone = root.findViewById(R.id.edit_phone_number)
@@ -68,7 +67,7 @@ class SettingFragment : Fragment() {
       do_edit_phone()
     }
     logout.setOnClickListener {
-      do_logout()
+      doLogout()
     }
 
 
@@ -81,6 +80,9 @@ class SettingFragment : Fragment() {
     dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
+
+    progressBar.progress = user.getInteger("progress")
+    progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
     return root
   }
@@ -97,21 +99,9 @@ class SettingFragment : Fragment() {
 
   private var broadcastReceiverDataUser: BroadcastReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-      if (intent.getBooleanExtra("isLogout", false)) {
+      if (user.getBoolean("isLogout")) {
         parentActivity.onLogout()
       } else {
-        user.setString("username", intent.getSerializableExtra("username").toString())
-        user.setString("cookie", intent.getSerializableExtra("cookie").toString())
-        user.setString("wallet", intent.getSerializableExtra("wallet").toString())
-        user.setString("balanceDogeBug", intent.getSerializableExtra("balanceDogeBug").toString())
-        user.setBoolean("canPlay", intent.getBooleanExtra("canPlay", false))
-        user.setString("role", intent.getSerializableExtra("role").toString())
-        user.setString("name", intent.getSerializableExtra("name").toString())
-        user.setString("email", intent.getSerializableExtra("email").toString())
-        user.setString("phone", intent.getSerializableExtra("phone").toString())
-        user.setBoolean("active", intent.getBooleanExtra("active", false))
-        user.setString("dollar", intent.getSerializableExtra("dollar").toString())
-
         if (!user.getBoolean("active")) {
           val message = "Your Account is not ready. please upgrade account"
           notificationMessage.text = message
@@ -122,6 +112,9 @@ class SettingFragment : Fragment() {
         dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
+
+        progressBar.progress = user.getInteger("progress")
+        progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
       }
     }
   }
@@ -130,21 +123,20 @@ class SettingFragment : Fragment() {
     val intent = Intent(context, ChangePassword::class.java)
     startActivity(intent)
   }
-  private fun do_edit_password_key(){
+
+  private fun do_edit_password_key() {
 
   }
-  private fun do_edit_phone(){
+
+  private fun do_edit_phone() {
 
   }
-  private fun do_logout(){
-    val res = WebController.Get("user.logout",user.getString("token")).call()
-    if(res.getInt("code")==200){
-      user.clear()
-      val intent = Intent(context, LoginActivity::class.java)
-      startActivity(intent)
-      parentActivity.finish()
-    }else{
-      Toast.makeText(context,R.string.generic_error, Toast.LENGTH_SHORT).show();
-    }
+
+  private fun doLogout() {
+    WebController.Get("user.logout", user.getString("token")).call()
+    user.clear()
+    val intent = Intent(context, MainActivity::class.java)
+    startActivity(intent)
+    parentActivity.finish()
   }
 }

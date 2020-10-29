@@ -101,6 +101,14 @@
           android:id="@+id/buttonLogin"
           android:background="@drawable/button"/>
 
+      <Button
+          android:visibility="gone"
+          android:text="@string/new_app"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/buttonUpdate"
+          android:background="@drawable/button"/>
+
       <Space
           android:layout_width="wrap_content"
           android:layout_height="10dp"/>

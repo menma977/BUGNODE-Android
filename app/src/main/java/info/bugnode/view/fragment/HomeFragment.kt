@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -17,8 +18,10 @@ import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.model.User
 import info.bugnode.view.NavigationActivity
+import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
+  private lateinit var move: Intent
   private lateinit var parentActivity: NavigationActivity
   private lateinit var user: User
   private lateinit var loading: Loading
@@ -27,6 +30,9 @@ class HomeFragment : Fragment() {
   private lateinit var balanceDogeBugTextView: TextView
   private lateinit var notification: LinearLayout
   private lateinit var notificationMessage: TextView
+  private lateinit var progressBar: ProgressBar
+  private lateinit var progressBarTextVIew: TextView
+  private lateinit var stakeButton: LinearLayout
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -41,6 +47,9 @@ class HomeFragment : Fragment() {
     balanceDogeBugTextView = root.findViewById(R.id.textViewDogeBugBalance)
     notification = root.findViewById(R.id.notification)
     notificationMessage = root.findViewById(R.id.textViewNotification)
+    progressBar = root.findViewById(R.id.progressBar)
+    progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
+    stakeButton = root.findViewById(R.id.buttonStake)
 
     if (!user.getBoolean("active")) {
       notificationMessage.text = "Your Account is not ready. please upgrade account"
@@ -52,18 +61,37 @@ class HomeFragment : Fragment() {
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
+    progressBar.progress = user.getInteger("progress")
+    progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+
+    stakeButton.setOnClickListener {
+      move = Intent(parentActivity, ManualStakeActivity::class.java)
+      move.putExtra("balance", user.getString("balance"))
+      move.putExtra("balanceView", BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString())
+      move.putExtra("balanceDogeBugView", BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString())
+      startActivity(move)
+    }
+
     return root
   }
 
   override fun onResume() {
     super.onResume()
     LocalBroadcastManager.getInstance(parentActivity).registerReceiver(broadcastReceiverDataUser, IntentFilter("api.web"))
-    LocalBroadcastManager.getInstance(parentActivity).registerReceiver(broadcastReceiverQueue, IntentFilter("api.web.queue"))
-    LocalBroadcastManager.getInstance(parentActivity).registerReceiver(broadcastReceiverLimit, IntentFilter("api.web.limit"))
   }
 
   override fun onDestroy() {
     super.onDestroy()
+    LocalBroadcastManager.getInstance(parentActivity).unregisterReceiver(broadcastReceiverDataUser)
+  }
+
+  override fun onStop() {
+    super.onStop()
+    LocalBroadcastManager.getInstance(parentActivity).unregisterReceiver(broadcastReceiverDataUser)
+  }
+
+  override fun onPause() {
+    super.onPause()
     LocalBroadcastManager.getInstance(parentActivity).unregisterReceiver(broadcastReceiverDataUser)
   }
 
@@ -82,19 +110,14 @@ class HomeFragment : Fragment() {
         dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
+
+        progressBar.progress = user.getInteger("progress")
+        progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+
+        if (user.getBoolean("queue")) {
+          stakeButton.isEnabled = false
+        }
       }
-    }
-  }
-  private var broadcastReceiverQueue: BroadcastReceiver = object : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-      if (user.getBoolean("queue")) {
-        //todo:disable proses
-      }
-    }
-  }
-  private var broadcastReceiverLimit: BroadcastReceiver = object : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-      //todo:set value limit
     }
   }
 }
