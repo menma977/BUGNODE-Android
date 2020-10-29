@@ -37,17 +37,12 @@
   <string name="stake">Stake</string>
   <string name="fund">Fund</string>
   <string name="amount">Amount</string>
-<<<<<<< Updated upstream
-
   <string name="old_password">Old Password</string>
   <string name="new_password">New Password</string>
   <string name="reenter_new_password">Confirm New Password</string>
   <string name="new_password_key">New Secondary Password</string>
   <string name="reenter_new_password_key">Confirm New Secondary Password</string>
-
   <string name="generic_sumbit">Submit</string>
   <string name="generic_error">Something wrong happen</string>
-=======
   <string name="zero">0</string>
->>>>>>> Stashed changes
 </resources>
