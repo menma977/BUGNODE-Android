@@ -19,6 +19,7 @@
       android:theme="@style/AppTheme"
       tools:targetApi="n">
     <activity android:name=".view.settings.ChangePassword"/>
+    <activity android:name=".view.settings.ChangeSecondaryPassword"/>
     <activity
         android:name=".view.stake.ManualStakeActivity"
         android:configChanges="orientation|screenSize"

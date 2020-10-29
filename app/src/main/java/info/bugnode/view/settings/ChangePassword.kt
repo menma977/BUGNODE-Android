@@ -71,18 +71,18 @@ class ChangePassword : AppCompatActivity() {
     }
 
     private fun changePassword(){
-        if(secondary_password.text.toString().isBlank())
+        if(text_secondary_password.text.toString().isBlank())
             return Toast.makeText(applicationContext, "Secondary password cannot be blank", Toast.LENGTH_SHORT).show()
-        if(old_password.text.toString().isBlank())
+        if(text_old_password.text.toString().isBlank())
             return Toast.makeText(applicationContext, "Old password cannot be blank", Toast.LENGTH_SHORT).show()
-        if(new_password.text.toString().isBlank())
+        if(text_new_password.text.toString().isBlank())
             return Toast.makeText(applicationContext, "New password cannot be blank", Toast.LENGTH_SHORT).show()
-        if(new_password.text.toString() != new_password_2.text.toString())
+        if(text_new_password.text.toString() != text_confirm_new_password.text.toString())
             return Toast.makeText(applicationContext, "Password mismatch", Toast.LENGTH_SHORT).show()
         val body = FormBody.Builder()
-        body.addEncoded("password_key", secondary_password.text.toString())
-        body.addEncoded("old_password", old_password.text.toString())
-        body.addEncoded("password", new_password.text.toString())
+        body.addEncoded("second_password_key", text_secondary_password.text.toString())
+        body.addEncoded("old_password", text_old_password.text.toString())
+        body.addEncoded("password", text_new_password.text.toString())
         Timer().schedule(100) {
             val res =
                 WebController.Post("user.changePassword", user.getString("token"), body).call()
