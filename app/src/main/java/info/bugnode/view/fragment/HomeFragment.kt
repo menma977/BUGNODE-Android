@@ -58,6 +58,8 @@ class HomeFragment : Fragment() {
   override fun onResume() {
     super.onResume()
     LocalBroadcastManager.getInstance(parentActivity).registerReceiver(broadcastReceiverDataUser, IntentFilter("api.web"))
+    LocalBroadcastManager.getInstance(parentActivity).registerReceiver(broadcastReceiverQueue, IntentFilter("api.web.queue"))
+    LocalBroadcastManager.getInstance(parentActivity).registerReceiver(broadcastReceiverLimit, IntentFilter("api.web.limit"))
   }
 
   override fun onDestroy() {
@@ -81,6 +83,18 @@ class HomeFragment : Fragment() {
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
       }
+    }
+  }
+  private var broadcastReceiverQueue: BroadcastReceiver = object : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+      if (user.getBoolean("queue")) {
+        //todo:disable proses
+      }
+    }
+  }
+  private var broadcastReceiverLimit: BroadcastReceiver = object : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+      //todo:set value limit
     }
   }
 }
