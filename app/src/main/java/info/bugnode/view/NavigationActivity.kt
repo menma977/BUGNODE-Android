@@ -19,6 +19,7 @@ import info.bugnode.config.Loading
 import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import info.bugnode.view.fragment.HomeFragment
+import info.bugnode.view.fragment.SettingFragment
 import org.json.JSONObject
 import java.util.*
 import kotlin.concurrent.schedule
@@ -70,7 +71,7 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     linearSetting.setOnClickListener {
-      val fragment = HomeFragment()
+      val fragment = SettingFragment()
       addFragment(fragment)
     }
 
