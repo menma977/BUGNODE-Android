@@ -34,12 +34,13 @@ class DataUser : Service() {
     Timer().schedule(1000) {
       while (true) {
         val delta = System.currentTimeMillis() - time
-        if (delta >= 2500) {
+        if (delta >= 3500) {
           time = System.currentTimeMillis()
           val privateIntent = Intent()
           if (startBackgroundService) {
             synchronized(trigger) {
               json = WebController.Get("user.show", user.getString("token")).call()
+              println(json)
               if (json.getInt("code") == 200) {
                 user.setString("username", json.getJSONObject("data").getString("username"))
                 user.setString("cookie", json.getJSONObject("data").getString("sessionKey"))
