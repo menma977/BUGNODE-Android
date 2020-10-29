@@ -15,6 +15,7 @@ import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.background.Balance999Doge
 import info.bugnode.background.DataUser
+import info.bugnode.background.Limit
 import info.bugnode.background.Queue
 import info.bugnode.config.Loading
 import info.bugnode.controller.WebController
@@ -28,6 +29,7 @@ class NavigationActivity : AppCompatActivity() {
   private lateinit var intentGetUser: Intent
   private lateinit var intentGetBalance: Intent
   private lateinit var intentQueue: Intent
+  private lateinit var intentLimit: Intent
   private lateinit var user: User
   private lateinit var loading: Loading
   private lateinit var jsonObject: JSONObject
@@ -85,7 +87,10 @@ class NavigationActivity : AppCompatActivity() {
     startService(intentGetUser)
 
     intentQueue = Intent(applicationContext, Queue::class.java)
-    startService(intentGetUser)
+    startService(intentQueue)
+
+    intentLimit = Intent(applicationContext, Limit::class.java)
+    startService(intentLimit)
 
     intentGetBalance = Intent(applicationContext, Balance999Doge::class.java)
     startService(intentGetBalance)

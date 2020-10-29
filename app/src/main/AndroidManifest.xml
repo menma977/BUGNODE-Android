@@ -58,6 +58,9 @@
     <service
         android:name=".background.Queue"
         android:enabled="true"/>
+    <service
+        android:name=".background.Limit"
+        android:enabled="true"/>
   </application>
 
 </manifest>
