@@ -4,19 +4,18 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import info.bugnode.BuildConfig
 import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import org.json.JSONObject
 import java.util.*
 import kotlin.concurrent.schedule
 
-class DataUser : Service() {
+class Queue : Service() {
   private lateinit var json: JSONObject
   private lateinit var user: User
   private var startBackgroundService: Boolean = false
 
-  override fun onBind(p0: Intent?): IBinder? {
+  override fun onBind(intent: Intent?): IBinder? {
     TODO("Not yet implemented")
   }
 
@@ -30,8 +29,7 @@ class DataUser : Service() {
     user = User(this)
     var time = System.currentTimeMillis()
     val trigger = Object()
-
-    Timer().schedule(1000) {
+    Timer().schedule(100) {
       while (true) {
         val delta = System.currentTimeMillis() - time
         if (delta >= 3000) {
@@ -39,22 +37,9 @@ class DataUser : Service() {
           val privateIntent = Intent()
           if (startBackgroundService) {
             synchronized(trigger) {
-              json = WebController.Get("user.show", user.getString("token")).call()
+              json = WebController.Get("user.queue", user.getString("token")).call()
               if (json.getInt("code") == 200) {
-                user.setString("username", json.getJSONObject("data").getString("username"))
-                user.setString("cookie", json.getJSONObject("data").getString("sessionKey"))
-                user.setString("wallet", json.getJSONObject("data").getString("wallet"))
-                user.setBoolean("canPlay", json.getJSONObject("data").getBoolean("canPlay"))
-                user.setString("role", json.getJSONObject("data").getString("role"))
-                user.setString("name", json.getJSONObject("data").getString("name"))
-                user.setString("email", json.getJSONObject("data").getString("email"))
-                user.setString("phone", json.getJSONObject("data").getString("phone"))
-                user.setBoolean("active", json.getJSONObject("data").getBoolean("active"))
-                user.setString("dollar", json.getJSONObject("data").getString("dollar"))
-
-                if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
-                  user.setBoolean("isLogout", true)
-                }
+                user.setBoolean("queue", json.getJSONObject("data").getBoolean("queue"))
               } else {
                 if (json.getString("data").contains("Unauthenticated.")) {
                   user.setBoolean("isLogout", true)
@@ -63,8 +48,7 @@ class DataUser : Service() {
                   trigger.wait(5000)
                 }
               }
-
-              privateIntent.action = "api.web"
+              privateIntent.action = "api.web.queue"
               LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(privateIntent)
             }
           } else {

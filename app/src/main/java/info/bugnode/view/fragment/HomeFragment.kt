@@ -67,21 +67,9 @@ class HomeFragment : Fragment() {
 
   private var broadcastReceiverDataUser: BroadcastReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-      if (intent.getBooleanExtra("isLogout", false)) {
+      if (user.getBoolean("isLogout")) {
         parentActivity.onLogout()
       } else {
-        user.setString("username", intent.getSerializableExtra("username").toString())
-        user.setString("cookie", intent.getSerializableExtra("cookie").toString())
-        user.setString("wallet", intent.getSerializableExtra("wallet").toString())
-        user.setString("balanceDogeBug", intent.getSerializableExtra("balanceDogeBug").toString())
-        user.setBoolean("canPlay", intent.getBooleanExtra("canPlay", false))
-        user.setString("role", intent.getSerializableExtra("role").toString())
-        user.setString("name", intent.getSerializableExtra("name").toString())
-        user.setString("email", intent.getSerializableExtra("email").toString())
-        user.setString("phone", intent.getSerializableExtra("phone").toString())
-        user.setBoolean("active", intent.getBooleanExtra("active", false))
-        user.setString("dollar", intent.getSerializableExtra("dollar").toString())
-
         if (!user.getBoolean("active")) {
           val message = "Your Account is not ready. please upgrade account"
           notificationMessage.text = message

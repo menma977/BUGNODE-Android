@@ -50,9 +50,9 @@ class Balance999Doge : Service() {
                 json = DogeController.Post(body).call()
                 if (json.getInt("code") == 200) {
                   if (json.getJSONObject("data").getString("Balance").isEmpty()) {
-                    privateIntent.putExtra("balance", BigDecimal(0))
+                    user.setString("balance", "0")
                   } else {
-                    privateIntent.putExtra("balance", BigDecimal(json.getJSONObject("data").getString("Balance")))
+                    user.setString("balance", json.getJSONObject("data").getString("Balance"))
                   }
                   privateIntent.action = "api.doge"
                   LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(privateIntent)
