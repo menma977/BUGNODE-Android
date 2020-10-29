@@ -49,7 +49,7 @@ class Limit : Service() {
                   trigger.wait(5000)
                 }
               }
-              privateIntent.action = "api.web.queue"
+              privateIntent.action = "api.web.limit"
               LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(privateIntent)
             }
           } else {
