@@ -82,6 +82,7 @@ class ManualStakeActivity : AppCompatActivity() {
 
     highText.text = "Possibility: ${high * BigDecimal(10)}%"
     balanceText.text = intent.getStringExtra("balanceView")
+    balanceDogeBugText.text = intent.getStringExtra("balanceDogeBugView")
     balance = intent.getStringExtra("balance")!!.toBigDecimal()
     startBalance = balance
     maxBalance = bitCoinFormat.dogeToDecimal(bitCoinFormat.decimalToDoge(balance).multiply(BigDecimal(0.01)))
@@ -168,10 +169,8 @@ class ManualStakeActivity : AppCompatActivity() {
   }
   private var broadcastReceiverDoge: BroadcastReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-      balance = intent.getSerializableExtra("balanceValue") as BigDecimal
-      user.setString("balanceValue", balance.toPlainString())
-      user.setString("balanceText", "${BitCoinFormat.decimalToDoge(balance).toPlainString()} DOGE")
-      balanceText.text = user.getString("balanceText")
+      balance = user.getString("balance").toBigDecimal()
+      balanceText.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     }
   }
 

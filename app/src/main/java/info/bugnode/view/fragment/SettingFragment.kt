@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
@@ -113,10 +114,6 @@ class SettingFragment : Fragment() {
 
         progressBar.progress = user.getInteger("progress")
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
-
-        if (user.getBoolean("queue")) {
-          //todo:disable proses
-        }
       }
     }
   }
@@ -136,7 +133,7 @@ class SettingFragment : Fragment() {
   private fun doLogout() {
     WebController.Get("user.logout", user.getString("token")).call()
     user.clear()
-    val intent = Intent(context, LoginActivity::class.java)
+    val intent = Intent(context, MainActivity::class.java)
     startActivity(intent)
     parentActivity.finish()
   }

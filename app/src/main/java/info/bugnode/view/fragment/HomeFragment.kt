@@ -18,8 +18,10 @@ import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.model.User
 import info.bugnode.view.NavigationActivity
+import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
+  private lateinit var move: Intent
   private lateinit var parentActivity: NavigationActivity
   private lateinit var user: User
   private lateinit var loading: Loading
@@ -30,6 +32,7 @@ class HomeFragment : Fragment() {
   private lateinit var notificationMessage: TextView
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
+  private lateinit var stakeButton: LinearLayout
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -46,6 +49,7 @@ class HomeFragment : Fragment() {
     notificationMessage = root.findViewById(R.id.textViewNotification)
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
+    stakeButton = root.findViewById(R.id.buttonStake)
 
     if (!user.getBoolean("active")) {
       notificationMessage.text = "Your Account is not ready. please upgrade account"
@@ -60,6 +64,14 @@ class HomeFragment : Fragment() {
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
+    stakeButton.setOnClickListener {
+      move = Intent(parentActivity, ManualStakeActivity::class.java)
+      move.putExtra("balance", user.getString("balance"))
+      move.putExtra("balanceView", BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString())
+      move.putExtra("balanceDogeBugView", BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString())
+      startActivity(move)
+    }
+
     return root
   }
 
@@ -70,6 +82,16 @@ class HomeFragment : Fragment() {
 
   override fun onDestroy() {
     super.onDestroy()
+    LocalBroadcastManager.getInstance(parentActivity).unregisterReceiver(broadcastReceiverDataUser)
+  }
+
+  override fun onStop() {
+    super.onStop()
+    LocalBroadcastManager.getInstance(parentActivity).unregisterReceiver(broadcastReceiverDataUser)
+  }
+
+  override fun onPause() {
+    super.onPause()
     LocalBroadcastManager.getInstance(parentActivity).unregisterReceiver(broadcastReceiverDataUser)
   }
 
@@ -93,7 +115,7 @@ class HomeFragment : Fragment() {
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
         if (user.getBoolean("queue")) {
-          //todo:disable proses
+          stakeButton.isEnabled = false
         }
       }
     }
