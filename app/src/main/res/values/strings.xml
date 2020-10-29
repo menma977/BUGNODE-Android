@@ -44,6 +44,8 @@
   <string name="reenter_new_password_key">Confirm New Secondary Password</string>
   <string name="generic_sumbit">Submit</string>
   <string name="generic_error">Something wrong happen</string>
+  <string name="balance">Balance</string>
+  <string name="wallet">Wallet</string>
   <string name="zero">0</string>
   <string name="new_app">New APP</string>
 </resources>

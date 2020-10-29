@@ -6,7 +6,7 @@ object Url {
    * @return String
    */
   fun web(subDomain: String): String {
-    return "http://192.168.1.73/api/${subDomain.replace(".", "/")}"
+    return "http://10.0.2.2:8000/api/${subDomain.replace(".", "/")}"
   }
 
   /**
