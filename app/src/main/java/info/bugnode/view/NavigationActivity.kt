@@ -19,6 +19,7 @@ import info.bugnode.config.Loading
 import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import info.bugnode.view.fragment.HomeFragment
+import info.bugnode.view.fragment.InfoFragment
 import info.bugnode.view.fragment.SettingFragment
 import org.json.JSONObject
 import java.util.*
@@ -67,7 +68,7 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     linearInfo.setOnClickListener {
-      val fragment = HomeFragment()
+      val fragment = InfoFragment()
       addFragment(fragment)
     }
 
