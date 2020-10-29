@@ -55,6 +55,9 @@
     <service
         android:name=".background.Balance999Doge"
         android:enabled="true"/>
+    <service
+        android:name=".background.Queue"
+        android:enabled="true"/>
   </application>
 
 </manifest>
