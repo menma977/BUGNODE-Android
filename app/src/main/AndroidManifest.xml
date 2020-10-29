@@ -49,15 +49,18 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".background.DataUser"
-            android:enabled="true" />
-        <service
-            android:name=".background.Balance999Doge"
-            android:enabled="true" />
-        <service
-            android:name=".background.Queue"
-            android:enabled="true" />
-    </application>
+    <service
+        android:name=".background.DataUser"
+        android:enabled="true"/>
+    <service
+        android:name=".background.Balance999Doge"
+        android:enabled="true"/>
+    <service
+        android:name=".background.Queue"
+        android:enabled="true"/>
+    <service
+        android:name=".background.Limit"
+        android:enabled="true"/>
+  </application>
 
 </manifest>
