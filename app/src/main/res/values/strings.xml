@@ -22,7 +22,14 @@
   <string name="setting">Setting</string>
   <string name="dollar_example">$ 100</string>
   <string name="notification">Notification</string>
+  <string name="upgrade_lot">Upgrade Lot</string>
   <string name="register_account">Register Account</string>
+  <string name="send_pin">Send Pin</string>
+  <string name="change_password">Edit Password</string>
+  <string name="change_second_password">Edit Secondary Password</string>
+  <string name="change_phone">Edit Phone Number</string>
+  <string name="logout">Logout</string>
+  <string name="history_pin">History Pin</string>
   <string name="example_doge">99999.99999999</string>
   <string name="sponsor">Sponsor</string>
   <string name="right">Right</string>
