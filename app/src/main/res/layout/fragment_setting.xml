@@ -149,7 +149,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/send_pin"
+            android:text="@string/buy_dogebug"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
             android:textSize="12sp" />
@@ -173,7 +173,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/history_pin"
+            android:text="@string/history_doge"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
             android:textSize="12sp" />
@@ -286,6 +286,7 @@
           android:layout_height="20dp"/>
 
       <TableRow
+          android:id="@+id/edit_password"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center_vertical">
@@ -328,6 +329,7 @@
           android:layout_height="5dp" />
 
       <TableRow
+          android:id="@+id/edit_password_key"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center_vertical">
@@ -370,6 +372,7 @@
           android:layout_height="5dp" />
 
       <TableRow
+          android:id="@+id/edit_phone_number"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center_vertical">
@@ -412,6 +415,7 @@
           android:layout_height="5dp" />
 
       <TableRow
+          android:id="@+id/logout"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center_vertical">

@@ -46,28 +46,28 @@
         android:id="@+id/notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="#3EFFFFFF"
-        android:elevation="5dp"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:background="@drawable/card_warning"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:elevation="5dp">
 
       <ImageView
           android:layout_width="30dp"
           android:layout_height="30dp"
-          android:layout_marginEnd="10dp"
+          app:srcCompat="@drawable/ic_baseline_notifications"
           android:contentDescription="@string/icon"
-          app:srcCompat="@drawable/ic_baseline_notifications" />
+          android:layout_marginEnd="10dp"/>
 
       <TextView
-          android:id="@+id/textViewNotification"
+          android:hint="@string/notification"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
+          android:id="@+id/textViewNotification"
           android:layout_weight="1"
-          android:hint="@string/notification"
-          android:textColor="@color/textSecondary" />
+          android:textColor="@color/textSecondary"/>
 
     </LinearLayout>
 
@@ -78,15 +78,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:baselineAligned="false">
 
       <LinearLayout
           android:layout_width="0dp"
-          android:layout_height="match_parent"
+          android:layout_height="wrap_content"
           android:layout_weight="1"
           android:gravity="center"
           android:orientation="vertical"
@@ -149,7 +148,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/send_pin"
+            android:text="@string/buy_dogebug"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
             android:textSize="12sp" />
@@ -173,7 +172,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/history_pin"
+            android:text="@string/history_doge"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
             android:textSize="12sp" />

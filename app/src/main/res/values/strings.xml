@@ -24,12 +24,12 @@
   <string name="notification">Notification</string>
   <string name="upgrade_lot">Upgrade Lot</string>
   <string name="register_account">Register Account</string>
-  <string name="send_pin">Send Pin</string>
+  <string name="buy_dogebug">Buy Dogebug</string>
   <string name="change_password">Edit Password</string>
   <string name="change_second_password">Edit Secondary Password</string>
   <string name="change_phone">Edit Phone Number</string>
   <string name="logout">Logout</string>
-  <string name="history_pin">History Pin</string>
+  <string name="history_doge">History Dogebug</string>
   <string name="example_doge">99999.99999999</string>
   <string name="sponsor">Sponsor</string>
   <string name="right">Right</string>
@@ -37,4 +37,13 @@
   <string name="stake">Stake</string>
   <string name="fund">Fund</string>
   <string name="amount">Amount</string>
+
+  <string name="old_password">Old Password</string>
+  <string name="new_password">New Password</string>
+  <string name="reenter_new_password">Confirm New Password</string>
+  <string name="new_password_key">New Secondary Password</string>
+  <string name="reenter_new_password_key">Confirm New Secondary Password</string>
+
+  <string name="generic_sumbit">Submit</string>
+  <string name="generic_error">Something wrong happen</string>
 </resources>
