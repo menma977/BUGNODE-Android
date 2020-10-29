@@ -13,6 +13,7 @@ import kotlin.concurrent.schedule
 
 class RegisterActivity : AppCompatActivity() {
   private lateinit var loading: Loading
+  private lateinit var jsonObject: JSONObject
   private lateinit var sponsorEditText: EditText
   private lateinit var nameEditText: EditText
   private lateinit var usernameEditText: EditText
@@ -26,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
   private lateinit var rightRadioButton: RadioButton
   private lateinit var registerButton: Button
   private lateinit var loginTextView: TextView
-  private lateinit var jsonObject: JSONObject
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -108,6 +108,7 @@ class RegisterActivity : AppCompatActivity() {
     }
     Timer().schedule(100) {
       jsonObject = WebController.Post("register", "", body).call()
+      println(jsonObject)
       if (jsonObject.getInt("code") == 200) {
         runOnUiThread {
           Toast.makeText(applicationContext, jsonObject.getJSONObject("data").getString("message"), Toast.LENGTH_SHORT).show()

@@ -27,4 +27,7 @@
   <string name="sponsor">Sponsor</string>
   <string name="right">Right</string>
   <string name="left">Left</string>
+  <string name="stake">Stake</string>
+  <string name="fund">Fund</string>
+  <string name="amount">Amount</string>
 </resources>

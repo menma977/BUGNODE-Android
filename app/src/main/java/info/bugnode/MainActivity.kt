@@ -35,10 +35,19 @@ class MainActivity : AppCompatActivity() {
       } else {
         WebController.Get("user.show", user.getString("token")).call()
       }
-      println(jsonObject)
       if (jsonObject.getInt("code") == 200) {
         if (jsonObject.getJSONObject("data").getInt("version") == BuildConfig.VERSION_CODE) {
-          if (user.getString("cookie").isNotEmpty()) {
+          if (user.getString("cookie").isNotEmpty() && user.getString("token").isNotEmpty()) {
+            user.setString("cookie", jsonObject.getJSONObject("data").getString("sessionKey"))
+            user.setString("wallet", jsonObject.getJSONObject("data").getString("wallet"))
+            user.setBoolean("canPlay", jsonObject.getJSONObject("data").getBoolean("canPlay"))
+            user.setString("role", jsonObject.getJSONObject("data").getString("role"))
+            user.setString("name", jsonObject.getJSONObject("data").getString("name"))
+            user.setString("email", jsonObject.getJSONObject("data").getString("email"))
+            user.setString("phone", jsonObject.getJSONObject("data").getString("phone"))
+            user.setBoolean("active", jsonObject.getJSONObject("data").getBoolean("active"))
+            user.setString("dollar", jsonObject.getJSONObject("data").getString("dollar"))
+            val getBalanceDogeBug = jsonObject.getJSONObject("data").getString("balanceDogeBug").toBigDecimal()
             val body = FormBody.Builder()
             body.addEncoded("a", "GetBalance")
             body.addEncoded("key", "1b4755ced78e4d91bce9128b9a053cad")
@@ -46,8 +55,12 @@ class MainActivity : AppCompatActivity() {
             body.addEncoded("Currency", "doge")
             jsonObject = DogeController.Post(body).call()
             if (jsonObject.getInt("code") == 200) {
+              user.setString("balance", jsonObject.getJSONObject("data").getString("Balance"))
+              user.setString("balanceDogeBug", getBalanceDogeBug.toPlainString())
+
               move = Intent(applicationContext, NavigationActivity::class.java)
-              move.putExtra("balance", BigDecimal(jsonObject.getJSONObject("data").getString("balance")))
+              move.putExtra("balance", BigDecimal(jsonObject.getJSONObject("data").getString("Balance")))
+              move.putExtra("balanceDogeBug", getBalanceDogeBug)
               startActivity(move)
               finish()
             } else {

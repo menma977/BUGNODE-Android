@@ -13,11 +13,13 @@
       android:allowBackup="false"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
+      android:networkSecurityConfig="@xml/network_guard"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
-      android:networkSecurityConfig="@xml/network_guard"
       tools:targetApi="n">
+    <activity android:name=".view.stake.ManualStakeActivity">
+    </activity>
     <activity
         android:name=".view.NavigationActivity"
         android:configChanges="orientation|screenSize"
@@ -46,6 +48,13 @@
         <action android:name="android.intent.action.VIEW"/>
       </intent-filter>
     </activity>
+
+    <service
+        android:name=".background.DataUser"
+        android:enabled="true"/>
+    <service
+        android:name=".background.Balance999Doge"
+        android:enabled="true"/>
   </application>
 
 </manifest>

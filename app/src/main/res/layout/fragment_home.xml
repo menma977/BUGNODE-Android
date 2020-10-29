@@ -281,7 +281,7 @@
               android:contentDescription="@string/icon"/>
 
           <TextView
-              android:text="@string/register_account"
+              android:text="@string/stake"
               android:textColor="@color/colorSecondaryDark"
               android:textAlignment="center"
               android:layout_width="match_parent"
