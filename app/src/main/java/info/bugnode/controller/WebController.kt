@@ -1,5 +1,6 @@
 package info.bugnode.controller
 
+import android.util.Log
 import info.bugnode.model.Url
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -29,6 +30,7 @@ class WebController {
 
     @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     fun responseHandler(jsonObject: JSONObject): JSONObject {
+      println(jsonObject)
       return when {
         jsonObject.toString().contains("errors") -> {
           JSONObject().put("code", 500).put("data", jsonObject.getJSONObject("errors").getJSONArray(jsonObject.getJSONObject("errors").names()[0].toString())[0])
@@ -61,6 +63,7 @@ class WebController {
           }
         }
       } catch (e: Exception) {
+        e.printStackTrace();
         JSONObject().put("code", 500).put("data", e.message)
       }
     }

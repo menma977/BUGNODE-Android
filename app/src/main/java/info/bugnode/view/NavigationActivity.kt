@@ -42,6 +42,7 @@ class NavigationActivity : AppCompatActivity() {
     setContentView(R.layout.activity_navigation)
 
     user = User(this)
+    loading = Loading(this)
 
     sendDoge = findViewById(R.id.floatingActionButtonSendDoge)
     linearHome = findViewById(R.id.linearLayoutHome)

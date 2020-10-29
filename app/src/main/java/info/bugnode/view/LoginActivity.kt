@@ -117,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
             loading.closeDialog()
           }
         } else {
-          Toast.makeText(applicationContext, result.getJSONObject("data").getString("message"), Toast.LENGTH_SHORT).show()
+          Toast.makeText(applicationContext, result.getString("data"), Toast.LENGTH_SHORT).show()
           loading.closeDialog()
         }
       }
