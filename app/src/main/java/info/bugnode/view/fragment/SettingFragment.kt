@@ -31,8 +31,6 @@ class SettingFragment : Fragment() {
   private lateinit var balanceDogeBugTextView: TextView
   private lateinit var notification: LinearLayout
   private lateinit var notificationMessage: TextView
-
-
   private lateinit var editPassword: TableRow
   private lateinit var editPasswordKey: TableRow
   private lateinit var editPhone: TableRow
@@ -67,7 +65,7 @@ class SettingFragment : Fragment() {
       do_edit_phone()
     }
     logout.setOnClickListener {
-      do_logout()
+      doLogout()
     }
 
 
@@ -96,21 +94,9 @@ class SettingFragment : Fragment() {
 
   private var broadcastReceiverDataUser: BroadcastReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-      if (intent.getBooleanExtra("isLogout", false)) {
+      if (user.getBoolean("isLogout")) {
         parentActivity.onLogout()
       } else {
-        user.setString("username", intent.getSerializableExtra("username").toString())
-        user.setString("cookie", intent.getSerializableExtra("cookie").toString())
-        user.setString("wallet", intent.getSerializableExtra("wallet").toString())
-        user.setString("balanceDogeBug", intent.getSerializableExtra("balanceDogeBug").toString())
-        user.setBoolean("canPlay", intent.getBooleanExtra("canPlay", false))
-        user.setString("role", intent.getSerializableExtra("role").toString())
-        user.setString("name", intent.getSerializableExtra("name").toString())
-        user.setString("email", intent.getSerializableExtra("email").toString())
-        user.setString("phone", intent.getSerializableExtra("phone").toString())
-        user.setBoolean("active", intent.getBooleanExtra("active", false))
-        user.setString("dollar", intent.getSerializableExtra("dollar").toString())
-
         if (!user.getBoolean("active")) {
           val message = "Your Account is not ready. please upgrade account"
           notificationMessage.text = message
@@ -121,28 +107,35 @@ class SettingFragment : Fragment() {
         dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
+
+        if (user.getBoolean("queue")) {
+          //todo:disable proses
+        }
       }
     }
   }
 
-  private fun do_edit_password(){
+  private fun do_edit_password() {
 
   }
-  private fun do_edit_password_key(){
+
+  private fun do_edit_password_key() {
 
   }
-  private fun do_edit_phone(){
+
+  private fun do_edit_phone() {
 
   }
-  private fun do_logout(){
-    val res = WebController.Get("user.logout",user.getString("token")).call()
-    if(res.getInt("code")==200){
+
+  private fun doLogout() {
+    val res = WebController.Get("user.logout", user.getString("token")).call()
+    if (res.getInt("code") == 200) {
       user.clear()
       val intent = Intent(context, LoginActivity::class.java)
       startActivity(intent)
       parentActivity.finish()
-    }else{
-      Toast.makeText(context,R.string.generic_error, Toast.LENGTH_SHORT).show();
+    } else {
+      Toast.makeText(context, R.string.generic_error, Toast.LENGTH_SHORT).show()
     }
   }
 }
