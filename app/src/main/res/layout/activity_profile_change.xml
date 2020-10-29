@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".ChangePassword">
+    tools:context=".view.settings.ChangePassword">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,6 +46,26 @@
             android:layout_height="wrap_content"
             android:layout_margin="15sp"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/container_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/secondary_password" />
+
+                <EditText
+                    android:id="@+id/secondary_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberPassword" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/container_name"
@@ -144,7 +164,7 @@
                     android:text="@string/new_password_key" />
 
                 <EditText
-                    android:id="@+id/new_password_key"
+                    android:id="@+id/new_secondary_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -156,7 +176,7 @@
                     android:text="@string/reenter_new_password_key" />
 
                 <EditText
-                    android:id="@+id/new_password_key_2"
+                    android:id="@+id/new_secondary_password_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"

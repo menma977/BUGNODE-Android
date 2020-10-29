@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import info.bugnode.view.settings.ChangePassword
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
@@ -126,7 +127,8 @@ class SettingFragment : Fragment() {
   }
 
   private fun do_edit_password(){
-
+    val intent = Intent(context, ChangePassword::class.java)
+    startActivity(intent)
   }
   private fun do_edit_password_key(){
 

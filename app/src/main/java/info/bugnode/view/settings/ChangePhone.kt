@@ -16,7 +16,7 @@ import info.bugnode.view.LoginActivity
 import kotlinx.android.synthetic.main.activity_profile_change.*
 import okhttp3.FormBody
 
-class ChangePassword : AppCompatActivity() {
+class ChangePhone : AppCompatActivity() {
     private lateinit var user: User
 
     private lateinit var text_name: EditText
@@ -63,23 +63,18 @@ class ChangePassword : AppCompatActivity() {
         container_secondary_password.visibility = View.GONE
 
         submit.setOnClickListener{
-            changePassword()
+            changePhone()
         }
     }
 
-    private fun changePassword(){
+    private fun changePhone(){
         if(secondary_password.text.toString().isBlank())
             return Toast.makeText(applicationContext, "Secondary password cannot be blank", Toast.LENGTH_SHORT).show()
         if(old_password.text.toString().isBlank())
-            return Toast.makeText(applicationContext, "Old password cannot be blank", Toast.LENGTH_SHORT).show()
-        if(new_password.text.toString().isBlank())
-            return Toast.makeText(applicationContext, "New password cannot be blank", Toast.LENGTH_SHORT).show()
-        if(new_password.text.toString() == new_password_2.text.toString())
-            return Toast.makeText(applicationContext, "Password mismatch", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(applicationContext, "Phone number cannot be blank", Toast.LENGTH_SHORT).show()
         val body = FormBody.Builder()
         body.addEncoded("password_key", secondary_password.text.toString())
         body.addEncoded("old_password", old_password.text.toString())
-        body.addEncoded("password", new_password.text.toString())
         val res = WebController.Post("user.changePassword", user.getString("token"), body).call()
         if(res.getInt("code")==200){
             val dialog = AlertDialog.Builder(applicationContext)
