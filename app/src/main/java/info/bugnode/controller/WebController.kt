@@ -23,6 +23,8 @@ class WebController {
       }
       request.addHeader("Access-Control-Allow-Origin", "*")
       request.addHeader("X-Requested-With", "XMLHttpRequest")
+      request.addHeader("Connection", "close")
+      request.header("Connection", "close")
     }
 
     @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")

@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
     body.addEncoded("username", username.text.toString())
     body.addEncoded("password", password.text.toString())
     Timer().schedule(100) {
-      val result: JSONObject = WebController.Post("login", "", body).call()
+      val result = WebController.Post("login", "", body).call()
       runOnUiThread {
         if (result.getInt("code") == 200) {
           if (result.getJSONObject("data").getInt("version") == BuildConfig.VERSION_CODE) {
@@ -87,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
             user.setString("phone", result.getJSONObject("data").getString("phone"))
             user.setBoolean("active", result.getJSONObject("data").getBoolean("active"))
             user.setString("dollar", result.getJSONObject("data").getString("dollar"))
-            user.setString("balance", result.getJSONObject("data").getString("Balance"))
+            user.setString("balance", result.getJSONObject("data").getString("balance"))
             user.setString("balanceDogeBug", result.getJSONObject("data").getString("balanceDogeBug"))
             move = Intent(applicationContext, NavigationActivity::class.java)
             move.putExtra("balance", result.getJSONObject("data").getString("balance"))

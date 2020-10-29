@@ -34,7 +34,7 @@ class DataUser : Service() {
     Timer().schedule(1000) {
       while (true) {
         val delta = System.currentTimeMillis() - time
-        if (delta >= 3000) {
+        if (delta >= 2500) {
           time = System.currentTimeMillis()
           val privateIntent = Intent()
           if (startBackgroundService) {
@@ -51,6 +51,10 @@ class DataUser : Service() {
                 user.setString("phone", json.getJSONObject("data").getString("phone"))
                 user.setBoolean("active", json.getJSONObject("data").getBoolean("active"))
                 user.setString("dollar", json.getJSONObject("data").getString("dollar"))
+                user.setString("balanceDogeBug", json.getJSONObject("data").getString("balanceDogeBug"))
+                user.setInteger("progress", json.getJSONObject("data").getInt("progress"))
+                user.setString("totalLimit", json.getJSONObject("data").getString("total"))
+                user.setBoolean("queue", json.getJSONObject("data").getBoolean("queue"))
 
                 if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
                   user.setBoolean("isLogout", true)
