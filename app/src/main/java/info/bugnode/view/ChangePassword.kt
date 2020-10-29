@@ -1,9 +1,10 @@
-package info.bugnode
+package info.bugnode.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.LinearLayout
+import info.bugnode.R
 
 class ChangePassword : AppCompatActivity() {
     private lateinit var text_name: EditText

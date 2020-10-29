@@ -1,14 +1,13 @@
 package info.bugnode.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import info.bugnode.BuildConfig
-import org.json.JSONObject
 import info.bugnode.R
 import info.bugnode.config.Loading
 import info.bugnode.controller.WebController
@@ -21,10 +20,12 @@ class LoginActivity : AppCompatActivity() {
   private lateinit var user: User
   private lateinit var loading: Loading
   private lateinit var move: Intent
+  private lateinit var version: TextView
   private lateinit var username: EditText
   private lateinit var password: EditText
   private lateinit var loginButton: Button
   private lateinit var textViewRegister: TextView
+  private lateinit var updateButton: Button
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -33,10 +34,23 @@ class LoginActivity : AppCompatActivity() {
     user = User(this)
     loading = Loading(this)
 
+    version = findViewById(R.id.textViewVersion)
     loginButton = findViewById(R.id.buttonLogin)
     textViewRegister = findViewById(R.id.textViewRegister)
     username = findViewById(R.id.editTextUsername)
     password = findViewById(R.id.editTextPassword)
+    updateButton = findViewById(R.id.buttonUpdate)
+
+    version.text = BuildConfig.VERSION_NAME
+
+    if (intent.getBooleanExtra("isUpdate", true)) {
+      loginButton.visibility = Button.GONE
+      updateButton.visibility = Button.VISIBLE
+      username.visibility = EditText.GONE
+      password.visibility = EditText.GONE
+    } else {
+      updateButton.visibility = Button.GONE
+    }
 
     loginButton.setOnClickListener {
       loading.openDialog()

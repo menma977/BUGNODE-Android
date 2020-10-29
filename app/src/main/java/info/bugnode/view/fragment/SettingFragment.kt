@@ -8,10 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TableRow
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import info.bugnode.R
@@ -35,6 +32,8 @@ class SettingFragment : Fragment() {
   private lateinit var editPasswordKey: TableRow
   private lateinit var editPhone: TableRow
   private lateinit var logout: TableRow
+  private lateinit var progressBar: ProgressBar
+  private lateinit var progressBarTextVIew: TextView
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_setting, container, false)
@@ -49,7 +48,8 @@ class SettingFragment : Fragment() {
     balanceDogeBugTextView = root.findViewById(R.id.textViewDogeBugBalance)
     notification = root.findViewById(R.id.notification)
     notificationMessage = root.findViewById(R.id.textViewNotification)
-
+    progressBar = root.findViewById(R.id.progressBar)
+    progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
     editPassword = root.findViewById(R.id.edit_password)
     editPasswordKey = root.findViewById(R.id.edit_password_key)
     editPhone = root.findViewById(R.id.edit_phone_number)
@@ -78,6 +78,9 @@ class SettingFragment : Fragment() {
     dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
+
+    progressBar.progress = user.getInteger("progress")
+    progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
     return root
   }
@@ -108,6 +111,9 @@ class SettingFragment : Fragment() {
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
+        progressBar.progress = user.getInteger("progress")
+        progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+
         if (user.getBoolean("queue")) {
           //todo:disable proses
         }
@@ -128,14 +134,10 @@ class SettingFragment : Fragment() {
   }
 
   private fun doLogout() {
-    val res = WebController.Get("user.logout", user.getString("token")).call()
-    if (res.getInt("code") == 200) {
-      user.clear()
-      val intent = Intent(context, LoginActivity::class.java)
-      startActivity(intent)
-      parentActivity.finish()
-    } else {
-      Toast.makeText(context, R.string.generic_error, Toast.LENGTH_SHORT).show()
-    }
+    WebController.Get("user.logout", user.getString("token")).call()
+    user.clear()
+    val intent = Intent(context, LoginActivity::class.java)
+    startActivity(intent)
+    parentActivity.finish()
   }
 }
