@@ -18,6 +18,7 @@ import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.model.User
 import info.bugnode.view.NavigationActivity
+import info.bugnode.view.doge.TopUpDogeBogeActivity
 import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
@@ -33,6 +34,7 @@ class HomeFragment : Fragment() {
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
   private lateinit var stakeButton: LinearLayout
+  private lateinit var buttonTopUp: LinearLayout
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -50,6 +52,7 @@ class HomeFragment : Fragment() {
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
     stakeButton = root.findViewById(R.id.buttonStake)
+    buttonTopUp = root.findViewById(R.id.buttonTopUp)
 
     if (!user.getBoolean("active")) {
       notificationMessage.text = "Your Account is not ready. please upgrade account"
@@ -69,6 +72,11 @@ class HomeFragment : Fragment() {
       move.putExtra("balance", user.getString("balance"))
       move.putExtra("balanceView", BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString())
       move.putExtra("balanceDogeBugView", BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString())
+      startActivity(move)
+    }
+
+    buttonTopUp.setOnClickListener {
+      move = Intent(parentActivity, TopUpDogeBogeActivity::class.java)
       startActivity(move)
     }
 

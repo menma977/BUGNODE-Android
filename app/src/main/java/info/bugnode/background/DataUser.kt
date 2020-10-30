@@ -34,7 +34,7 @@ class DataUser : Service() {
     Timer().schedule(1000) {
       while (true) {
         val delta = System.currentTimeMillis() - time
-        if (delta >= 3500) {
+        if (delta >= 2500) {
           time = System.currentTimeMillis()
           val privateIntent = Intent()
           if (startBackgroundService) {

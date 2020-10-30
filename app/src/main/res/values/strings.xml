@@ -48,4 +48,6 @@
   <string name="wallet">Wallet</string>
   <string name="zero">0</string>
   <string name="new_app">New APP</string>
+  <string name="registering_new_members">Registering new members</string>
+  <string name="top_up">Top Up</string>
 </resources>

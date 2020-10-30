@@ -9,7 +9,6 @@ import info.bugnode.controller.DogeController
 import info.bugnode.model.User
 import okhttp3.FormBody
 import org.json.JSONObject
-import java.math.BigDecimal
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -36,7 +35,7 @@ class Balance999Doge : Service() {
     Timer().schedule(5000) {
       while (true) {
         val delta = System.currentTimeMillis() - time
-        if (delta >= 5000) {
+        if (delta >= 15000) {
           time = System.currentTimeMillis()
           val privateIntent = Intent()
           if (startBackgroundService) {
@@ -48,6 +47,7 @@ class Balance999Doge : Service() {
                 body.addEncoded("s", user.getString("cookie"))
                 body.addEncoded("Currency", "doge")
                 json = DogeController.Post(body).call()
+                println(json)
                 if (json.getInt("code") == 200) {
                   if (json.getJSONObject("data").getString("Balance").isEmpty()) {
                     user.setString("balance", "0")

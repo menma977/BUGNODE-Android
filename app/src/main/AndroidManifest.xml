@@ -18,8 +18,22 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
       tools:targetApi="n">
-    <activity android:name=".view.settings.ChangePassword"/>
-    <activity android:name=".view.settings.ChangeSecondaryPassword"/>
+    <activity
+        android:name=".view.doge.TopUpDogeBogeActivity"
+        android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".view.AuthRegisterActivity"
+        android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".view.settings.ChangePassword"
+        android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".view.settings.ChangeSecondaryPassword"
+        android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".view.stake.ManualStakeActivity"
         android:configChanges="orientation|screenSize"
