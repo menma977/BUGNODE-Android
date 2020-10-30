@@ -84,6 +84,7 @@
         android:baselineAligned="false">
 
       <LinearLayout
+          android:id="@+id/buttonTopUp"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_weight="1"
@@ -95,15 +96,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/upgrade_account" />
+            app:srcCompat="@drawable/upgrade_account"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/upgrade_lot"
+            android:text="@string/top_up"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
       </LinearLayout>
 
@@ -119,15 +120,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/register" />
+            app:srcCompat="@drawable/register"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register_account"
+            android:text="Wallet"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
       </LinearLayout>
 
@@ -143,15 +144,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/send_pin" />
+            app:srcCompat="@drawable/send_pin"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/buy_dogebug"
+            android:text="History DOGE"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
       </LinearLayout>
 
@@ -167,15 +168,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/history_pin" />
+            app:srcCompat="@drawable/history_pin"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/history_doge"
+            android:text="History DogeBoge"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
       </LinearLayout>
 
@@ -262,6 +263,12 @@
             android:textColor="@color/colorSecondaryDark"
             android:textSize="16sp"/>
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/icon"
+            app:srcCompat="@drawable/send_pin"/>
+
       </LinearLayout>
 
       <Space
@@ -303,6 +310,12 @@
             android:layout_weight="1"
             android:textColor="@color/colorSecondaryDark"
             android:textSize="16sp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/icon"
+            app:srcCompat="@drawable/send_pin"/>
 
       </LinearLayout>
 

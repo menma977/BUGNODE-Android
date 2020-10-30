@@ -1,6 +1,5 @@
 package info.bugnode.controller
 
-import android.util.Log
 import info.bugnode.model.Url
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -63,7 +62,7 @@ class WebController {
           }
         }
       } catch (e: Exception) {
-        e.printStackTrace();
+        e.printStackTrace()
         JSONObject().put("code", 500).put("data", e.message)
       }
     }
