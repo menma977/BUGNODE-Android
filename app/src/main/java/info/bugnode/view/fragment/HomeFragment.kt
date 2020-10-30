@@ -76,10 +76,6 @@ class HomeFragment : Fragment() {
       move.putExtra("balanceDogeBugView", BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString())
       startActivity(move)
     }
-    bonusButton.setOnClickListener {
-      move = Intent(parentActivity, DogeActivity::class.java)
-      startActivity(move)
-    }
 
     buttonTopUp.setOnClickListener {
       move = Intent(parentActivity, TopUpDogeBogeActivity::class.java)

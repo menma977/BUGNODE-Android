@@ -99,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
             user.setString("name", result.getJSONObject("data").getString("name"))
             user.setString("email", result.getJSONObject("data").getString("email"))
             user.setString("phone", result.getJSONObject("data").getString("phone"))
+            user.setString("whatsapp", result.getJSONObject("data").getString("whatsapp"))
             user.setBoolean("active", result.getJSONObject("data").getBoolean("active"))
             user.setString("dollar", result.getJSONObject("data").getString("dollar"))
             user.setString("balance", result.getJSONObject("data").getString("balance"))

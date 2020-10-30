@@ -11,6 +11,7 @@
   <string name="name">Name</string>
   <string name="email">Email</string>
   <string name="phone">Phone</string>
+  <string name="whatsapp">Whatsapp</string>
   <string name="confirmation_password">Confirmation Password</string>
   <string name="secondary_password">Secondary Password</string>
   <string name="confirmation_secondary_password">Confirmation Secondary Password</string>

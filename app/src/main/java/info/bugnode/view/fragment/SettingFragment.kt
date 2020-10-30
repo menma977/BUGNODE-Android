@@ -20,6 +20,7 @@ import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import info.bugnode.view.LoginActivity
 import info.bugnode.view.NavigationActivity
+import info.bugnode.view.settings.ChangePhone
 import info.bugnode.view.settings.ChangeSecondaryPassword
 
 class SettingFragment : Fragment() {
@@ -131,7 +132,8 @@ class SettingFragment : Fragment() {
   }
 
   private fun do_edit_phone() {
-
+    val intent = Intent(context, ChangePhone::class.java)
+    startActivity(intent)
   }
 
   private fun doLogout() {
