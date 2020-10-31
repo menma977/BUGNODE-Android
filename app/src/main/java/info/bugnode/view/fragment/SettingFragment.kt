@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +19,11 @@ import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.controller.WebController
 import info.bugnode.model.User
-import info.bugnode.view.LoginActivity
 import info.bugnode.view.NavigationActivity
 import info.bugnode.view.settings.ChangePhone
 import info.bugnode.view.settings.ChangeSecondaryPassword
+import java.util.*
+import kotlin.concurrent.schedule
 
 class SettingFragment : Fragment() {
   private lateinit var parentActivity: NavigationActivity
@@ -137,10 +139,17 @@ class SettingFragment : Fragment() {
   }
 
   private fun doLogout() {
-    WebController.Get("user.logout", user.getString("token")).call()
-    user.clear()
-    val intent = Intent(context, MainActivity::class.java)
-    startActivity(intent)
-    parentActivity.finish()
+
+    Timer().schedule(100) {
+      Log.d("MEMEME", user.getString("token"))
+      val res = WebController.Get("user.logout", user.getString("token")).call()
+      Log.d("MEMEME", res.toString())
+      parentActivity.runOnUiThread {
+      val intent = Intent(context, MainActivity::class.java)
+        user.clear()
+        startActivity(intent)
+        parentActivity.finishAffinity()
+      }
+    }
   }
 }
