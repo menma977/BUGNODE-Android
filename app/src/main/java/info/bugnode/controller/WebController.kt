@@ -16,6 +16,17 @@ class WebController {
     private val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build()
     private val request = Request.Builder()
 
+    fun declareRequest(targetUrl: String, token: String) {
+      request.url(Url.web(targetUrl))
+      if (token.isNotEmpty()) {
+        request.addHeader("Authorization", "Bearer $token")
+      }
+      request.addHeader("Access-Control-Allow-Origin", "*")
+      request.addHeader("X-Requested-With", "XMLHttpRequest")
+      request.addHeader("Connection", "close")
+      request.header("Connection", "close")
+    }
+
     @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     fun responseHandler(jsonObject: JSONObject): JSONObject {
       println(jsonObject)
@@ -36,12 +47,7 @@ class WebController {
   class Post(private var targetUrl: String, private var token: String, private var bodyValue: FormBody.Builder) : Callable<JSONObject> {
     override fun call(): JSONObject {
       return try {
-        request.url(Url.web(targetUrl))
-        if (token.isNotEmpty()) {
-          request.addHeader("Authorization", "Bearer $token")
-        }
-        request.addHeader("Access-Control-Allow-Origin", "*")
-        request.addHeader("X-Requested-With", "XMLHttpRequest")
+        declareRequest(targetUrl, token)
         request.post(bodyValue.build())
         val response: Response = client.newCall(request.build()).execute()
         val input = BufferedReader(InputStreamReader(response.body!!.byteStream()))
@@ -65,13 +71,8 @@ class WebController {
   class Get(private var targetUrl: String, private var token: String) : Callable<JSONObject> {
     override fun call(): JSONObject {
       return try {
+        declareRequest(targetUrl, token)
         request.method("GET", null)
-        request.url(Url.web(targetUrl))
-        if (token.isNotEmpty()) {
-          request.addHeader("Authorization", "Bearer $token")
-        }
-        request.addHeader("Access-Control-Allow-Origin", "*")
-        request.addHeader("X-Requested-With", "XMLHttpRequest")
         val response = client.newCall(request.build()).execute()
         val input = BufferedReader(InputStreamReader(response.body!!.byteStream()))
         val inputData: String = input.readLine()
@@ -97,12 +98,7 @@ class WebController {
   class WebView(private var targetUrl: String, private var token: String, private var bodyValue: FormBody.Builder) : Callable<JSONObject> {
     override fun call(): JSONObject {
       return try {
-        request.url(Url.web(targetUrl))
-        if (token.isNotEmpty()) {
-          request.addHeader("Authorization", "Bearer $token")
-        }
-        request.addHeader("Access-Control-Allow-Origin", "*")
-        request.addHeader("X-Requested-With", "XMLHttpRequest")
+        declareRequest(targetUrl, token)
         request.post(bodyValue.build())
         val response: Response = client.newCall(request.build()).execute()
         val input = BufferedReader(InputStreamReader(response.body!!.byteStream()))
