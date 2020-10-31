@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="info.bugnode">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="info.bugnode">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.CAMERA"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
   <application
       android:allowBackup="false"
@@ -18,7 +18,10 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
       tools:targetApi="n">
-      
+    <activity
+        android:name=".view.WebViewActivity"
+        android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".view.DogeActivity"
         android:configChanges="orientation|screenSize"
@@ -74,18 +77,18 @@
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.LAUNCHER"/>
 
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
+        <action android:name="android.intent.action.VIEW"/>
+      </intent-filter>
+    </activity>
 
-        <service
-            android:name=".background.DataUser"
-            android:enabled="true" />
-        <service
-            android:name=".background.Balance999Doge"
-            android:enabled="true" />
-    </application>
+    <service
+        android:name=".background.DataUser"
+        android:enabled="true"/>
+    <service
+        android:name=".background.Balance999Doge"
+        android:enabled="true"/>
+  </application>
 
 </manifest>
