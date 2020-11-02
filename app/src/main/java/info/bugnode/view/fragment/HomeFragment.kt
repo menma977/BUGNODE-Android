@@ -21,7 +21,6 @@ import info.bugnode.view.AuthRegisterActivity
 import info.bugnode.view.NavigationActivity
 import info.bugnode.view.NetworkActivity
 import info.bugnode.view.WebViewActivity
-import info.bugnode.view.doge.TopUpDogeBogeActivity
 import info.bugnode.view.doge.UpgradeActivity
 import info.bugnode.view.stake.ManualStakeActivity
 
@@ -39,7 +38,6 @@ class HomeFragment : Fragment() {
   private lateinit var progressBarTextVIew: TextView
   private lateinit var registerButton: LinearLayout
   private lateinit var stakeButton: LinearLayout
-  private lateinit var buttonTopUp: LinearLayout
   private lateinit var buttonUpgrade: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
@@ -62,7 +60,6 @@ class HomeFragment : Fragment() {
     registerButton = root.findViewById(R.id.buttonRegister)
     stakeButton = root.findViewById(R.id.buttonStake)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
-    buttonTopUp = root.findViewById(R.id.buttonTopUp)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
 
@@ -94,11 +91,6 @@ class HomeFragment : Fragment() {
 
     buttonUpgrade.setOnClickListener {
       move = Intent(parentActivity, UpgradeActivity::class.java)
-      startActivity(move)
-    }
-
-    buttonTopUp.setOnClickListener {
-      move = Intent(parentActivity, TopUpDogeBogeActivity::class.java)
       startActivity(move)
     }
 
