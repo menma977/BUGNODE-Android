@@ -116,13 +116,15 @@ class TopUpDogeBogeActivity : AppCompatActivity() {
 
   override fun onStart() {
     super.onStart()
-    intentGetUser = Intent(applicationContext, DataUser::class.java)
-    startService(intentGetUser)
+    Timer().schedule(1000) {
+      intentGetUser = Intent(applicationContext, DataUser::class.java)
+      startService(intentGetUser)
 
-    intentGetBalance = Intent(applicationContext, Balance999Doge::class.java)
-    startService(intentGetBalance)
+      intentGetBalance = Intent(applicationContext, Balance999Doge::class.java)
+      startService(intentGetBalance)
 
-    LocalBroadcastManager.getInstance(applicationContext).registerReceiver(broadcastReceiverDataUser, IntentFilter("api.web"))
+      LocalBroadcastManager.getInstance(applicationContext).registerReceiver(broadcastReceiverDataUser, IntentFilter("api.web"))
+    }
   }
 
   override fun onStop() {
@@ -136,7 +138,7 @@ class TopUpDogeBogeActivity : AppCompatActivity() {
   override fun onBackPressed() {
     stopService(intentGetUser)
     stopService(intentGetBalance)
-    finishAffinity()
+    finish()
     super.onBackPressed()
   }
 

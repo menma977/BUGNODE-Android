@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.background.Balance999Doge
@@ -32,7 +31,6 @@ class NavigationActivity : AppCompatActivity() {
   private lateinit var loading: Loading
   private lateinit var jsonObject: JSONObject
   private lateinit var move: Intent
-  private lateinit var sendDoge: FloatingActionButton
   private lateinit var linearHome: LinearLayout
   private lateinit var linearBugChain: LinearLayout
   private lateinit var linearInfo: LinearLayout
@@ -45,7 +43,6 @@ class NavigationActivity : AppCompatActivity() {
     user = User(this)
     loading = Loading(this)
 
-    sendDoge = findViewById(R.id.floatingActionButtonSendDoge)
     linearHome = findViewById(R.id.linearLayoutHome)
     linearBugChain = findViewById(R.id.linearLayoutBugChain)
     linearInfo = findViewById(R.id.linearLayoutInfo)
@@ -76,19 +73,19 @@ class NavigationActivity : AppCompatActivity() {
       val fragment = SettingFragment()
       addFragment(fragment)
     }
-
-    sendDoge.setOnClickListener {}
   }
 
   override fun onStart() {
     super.onStart()
-    intentGetUser = Intent(applicationContext, DataUser::class.java)
-    startService(intentGetUser)
+    Timer().schedule(1000) {
+      intentGetUser = Intent(applicationContext, DataUser::class.java)
+      startService(intentGetUser)
 
-    intentGetBalance = Intent(applicationContext, Balance999Doge::class.java)
-    startService(intentGetBalance)
+      intentGetBalance = Intent(applicationContext, Balance999Doge::class.java)
+      startService(intentGetBalance)
 
-    LocalBroadcastManager.getInstance(applicationContext).registerReceiver(broadcastReceiverDataUser, IntentFilter("api.web"))
+      LocalBroadcastManager.getInstance(applicationContext).registerReceiver(broadcastReceiverDataUser, IntentFilter("api.web"))
+    }
   }
 
   override fun onStop() {

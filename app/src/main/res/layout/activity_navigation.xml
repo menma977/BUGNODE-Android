@@ -87,11 +87,6 @@
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_weight="1"/>
-
     <LinearLayout
         android:id="@+id/linearLayoutInfo"
         android:orientation="vertical"
@@ -149,22 +144,5 @@
     </LinearLayout>
 
   </LinearLayout>
-
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:clickable="true"
-      android:id="@+id/floatingActionButtonSendDoge"
-      android:focusable="true"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      android:layout_marginBottom="28dp"
-      app:backgroundTint="@color/colorSecondary"
-      android:src="@drawable/send_bug"
-      app:fabSize="auto"
-      app:maxImageSize="55dp"
-      app:fabCustomSize="65dp"
-      app:elevation="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
