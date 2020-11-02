@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +42,8 @@ class HomeFragment : Fragment() {
   private lateinit var buttonUpgrade: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
+  private lateinit var sendDogeButton: Image
+  private lateinit var sendDogeBugButton: Image
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -62,6 +65,8 @@ class HomeFragment : Fragment() {
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
+    sendDogeButton = root.findViewById(R.id.sendDoge)
+    sendDogeBugButton = root.findViewById(R.id.sendDogeBug)
 
     if (!user.getBoolean("active")) {
       notificationMessage.text = "Your Account is not ready. please upgrade account"
@@ -104,6 +109,8 @@ class HomeFragment : Fragment() {
       move.putExtra("url", "binary.android.sponsor")
       startActivity(move)
     }
+
+
 
     return root
   }

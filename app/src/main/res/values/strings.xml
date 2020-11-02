@@ -54,4 +54,7 @@
   <string name="title_activity_network">FullscreenActivity</string>
   <string name="dummy_button">Dummy Button</string>
   <string name="dummy_content">DUMMY\nCONTENT</string>
+  <string name="update_profile">Update Profile</string>
+  <string name="press_logo_to_open_barcode_scan">press logo to open barcode scan</string>
+  <string name="send">Send</string>
 </resources>
