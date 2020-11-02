@@ -84,7 +84,7 @@
         android:baselineAligned="false">
 
       <LinearLayout
-          android:id="@+id/buttonTopUp"
+          android:id="@+id/buttonUpgrade"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_weight="1"
@@ -483,6 +483,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/buttonTopUp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
