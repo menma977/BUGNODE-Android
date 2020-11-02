@@ -17,6 +17,7 @@ import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.model.User
+import info.bugnode.view.AuthRegisterActivity
 import info.bugnode.view.NavigationActivity
 import info.bugnode.view.NetworkActivity
 import info.bugnode.view.WebViewActivity
@@ -35,6 +36,7 @@ class HomeFragment : Fragment() {
   private lateinit var notificationMessage: TextView
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
+  private lateinit var registerButton: LinearLayout
   private lateinit var stakeButton: LinearLayout
   private lateinit var buttonTopUp: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
@@ -55,6 +57,7 @@ class HomeFragment : Fragment() {
     notificationMessage = root.findViewById(R.id.textViewNotification)
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
+    registerButton = root.findViewById(R.id.buttonRegister)
     stakeButton = root.findViewById(R.id.buttonStake)
     buttonTopUp = root.findViewById(R.id.buttonTopUp)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
@@ -73,6 +76,11 @@ class HomeFragment : Fragment() {
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
+    registerButton.setOnClickListener {
+      move = Intent(parentActivity, AuthRegisterActivity::class.java)
+      startActivity(move)
+    }
+
     stakeButton.setOnClickListener {
       move = Intent(parentActivity, ManualStakeActivity::class.java)
       move.putExtra("balance", user.getString("balance"))
@@ -88,7 +96,9 @@ class HomeFragment : Fragment() {
 
     buttonNetwork.setOnClickListener {
       move = Intent(parentActivity, NetworkActivity::class.java)
+      startActivity(move)
     }
+
     teamLinearLayout.setOnClickListener {
       move = Intent(parentActivity, WebViewActivity::class.java)
       move.putExtra("url", "binary.android.sponsor")

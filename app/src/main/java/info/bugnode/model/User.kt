@@ -33,11 +33,6 @@ class User(context: Context) {
     sharedPreferencesEditor.commit()
   }
 
-  fun setLong(id: String, value: Long) {
-    sharedPreferencesEditor.putLong(id, value)
-    sharedPreferencesEditor.commit()
-  }
-
   fun getInteger(id: String): Int {
     return sharedPreferences.getInt(id, 0)
   }
@@ -50,12 +45,8 @@ class User(context: Context) {
     return sharedPreferences.getBoolean(id, false)
   }
 
-  fun getLong(id: String): Long {
-    return sharedPreferences.getLong(id, 0)
-  }
-
   fun clear() {
-    sharedPreferences.edit().clear().apply()
     sharedPreferencesEditor.clear()
+    sharedPreferences.edit().clear().apply()
   }
 }

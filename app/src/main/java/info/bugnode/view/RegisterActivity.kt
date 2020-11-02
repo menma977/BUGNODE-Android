@@ -108,7 +108,6 @@ class RegisterActivity : AppCompatActivity() {
     }
     Timer().schedule(100) {
       jsonObject = WebController.Post("register", "", body).call()
-      println(jsonObject)
       if (jsonObject.getInt("code") == 200) {
         runOnUiThread {
           Toast.makeText(applicationContext, jsonObject.getJSONObject("data").getString("message"), Toast.LENGTH_SHORT).show()

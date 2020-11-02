@@ -118,27 +118,14 @@ class NavigationActivity : AppCompatActivity() {
   }
 
   fun onLogout() {
-    LocalBroadcastManager.getInstance(applicationContext).unregisterReceiver(broadcastReceiverDataUser)
-    stopService(intentGetUser)
-    stopService(intentGetBalance)
     Timer().schedule(100) {
       jsonObject = WebController.Get("user.logout", user.getString("token")).call()
       runOnUiThread {
-        if (jsonObject.getInt("code") == 200) {
-          user.clear()
-          move = Intent(applicationContext, MainActivity::class.java)
-          loading.closeDialog()
-          startActivity(move)
-          finishAffinity()
-        } else {
-          if (jsonObject.getString("data").contains("Unauthenticated.")) {
-            user.clear()
-            move = Intent(applicationContext, MainActivity::class.java)
-            loading.closeDialog()
-            startActivity(move)
-            finishAffinity()
-          }
-        }
+        user.clear()
+        move = Intent(applicationContext, MainActivity::class.java)
+        loading.closeDialog()
+        startActivity(move)
+        finishAffinity()
       }
     }
   }

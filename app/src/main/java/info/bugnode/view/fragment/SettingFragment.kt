@@ -5,25 +5,23 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import info.bugnode.view.settings.ChangePassword
-import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
-import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import info.bugnode.view.NavigationActivity
+import info.bugnode.view.settings.ChangePassword
 import info.bugnode.view.settings.ChangePhone
 import info.bugnode.view.settings.ChangeSecondaryPassword
-import java.util.*
-import kotlin.concurrent.schedule
 
 class SettingFragment : Fragment() {
   private lateinit var parentActivity: NavigationActivity
@@ -62,16 +60,16 @@ class SettingFragment : Fragment() {
     logout = root.findViewById(R.id.logout)
 
     editPassword.setOnClickListener {
-      do_edit_password()
+      doEditPassword()
     }
     editPasswordKey.setOnClickListener {
-      do_edit_password_key()
+      doEditPasswordKey()
     }
     editPhone.setOnClickListener {
-      do_edit_phone()
+      doEditPhone()
     }
     logout.setOnClickListener {
-      doLogout()
+      parentActivity.onLogout()
     }
 
 
@@ -123,33 +121,18 @@ class SettingFragment : Fragment() {
     }
   }
 
-  private fun do_edit_password(){
+  private fun doEditPassword() {
     val intent = Intent(context, ChangePassword::class.java)
     startActivity(intent)
   }
 
-  private fun do_edit_password_key() {
+  private fun doEditPasswordKey() {
     val intent = Intent(context, ChangeSecondaryPassword::class.java)
     startActivity(intent)
   }
 
-  private fun do_edit_phone() {
+  private fun doEditPhone() {
     val intent = Intent(context, ChangePhone::class.java)
     startActivity(intent)
-  }
-
-  private fun doLogout() {
-
-    Timer().schedule(100) {
-      Log.d("MEMEME", user.getString("token"))
-      val res = WebController.Get("user.logout", user.getString("token")).call()
-      Log.d("MEMEME", res.toString())
-      parentActivity.runOnUiThread {
-      val intent = Intent(context, MainActivity::class.java)
-        user.clear()
-        startActivity(intent)
-        parentActivity.finishAffinity()
-      }
-    }
   }
 }

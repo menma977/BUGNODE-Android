@@ -8,6 +8,7 @@ import info.bugnode.BuildConfig
 import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import org.json.JSONObject
+import java.lang.Thread.sleep
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -29,48 +30,49 @@ class DataUser : Service() {
   private fun onHandleIntent() {
     user = User(this)
     var time = System.currentTimeMillis()
-    val trigger = Object()
 
-    Timer().schedule(1000) {
+    Timer().schedule(100) {
       while (true) {
         val delta = System.currentTimeMillis() - time
-        if (delta >= 2500) {
+        if (delta >= 1000) {
           time = System.currentTimeMillis()
           val privateIntent = Intent()
           if (startBackgroundService) {
-            synchronized(trigger) {
-              json = WebController.Get("user.show", user.getString("token")).call()
-              if (json.getInt("code") == 200) {
-                user.setString("username", json.getJSONObject("data").getString("username"))
-                user.setString("cookie", json.getJSONObject("data").getString("sessionKey"))
-                user.setString("wallet", json.getJSONObject("data").getString("wallet"))
-                user.setBoolean("canPlay", json.getJSONObject("data").getBoolean("canPlay"))
-                user.setString("role", json.getJSONObject("data").getString("role"))
-                user.setString("name", json.getJSONObject("data").getString("name"))
-                user.setString("email", json.getJSONObject("data").getString("email"))
-                user.setString("phone", json.getJSONObject("data").getString("phone"))
-                user.setBoolean("active", json.getJSONObject("data").getBoolean("active"))
-                user.setString("dollar", json.getJSONObject("data").getString("dollar"))
-                user.setString("balanceDogeBug", json.getJSONObject("data").getString("balanceDogeBug"))
-                user.setInteger("progress", json.getJSONObject("data").getInt("progress"))
-                user.setString("totalLimit", json.getJSONObject("data").getString("total"))
-                user.setBoolean("queue", json.getJSONObject("data").getBoolean("queue"))
-
-                if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
-                  user.setBoolean("isLogout", true)
-                }
-              } else {
-                if (json.getString("data").contains("Unauthenticated.")) {
-                  user.setBoolean("isLogout", true)
-                } else {
-                  user.setBoolean("isLogout", false)
-                  trigger.wait(5000)
-                }
-              }
-
-              privateIntent.action = "api.web"
-              LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(privateIntent)
+            if (user.getString("token").isEmpty()) {
+              break
             }
+            json = WebController.Get("user.show", user.getString("token")).call()
+            if (json.getInt("code") == 200) {
+              user.setString("username", json.getJSONObject("data").getString("username"))
+              user.setString("cookie", json.getJSONObject("data").getString("sessionKey"))
+              user.setString("wallet", json.getJSONObject("data").getString("wallet"))
+              user.setBoolean("canPlay", json.getJSONObject("data").getBoolean("canPlay"))
+              user.setString("role", json.getJSONObject("data").getString("role"))
+              user.setString("name", json.getJSONObject("data").getString("name"))
+              user.setString("email", json.getJSONObject("data").getString("email"))
+              user.setString("phone", json.getJSONObject("data").getString("phone"))
+              user.setBoolean("active", json.getJSONObject("data").getBoolean("active"))
+              user.setString("dollar", json.getJSONObject("data").getString("dollar"))
+              user.setString("balanceDogeBug", json.getJSONObject("data").getString("balanceDogeBug"))
+              user.setInteger("progress", json.getJSONObject("data").getInt("progress"))
+              user.setString("totalLimit", json.getJSONObject("data").getString("total"))
+              user.setBoolean("queue", json.getJSONObject("data").getBoolean("queue"))
+
+              if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
+                user.setBoolean("isLogout", true)
+              }
+            } else {
+              if (json.getString("data").contains("Unauthenticated.")) {
+                user.setBoolean("isLogout", true)
+                sleep(1000)
+              } else {
+                user.setBoolean("isLogout", false)
+                sleep(10000)
+              }
+            }
+
+            privateIntent.action = "api.web"
+            LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(privateIntent)
           } else {
             break
           }

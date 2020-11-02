@@ -43,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
 
     version.text = BuildConfig.VERSION_NAME
 
+    username.setText("smitty32")
+    password.setText("admin")
+
     if (intent.getBooleanExtra("isUpdate", true)) {
       loginButton.visibility = Button.GONE
       updateButton.visibility = Button.VISIBLE
@@ -110,9 +113,10 @@ class LoginActivity : AppCompatActivity() {
             move = Intent(applicationContext, NavigationActivity::class.java)
             move.putExtra("balance", result.getJSONObject("data").getString("balance"))
             move.putExtra("balanceDogeBug", result.getJSONObject("data").getString("balanceDogeBug"))
+            user.setBoolean("isLogout", false)
             startActivity(move)
             loading.closeDialog()
-            finish()
+            finishAffinity()
           } else {
             Toast.makeText(applicationContext, "your application is not up to date", Toast.LENGTH_SHORT).show()
             loading.closeDialog()

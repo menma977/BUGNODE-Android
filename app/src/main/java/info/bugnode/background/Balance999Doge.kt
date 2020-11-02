@@ -47,7 +47,6 @@ class Balance999Doge : Service() {
                 body.addEncoded("s", user.getString("cookie"))
                 body.addEncoded("Currency", "doge")
                 json = DogeController.Post(body).call()
-                println(json)
                 if (json.getInt("code") == 200) {
                   if (json.getJSONObject("data").getString("Balance").isEmpty()) {
                     user.setString("balance", "0")

@@ -53,12 +53,6 @@
             android:textColor="@color/colorSecondaryDark"
             android:textSize="16sp"/>
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/send_pin"/>
-
       </LinearLayout>
 
       <Space
@@ -101,12 +95,6 @@
             android:textColor="@color/colorSecondaryDark"
             android:textSize="16sp"/>
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/send_pin"/>
-
       </LinearLayout>
 
     </LinearLayout>
@@ -145,6 +133,38 @@
           android:id="@+id/packageSpinner"
           android:background="@drawable/edit_text"
           android:animateLayoutChanges="true"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="10dp"/>
+
+      <EditText
+          android:hint="@string/secondary_password"
+          android:gravity="center"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="numberDecimal"
+          android:ems="10"
+          android:id="@+id/editTextPasswordKey"
+          android:background="@drawable/edit_text"
+          tools:ignore="TextFields"
+          android:autofillHints="@string/secondary_password"
+          android:maxLength="6"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"/>
+
+      <Button
+          android:text="@string/top_up"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/buttonTopUp"
+          android:background="@drawable/button"/>
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="10dp"/>
 
     </LinearLayout>
 
