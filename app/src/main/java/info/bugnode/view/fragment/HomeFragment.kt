@@ -49,7 +49,6 @@ class HomeFragment : Fragment() {
   private lateinit var teamLinearLayout: LinearLayout
   private lateinit var sendDogeButton: ImageButton
   private lateinit var sendDogeBugButton: ImageButton
-
   private lateinit var walletdogeview: ImageView
   private lateinit var walletdogebogeview: ImageView
 
@@ -100,7 +99,6 @@ class HomeFragment : Fragment() {
       move = Intent(parentActivity, AuthRegisterActivity::class.java)
       startActivity(move)
     }
-
     /*
     stakeButton.setOnClickListener {
       move = Intent(parentActivity, ManualStakeActivity::class.java)
@@ -206,7 +204,7 @@ class HomeFragment : Fragment() {
           notification.visibility = LinearLayout.GONE
         }
 
-        dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
+        dollarTextView.text = BitCoinFormat.toDollar(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
