@@ -31,11 +31,7 @@
         android:configChanges="orientation|screenSize"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
-        android:name=".view.DogeActivity"
-        android:configChanges="orientation|screenSize"
-        android:theme="@style/AppTheme.NoActionBar"/>
-    <activity
-        android:name=".view.BonusHistoryActivity"
+        android:name=".view.HistoryActivity"
         android:configChanges="orientation|screenSize"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
