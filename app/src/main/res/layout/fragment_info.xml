@@ -39,7 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
       <LinearLayout
           android:layout_width="wrap_content"
@@ -68,19 +69,33 @@
         android:orientation="vertical"
         android:padding="12sp">
 
-      <TextView
+      <LinearLayout
+          android:id="@+id/wallet_doge_view"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/wallet"
-          android:textAlignment="center"
-          android:textStyle="bold" />
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
-      <TextView
-          android:id="@+id/wallet"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/wallet"
-          android:textAlignment="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/walletDoge"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/walletdoge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wallet"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/balancedoge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/balance"
+            android:textAlignment="center" />
+      </LinearLayout>
 
       <View
           android:id="@+id/view5"
@@ -90,19 +105,34 @@
           android:layout_marginEnd="5dp"
           android:background="@color/colorSecondaryDark" />
 
-      <TextView
+      <LinearLayout
+          android:id="@+id/wallet_dogebug_view"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/balance"
-          android:textAlignment="center"
-          android:textStyle="bold" />
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
-      <TextView
-          android:id="@+id/balance"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/balance"
-          android:textAlignment="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/walletDogeBug"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/wallet_dogebug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wallet"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/balancedogebug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/balance"
+            android:textAlignment="center" />
+
+      </LinearLayout>
 
     </LinearLayout>
 

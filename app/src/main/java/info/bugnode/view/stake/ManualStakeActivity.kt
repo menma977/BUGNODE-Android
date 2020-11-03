@@ -72,7 +72,7 @@ class ManualStakeActivity : AppCompatActivity() {
     statusText = findViewById(R.id.textViewStatus)
     inputBalance = findViewById(R.id.editTextInputBalance)
     highSeekBar = findViewById(R.id.seekBarHigh)
-    stakeButton = findViewById(R.id.buttonStake)
+    stakeButton = findViewById(R.id.buttonHistoryBonus)
     fundLinearLayout = findViewById(R.id.linearLayoutFund)
     highLinearLayout = findViewById(R.id.linearLayoutHigh)
     resultLinearLayout = findViewById(R.id.linearLayoutResult)

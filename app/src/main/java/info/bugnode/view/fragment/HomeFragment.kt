@@ -18,6 +18,7 @@ import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.model.User
+import info.bugnode.view.*
 import info.bugnode.view.AuthRegisterActivity
 import info.bugnode.view.NavigationActivity
 import info.bugnode.view.NetworkActivity
@@ -41,6 +42,9 @@ class HomeFragment : Fragment() {
   private lateinit var registerButton: LinearLayout
   private lateinit var stakeButton: LinearLayout
   private lateinit var buttonUpgrade: LinearLayout
+  private lateinit var buttonHistoryDoge: LinearLayout
+  private lateinit var buttonHistoryDogeBoge: LinearLayout
+  private lateinit var buttonHistoryBonus: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
   private lateinit var sendDogeButton: ImageButton
@@ -62,10 +66,13 @@ class HomeFragment : Fragment() {
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
     registerButton = root.findViewById(R.id.buttonRegister)
-    stakeButton = root.findViewById(R.id.buttonStake)
+    stakeButton = root.findViewById(R.id.buttonHistoryBonus)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
+    buttonHistoryDoge = root.findViewById(R.id.buttonHistoryDoge)
+    buttonHistoryDogeBoge = root.findViewById(R.id.buttonHistoryDogeBoge)
+    buttonHistoryBonus = root.findViewById(R.id.buttonHistoryBonus)
     sendDogeButton = root.findViewById(R.id.sendDoge)
     sendDogeBugButton = root.findViewById(R.id.sendDogeBug)
 
@@ -111,6 +118,19 @@ class HomeFragment : Fragment() {
       startActivity(move)
     }
 
+    buttonHistoryDoge.setOnClickListener {
+      move = Intent(parentActivity, HistoryActivity::class.java)
+      move.putExtra("type", "doge")
+      startActivity(move)
+    }
+    buttonHistoryDogeBoge.setOnClickListener {
+      move = Intent(parentActivity, HistoryActivity::class.java)
+      move.putExtra("type", "dogebug")
+      startActivity(move)
+    }
+    buttonHistoryBonus.setOnClickListener {
+      move = Intent(parentActivity, HistoryActivity::class.java)
+      move.putExtra("type", "bonus")
     sendDogeButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGE")
