@@ -15,10 +15,12 @@ import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import okhttp3.FormBody
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.schedule
+
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var user: User
@@ -67,24 +69,36 @@ class HistoryActivity : AppCompatActivity() {
                         row.findViewById<TextView>(R.id.date).text = entry.getString("date")
                         if(entry.has("description"))
                             row.findViewById<TextView>(R.id.desc).text = entry.getString("description")
-                        if(!entry.has("debit")||entry.getString("debit").isEmpty() || entry.getDouble("debit") == 0.0){
+                        if(!entry.has("debit")||entry.getString("debit").isEmpty() || entry.getDouble(
+                                "debit"
+                            ) == 0.0){
                             if(!entry.has("description"))
-                                row.findViewById<TextView>(R.id.desc).text = resources.getString(R.string.income)
+                                row.findViewById<TextView>(R.id.desc).text = "Income"
                             row.findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(
                                 entry.getString(
                                     "credit"
                                 ).toBigDecimal()
                             ).toPlainString()
-                            layoutRow.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.Danger))
+                            layoutRow.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    applicationContext,
+                                    R.color.Danger
+                                )
+                            )
                         }else{
                             if(!entry.has("description"))
-                                row.findViewById<TextView>(R.id.desc).text = resources.getString(R.string.outcome)
+                                row.findViewById<TextView>(R.id.desc).text = "Outcome"
                             row.findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(
                                 entry.getString(
                                     "debit"
                                 ).toBigDecimal()
                             ).toPlainString()
-                            layoutRow.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.Success))
+                            layoutRow.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    applicationContext,
+                                    R.color.Success
+                                )
+                            )
                         }
                         table.addView(row)
                     }
@@ -119,7 +133,8 @@ class HistoryActivity : AppCompatActivity() {
                     var v = JSONObject()
                     v.put("date", formatDate(deposit.getString("Date")))
                     v.put("description", "Deposit")
-                    v.put("debit",
+                    v.put(
+                        "debit",
                         BitCoinFormat.decimalToDoge(deposit.getString("Value").toBigDecimal())
                             .toPlainString()
                     )
@@ -133,7 +148,8 @@ class HistoryActivity : AppCompatActivity() {
                     var v = JSONObject()
                     v.put("date", formatDate(transfer.getString("Date")))
                     v.put("description", "Transfer Inbound")
-                    v.put("debit",
+                    v.put(
+                        "debit",
                         BitCoinFormat.decimalToDoge(transfer.getString("Value").toBigDecimal())
                             .toPlainString()
                     )
@@ -156,7 +172,8 @@ class HistoryActivity : AppCompatActivity() {
                     var v = JSONObject()
                     v.put("date", formatDate(withdrawal.getString("Date")))
                     v.put("description", "Withdrawal")
-                    v.put("credit",
+                    v.put(
+                        "credit",
                         BitCoinFormat.decimalToDoge(withdrawal.getString("Value").toBigDecimal())
                             .toPlainString()
                     )
@@ -170,7 +187,8 @@ class HistoryActivity : AppCompatActivity() {
                     var v = JSONObject()
                     v.put("date", formatDate(transfer.getString("Date")))
                     v.put("description", "Transfer Outbound")
-                    v.put("credit",
+                    v.put(
+                        "credit",
                         BitCoinFormat.decimalToDoge(transfer.getString("Value").toBigDecimal())
                             .toPlainString()
                     )
