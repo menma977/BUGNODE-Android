@@ -109,6 +109,7 @@
       </LinearLayout>
 
       <LinearLayout
+          android:id="@+id/buttonHistoryRoi"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_weight="1"
@@ -120,15 +121,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/register"/>
+            app:srcCompat="@drawable/automatic_stake" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wallet"
+            android:text="History ROI"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
       </LinearLayout>
 
@@ -145,7 +146,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/send_pin" />
+            app:srcCompat="@drawable/history_pin" />
 
         <TextView
             android:layout_width="match_parent"
@@ -375,7 +376,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/manual_stake"/>
+              app:srcCompat="@drawable/register" />
 
           <TextView
               android:layout_width="match_parent"
@@ -401,7 +402,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/automatic_stake"/>
+              app:srcCompat="@drawable/network" />
 
           <TextView
               android:layout_width="match_parent"
@@ -426,7 +427,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/history_lot"/>
+              app:srcCompat="@drawable/network" />
 
           <TextView
               android:layout_width="match_parent"
@@ -463,7 +464,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/network"/>
+              app:srcCompat="@drawable/outgo" />
 
           <TextView
               android:layout_width="match_parent"
@@ -471,7 +472,7 @@
               android:text="@string/withdrawal"
               android:textAlignment="center"
               android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp"/>
+              android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -479,21 +480,46 @@
             android:id="@+id/buttonHistoryBonus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_weight="1"
             android:gravity="center"
+            android:orientation="vertical"
             tools:ignore="UseCompoundDrawables">
 
           <ImageView
               android:layout_width="65dp"
               android:layout_height="65dp"
-              app:srcCompat="@drawable/income"
-              android:contentDescription="@string/icon"/>
+              android:contentDescription="@string/icon"
+              app:srcCompat="@drawable/history_lot" />
 
           <TextView
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="@string/history_bonus"
+              android:textAlignment="center"
+              android:textColor="@color/colorSecondaryDark"
+              android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonRoi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+          <ImageView
+              android:layout_width="65dp"
+              android:layout_height="65dp"
+              android:contentDescription="@string/icon"
+              app:srcCompat="@drawable/income" />
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="ROI"
               android:textAlignment="center"
               android:textColor="@color/colorSecondaryDark"
               android:textSize="14sp" />
