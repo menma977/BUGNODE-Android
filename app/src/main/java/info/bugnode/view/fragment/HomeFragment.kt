@@ -4,11 +4,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -22,7 +22,9 @@ import info.bugnode.view.AuthRegisterActivity
 import info.bugnode.view.NavigationActivity
 import info.bugnode.view.NetworkActivity
 import info.bugnode.view.WebViewActivity
+import info.bugnode.view.doge.SendDogeActivity
 import info.bugnode.view.doge.UpgradeActivity
+import info.bugnode.view.doge.WithdrawActivity
 import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
@@ -42,8 +44,8 @@ class HomeFragment : Fragment() {
   private lateinit var buttonUpgrade: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
-  private lateinit var sendDogeButton: Image
-  private lateinit var sendDogeBugButton: Image
+  private lateinit var sendDogeButton: ImageButton
+  private lateinit var sendDogeBugButton: ImageButton
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -95,7 +97,8 @@ class HomeFragment : Fragment() {
     }
 
     buttonUpgrade.setOnClickListener {
-      move = Intent(parentActivity, UpgradeActivity::class.java)
+      //      move = Intent(parentActivity, UpgradeActivity::class.java)
+      move = Intent(parentActivity, WithdrawActivity::class.java)
       startActivity(move)
     }
 
@@ -110,7 +113,19 @@ class HomeFragment : Fragment() {
       startActivity(move)
     }
 
+    sendDogeButton.setOnClickListener {
+      move = Intent(parentActivity, SendDogeActivity::class.java)
+      move.putExtra("title", "SEND DOGE")
+      move.putExtra("type", "2")
+      startActivity(move)
+    }
 
+    sendDogeBugButton.setOnClickListener {
+      move = Intent(parentActivity, SendDogeActivity::class.java)
+      move.putExtra("title", "SEND DOGEBOGE")
+      move.putExtra("type", "1")
+      startActivity(move)
+    }
 
     return root
   }

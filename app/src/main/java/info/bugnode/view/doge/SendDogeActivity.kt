@@ -4,15 +4,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.zxing.Result
 import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.background.Balance999Doge
-import info.bugnode.background.DataUser
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.controller.WebController

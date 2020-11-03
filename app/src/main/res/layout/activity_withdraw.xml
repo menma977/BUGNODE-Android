@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.doge.UpgradeActivity"
+    tools:context=".view.doge.WithdrawActivity"
     android:background="@color/colorSecondary">
 
   <LinearLayout
@@ -25,77 +24,22 @@
         android:background="@drawable/card2"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:padding="10dp"
+        android:padding="20dp"
         android:elevation="15dp">
 
-      <LinearLayout
+      <TextView
+          android:text="@string/bonus"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:gravity="center"
-          android:layout_marginStart="10dp"
-          android:layout_marginEnd="10dp"
-          tools:ignore="UseCompoundDrawables">
+          android:textColor="@color/colorSecondaryDark"/>
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/doge_gold"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="@string/icon"/>
-
-        <TextView
-            android:hint="@string/example_doge"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewDogeBalance"
-            android:layout_weight="1"
-            android:textColor="@color/colorSecondaryDark"
-            android:textSize="16sp"/>
-
-      </LinearLayout>
-
-      <Space
-          android:layout_width="match_parent"
-          android:layout_height="10dp"/>
-
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="@color/colorSecondaryDark"
-          android:layout_marginStart="5dp"
-          android:layout_marginEnd="5dp"/>
-
-      <Space
-          android:layout_width="match_parent"
-          android:layout_height="10dp"/>
-
-      <LinearLayout
+      <TextView
+          android:hint="@string/example_doge"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:gravity="center"
-          android:layout_marginStart="10dp"
-          android:layout_marginEnd="10dp"
-          tools:ignore="UseCompoundDrawables">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/doge_green"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="@string/icon"/>
-
-        <TextView
-            android:hint="@string/example_doge"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewDogeBugBalance"
-            android:layout_weight="1"
-            android:textColor="@color/colorSecondaryDark"
-            android:textSize="16sp"/>
-
-      </LinearLayout>
+          android:id="@+id/textViewBonus"
+          android:textColor="@color/colorSecondaryDark"
+          android:textSize="16sp"/>
 
     </LinearLayout>
 
@@ -115,7 +59,7 @@
         android:elevation="10dp">
 
       <TextView
-          android:text="@string/upgrade_lot"
+          android:id="@+id/textViewMaxWithdraw"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:textColor="@color/textPrimary"
@@ -127,12 +71,18 @@
           android:layout_width="wrap_content"
           android:layout_height="10dp"/>
 
-      <Spinner
+      <EditText
+          android:hint="@string/amount"
+          android:gravity="center"
           android:layout_width="match_parent"
-          android:layout_height="40dp"
-          android:id="@+id/packageSpinner"
+          android:layout_height="wrap_content"
+          android:inputType="numberDecimal"
+          android:ems="10"
+          android:id="@+id/editTextBalance"
           android:background="@drawable/edit_text"
-          android:animateLayoutChanges="true"/>
+          tools:ignore="TextFields"
+          android:autofillHints="@string/secondary_password"
+          android:maxLength="6"/>
 
       <Space
           android:layout_width="wrap_content"
@@ -156,7 +106,7 @@
           android:layout_height="20dp"/>
 
       <Button
-          android:text="@string/upgrade_lot"
+          android:text="@string/withdraw"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:id="@+id/buttonTopUp"

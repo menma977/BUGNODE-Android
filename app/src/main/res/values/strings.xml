@@ -57,4 +57,6 @@
   <string name="update_profile">Update Profile</string>
   <string name="press_logo_to_open_barcode_scan">press logo to open barcode scan</string>
   <string name="send">Send</string>
+  <string name="bonus">Bonus</string>
+  <string name="withdraw">Withdraw</string>
 </resources>

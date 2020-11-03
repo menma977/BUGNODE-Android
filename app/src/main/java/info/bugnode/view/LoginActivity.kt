@@ -1,12 +1,16 @@
 package info.bugnode.view
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import info.bugnode.BuildConfig
 import info.bugnode.R
 import info.bugnode.config.Loading
@@ -58,6 +62,10 @@ class LoginActivity : AppCompatActivity() {
     loginButton.setOnClickListener {
       loading.openDialog()
       when {
+        !validatePermission() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
+          loading.closeDialog()
+          doRequestPermission()
+        }
         username.text.isEmpty() -> {
           Toast.makeText(this, "username required", Toast.LENGTH_SHORT).show()
           username.requestFocus()
@@ -125,6 +133,27 @@ class LoginActivity : AppCompatActivity() {
           Toast.makeText(applicationContext, result.getString("data"), Toast.LENGTH_SHORT).show()
           loading.closeDialog()
         }
+      }
+    }
+  }
+
+  private fun doRequestPermission() {
+    requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA), 100)
+  }
+
+  private fun validatePermission(): Boolean {
+    return when {
+      ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED -> {
+        false
+      }
+      ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED -> {
+        false
+      }
+      ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED -> {
+        false
+      }
+      else -> {
+        true
       }
     }
   }
