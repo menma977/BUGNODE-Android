@@ -24,7 +24,6 @@ import info.bugnode.view.NetworkActivity
 import info.bugnode.view.WebViewActivity
 import info.bugnode.view.doge.SendDogeActivity
 import info.bugnode.view.doge.UpgradeActivity
-import info.bugnode.view.doge.WithdrawActivity
 import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
@@ -97,8 +96,7 @@ class HomeFragment : Fragment() {
     }
 
     buttonUpgrade.setOnClickListener {
-      //      move = Intent(parentActivity, UpgradeActivity::class.java)
-      move = Intent(parentActivity, WithdrawActivity::class.java)
+      move = Intent(parentActivity, UpgradeActivity::class.java)
       startActivity(move)
     }
 
@@ -116,14 +114,14 @@ class HomeFragment : Fragment() {
     sendDogeButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGE")
-      move.putExtra("type", "2")
+      move.putExtra("type", 2)
       startActivity(move)
     }
 
     sendDogeBugButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGEBOGE")
-      move.putExtra("type", "1")
+      move.putExtra("type", 1)
       startActivity(move)
     }
 
@@ -171,6 +169,14 @@ class HomeFragment : Fragment() {
 
         if (user.getBoolean("queue")) {
           stakeButton.isEnabled = false
+          sendDogeButton.isEnabled = false
+          sendDogeBugButton.isEnabled = false
+          buttonUpgrade.isEnabled = false
+        } else {
+          stakeButton.isEnabled = true
+          sendDogeButton.isEnabled = true
+          sendDogeBugButton.isEnabled = true
+          buttonUpgrade.isEnabled = true
         }
       }
     }
