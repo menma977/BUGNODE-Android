@@ -25,6 +25,7 @@ import info.bugnode.view.NetworkActivity
 import info.bugnode.view.WebViewActivity
 import info.bugnode.view.doge.SendDogeActivity
 import info.bugnode.view.doge.UpgradeActivity
+import info.bugnode.view.doge.WithdrawActivity
 import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
   private lateinit var buttonHistoryDogeBoge: LinearLayout
   private lateinit var buttonHistoryBonus: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
+  private lateinit var buttonWithdraw: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
   private lateinit var sendDogeButton: ImageButton
   private lateinit var sendDogeBugButton: ImageButton
@@ -69,6 +71,7 @@ class HomeFragment : Fragment() {
     stakeButton = root.findViewById(R.id.buttonHistoryBonus)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
+    buttonWithdraw = root.findViewById(R.id.buttonWithdraw)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
     buttonHistoryDoge = root.findViewById(R.id.buttonHistoryDoge)
     buttonHistoryDogeBoge = root.findViewById(R.id.buttonHistoryDogeBoge)
@@ -131,6 +134,8 @@ class HomeFragment : Fragment() {
     buttonHistoryBonus.setOnClickListener {
       move = Intent(parentActivity, HistoryActivity::class.java)
       move.putExtra("type", "bonus")
+    }
+
     sendDogeButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGE")
@@ -142,6 +147,11 @@ class HomeFragment : Fragment() {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGEBOGE")
       move.putExtra("type", 1)
+      startActivity(move)
+    }
+
+    buttonWithdraw.setOnClickListener {
+      move = Intent(parentActivity, WithdrawActivity::class.java)
       startActivity(move)
     }
 
