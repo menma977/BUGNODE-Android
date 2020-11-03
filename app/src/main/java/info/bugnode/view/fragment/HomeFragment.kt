@@ -45,6 +45,7 @@ class HomeFragment : Fragment() {
   private lateinit var buttonHistoryDogeBoge: LinearLayout
   private lateinit var buttonHistoryBonus: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
+  private lateinit var buttonWithdraw: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
   private lateinit var sendDogeButton: ImageButton
   private lateinit var sendDogeBugButton: ImageButton
@@ -71,6 +72,7 @@ class HomeFragment : Fragment() {
     //stakeButton = root.findViewById(R.id.buttonHistoryBonus)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
+    buttonWithdraw = root.findViewById(R.id.buttonWithdraw)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
     buttonHistoryDoge = root.findViewById(R.id.buttonHistoryDoge)
     buttonHistoryDogeBoge = root.findViewById(R.id.buttonHistoryDogeBoge)
@@ -110,8 +112,7 @@ class HomeFragment : Fragment() {
      */
 
     buttonUpgrade.setOnClickListener {
-      //      move = Intent(parentActivity, UpgradeActivity::class.java)
-      move = Intent(parentActivity, WithdrawActivity::class.java)
+      move = Intent(parentActivity, UpgradeActivity::class.java)
       startActivity(move)
     }
 
@@ -140,17 +141,26 @@ class HomeFragment : Fragment() {
       move = Intent(parentActivity, HistoryActivity::class.java)
       move.putExtra("type", "bonus")
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c4a51b98a6a0a04ff78ff315e320a05ab714f377
     sendDogeButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGE")
-      move.putExtra("type", "2")
+      move.putExtra("type", 2)
       startActivity(move)
     }
 
     sendDogeBugButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGEBOGE")
-      move.putExtra("type", "1")
+      move.putExtra("type", 1)
+      startActivity(move)
+    }
+
+    buttonWithdraw.setOnClickListener {
+      move = Intent(parentActivity, WithdrawActivity::class.java)
       startActivity(move)
     }
 
@@ -206,6 +216,14 @@ class HomeFragment : Fragment() {
 
         if (user.getBoolean("queue")) {
           //stakeButton.isEnabled = false
+          sendDogeButton.isEnabled = false
+          sendDogeBugButton.isEnabled = false
+          buttonUpgrade.isEnabled = false
+        } else {
+          //stakeButton.isEnabled = true
+          sendDogeButton.isEnabled = true
+          sendDogeBugButton.isEnabled = true
+          buttonUpgrade.isEnabled = true
         }
       }
     }

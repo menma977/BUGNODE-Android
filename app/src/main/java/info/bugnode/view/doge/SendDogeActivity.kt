@@ -41,6 +41,7 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
   private var isHasCode = false
   private var isStart = true
   private lateinit var move: Intent
+  private var type = 1
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -58,6 +59,7 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     sendDoge = findViewById(R.id.buttonSend)
 
     title.text = intent.getStringExtra("title")
+    type = intent.getIntExtra("type", 1)
 
     initScannerView()
 
@@ -68,12 +70,38 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
       }
     }
 
-    sendDoge.setOnClickListener {
-      onSend()
+    if (type == 1) {
+      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString() + " DOGE"
+      balanceValue = user.getString("balanceDogeBug").toBigDecimal()
+    } else {
+      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " DOGE"
+      balanceValue = user.getString("balance").toBigDecimal()
     }
 
-    userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " DOGE"
-    balanceValue = user.getString("balance").toBigDecimal()
+    sendDoge.setOnClickListener {
+      when {
+        balanceText.text.isEmpty() -> {
+          Toast.makeText(this, "Amount required", Toast.LENGTH_SHORT).show()
+          secondaryPasswordText.requestFocus()
+        }
+        BitCoinFormat.dogeToDecimal(balanceText.text.toString().toBigDecimal()) > balanceValue -> {
+          Toast.makeText(this, "Amount exceeds the maximum balance", Toast.LENGTH_SHORT).show()
+          secondaryPasswordText.requestFocus()
+        }
+        secondaryPasswordText.text.isEmpty() -> {
+          Toast.makeText(this, "Secondary Password required", Toast.LENGTH_SHORT).show()
+          secondaryPasswordText.requestFocus()
+        }
+        secondaryPasswordText.text.length < 6 -> {
+          Toast.makeText(this, "Secondary password must be 6 digit numbers", Toast.LENGTH_SHORT).show()
+          secondaryPasswordText.requestFocus()
+        }
+        else -> {
+          loading.openDialog()
+          onSend()
+        }
+      }
+    }
   }
 
   private fun onSend() {
@@ -81,7 +109,7 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     body.addEncoded("wallet", walletText.text.toString())
     body.addEncoded("value", BitCoinFormat.dogeToDecimal(balanceText.text.toString().toBigDecimal()).toEngineeringString())
     body.addEncoded("secondary_password", secondaryPasswordText.text.toString())
-    body.addEncoded("type", intent.getIntExtra("type", 1).toString())
+    body.addEncoded("type", type.toString())
     Timer().schedule(100) {
       response = WebController.Post("doge.transfer", user.getString("token"), body).call()
       if (response.getInt("code") == 200) {
@@ -127,7 +155,11 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
       if (user.getBoolean("isLogout")) {
         onLogout()
       } else {
-        userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
+        if (type == 1) {
+          userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
+        } else {
+          userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
+        }
       }
     }
   }

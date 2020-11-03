@@ -50,9 +50,11 @@ class WithdrawActivity : AppCompatActivity() {
         limit = response.getJSONObject("data").getString("limit").toBigDecimal()
         loading.closeDialog()
       } else {
-        Toast.makeText(applicationContext, response.getString("data"), Toast.LENGTH_LONG).show()
-        loading.closeDialog()
-        finish()
+        runOnUiThread {
+          Toast.makeText(applicationContext, response.getString("data"), Toast.LENGTH_LONG).show()
+          loading.closeDialog()
+          finish()
+        }
       }
     }
   }
