@@ -18,8 +18,14 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
       tools:targetApi="n">
-    <activity android:name=".view.doge.WithdrawActivity">
-    </activity>
+    <activity
+        android:name=".view.GetROIActivity"
+        android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".view.doge.WithdrawActivity"
+        android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".view.doge.SendDogeActivity"
         android:configChanges="orientation|screenSize"

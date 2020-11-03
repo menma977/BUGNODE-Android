@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.GetROIActivity"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:gravity="center">
+
+  <Space
+      android:layout_width="match_parent"
+      android:layout_height="50dp"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:background="@drawable/card2"
+      android:layout_margin="20dp"
+      android:padding="10dp">
+
+    <TextView
+        android:hint="@string/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewRoi"
+        android:textColor="@color/colorSecondaryDark"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="21sp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <Button
+        android:text="@string/get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonClaim"/>
+  </LinearLayout>
+
+</LinearLayout>
