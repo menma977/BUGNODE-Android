@@ -22,7 +22,6 @@
       android:padding="10dp">
 
     <TextView
-        android:hint="@string/amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textViewRoi"
@@ -39,7 +38,9 @@
         android:text="@string/get"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonClaim"/>
+        android:id="@+id/buttonClaim"
+        android:background="@drawable/button"/>
+
   </LinearLayout>
 
 </LinearLayout>

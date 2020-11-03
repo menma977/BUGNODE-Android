@@ -1,9 +1,11 @@
 package info.bugnode.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
@@ -17,16 +19,37 @@ class GetROIActivity : AppCompatActivity() {
   private lateinit var loading: Loading
   private lateinit var balance: TextView
   private lateinit var claim: Button
+  private var isBreak = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_get_r_o_i)
+
+    isBreak = false
 
     user = User(this)
     loading = Loading(this)
     balance = findViewById(R.id.textViewRoi)
     claim = findViewById(R.id.buttonClaim)
 
+    claim.setOnClickListener {
+      loading.openDialog()
+      Timer().schedule(100) {
+        val response = WebController.Get("bonus.roi.post", user.getString("token")).call()
+        Log.i("response", "ROI POST $response")
+        if (response.getInt("code") == 200) {
+          runOnUiThread {
+            Toast.makeText(applicationContext, response.getString("data"), Toast.LENGTH_SHORT).show()
+            loading.closeDialog()
+          }
+        } else {
+          runOnUiThread {
+            Toast.makeText(applicationContext, response.getString("data"), Toast.LENGTH_SHORT).show()
+            loading.closeDialog()
+          }
+        }
+      }
+    }
   }
 
   override fun onStart() {
@@ -35,19 +58,38 @@ class GetROIActivity : AppCompatActivity() {
     var time = System.currentTimeMillis()
     Timer().schedule(100) {
       while (true) {
-        val delta = System.currentTimeMillis() - time
-        if (delta > target) {
-          time = System.currentTimeMillis()
-          val response = WebController.Get("bonus.roi.get", user.getString("token")).call()
-          println(response)
-          if (response.getInt("code") == 200) {
-            target = 1000
-            balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
-          } else {
-            target = 5000
+        if (isBreak) {
+          break
+        } else {
+          val delta = System.currentTimeMillis() - time
+          if (delta > target) {
+            time = System.currentTimeMillis()
+            val response = WebController.Get("bonus.roi.get", user.getString("token")).call()
+            Log.i("response", "ROI $response")
+            if (response.getInt("code") == 200) {
+              target = 1000
+              balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
+            } else {
+              target = 5000
+            }
           }
         }
       }
     }
+  }
+
+  override fun onDestroy() {
+    isBreak = true
+    super.onDestroy()
+  }
+
+  override fun onStop() {
+    isBreak = true
+    super.onStop()
+  }
+
+  override fun onBackPressed() {
+    isBreak = true
+    super.onBackPressed()
   }
 }

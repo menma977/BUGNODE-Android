@@ -16,15 +16,10 @@ import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.model.User
 import info.bugnode.view.*
-import info.bugnode.view.AuthRegisterActivity
-import info.bugnode.view.NavigationActivity
-import info.bugnode.view.NetworkActivity
-import info.bugnode.view.WebViewActivity
 import info.bugnode.view.doge.SendDogeActivity
 import info.bugnode.view.doge.UpgradeActivity
 import info.bugnode.view.doge.WithdrawActivity
 import info.bugnode.view.modal.WalletDialog
-import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
   private lateinit var move: Intent
@@ -47,6 +42,7 @@ class HomeFragment : Fragment() {
   private lateinit var buttonHistoryBonus: LinearLayout
   private lateinit var buttonNetwork: LinearLayout
   private lateinit var buttonWithdraw: LinearLayout
+  private lateinit var buttonRoi: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
   private lateinit var sendDogeButton: ImageButton
   private lateinit var sendDogeBugButton: ImageButton
@@ -73,6 +69,7 @@ class HomeFragment : Fragment() {
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
     buttonWithdraw = root.findViewById(R.id.buttonWithdraw)
+    buttonRoi = root.findViewById(R.id.buttonRoi)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
     buttonHistoryRoi = root.findViewById(R.id.buttonHistoryRoi)
     buttonHistoryDoge = root.findViewById(R.id.buttonHistoryDoge)
@@ -169,6 +166,11 @@ class HomeFragment : Fragment() {
       startActivity(move)
     }
 
+    buttonRoi.setOnClickListener {
+      move = Intent(parentActivity, GetROIActivity::class.java)
+      startActivity(move)
+    }
+
     walletdogeview.setOnClickListener {
       WalletDialog.show(parentActivity, user.getString("wallet"), false)
     }
@@ -211,7 +213,6 @@ class HomeFragment : Fragment() {
         } else {
           notification.visibility = LinearLayout.GONE
         }
-
         val dollar = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal())
         dollarTextView.text = BitCoinFormat.toDollar(dollar).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
@@ -225,11 +226,35 @@ class HomeFragment : Fragment() {
           sendDogeButton.isEnabled = false
           sendDogeBugButton.isEnabled = false
           buttonUpgrade.isEnabled = false
+          buttonRoi.isEnabled = false
         } else {
           //stakeButton.isEnabled = true
           sendDogeButton.isEnabled = true
           sendDogeBugButton.isEnabled = true
           buttonUpgrade.isEnabled = true
+          buttonRoi.isEnabled = true
+        }
+
+        if (user.getBoolean("active")) {
+          //stakeButton.isEnabled = true
+          sendDogeButton.isEnabled = true
+          sendDogeBugButton.isEnabled = true
+          buttonUpgrade.isEnabled = true
+          buttonRoi.isEnabled = true
+          registerButton.isEnabled = true
+          buttonNetwork.isEnabled = true
+          teamLinearLayout.isEnabled = true
+          buttonWithdraw.isEnabled = true
+        } else {
+          //stakeButton.isEnabled = false
+          sendDogeButton.isEnabled = false
+          sendDogeBugButton.isEnabled = false
+          buttonUpgrade.isEnabled = true
+          buttonRoi.isEnabled = false
+          registerButton.isEnabled = false
+          buttonNetwork.isEnabled = false
+          teamLinearLayout.isEnabled = false
+          buttonWithdraw.isEnabled = false
         }
       }
     }
