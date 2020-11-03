@@ -1,221 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    tools:context=".view.settings.ChangePassword">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/background"
+              android:orientation="vertical"
+              tools:context=".view.settings.ChangePassword">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="10dp"
+      tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/logo"
+        app:srcCompat="@drawable/logo_white"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/update_profile"
+        android:textColor="@color/White"
+        android:textSize="20sp"/>
+
+  </LinearLayout>
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_margin="7.5sp"
+      android:background="@drawable/card2"
+      app:layout_constraintEnd_toEndOf="parent"
+      tools:layout_editor_absoluteY="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        tools:ignore="UseCompoundDrawables">
+        android:layout_margin="15sp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="20dp"
-            android:contentDescription="@string/logo"
-            app:srcCompat="@drawable/logo_white" />
+      <LinearLayout
+          android:id="@+id/container_secondary"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Update Profile"
-            android:textColor="@color/White"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="7.5sp"
-        android:background="@drawable/card2"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="20dp">
-
-        <LinearLayout
+            android:textColor="@color/colorSecondaryDark"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15sp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:text="@string/secondary_password"/>
 
-            <LinearLayout
-                android:id="@+id/container_secondary"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+        <EditText
+            android:id="@+id/secondary_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberPassword"
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
+      </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/secondary_password" />
+      <LinearLayout
+          android:id="@+id/container_name"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/secondary_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberPassword" />
-            </LinearLayout>
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name"/>
 
-            <LinearLayout
-                android:id="@+id/container_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
+      </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name" />
+      <LinearLayout
+          android:id="@+id/container_phone"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edit_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"/>
 
-            <LinearLayout
-                android:id="@+id/container_phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone"
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/phone" />
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email"/>
 
-                <EditText
-                    android:id="@+id/edit_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="phone" />
+        <EditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/email" />
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/whatsapp"/>
 
-                <EditText
-                    android:id="@+id/edit_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/edit_wa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone"
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
+      </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/whatsapp" />
+      <LinearLayout
+          android:id="@+id/container_password"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edit_wa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="phone" />
-            </LinearLayout>
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/old_password"/>
 
-            <LinearLayout
-                android:id="@+id/container_password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+        <EditText
+            android:id="@+id/old_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text=""
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/old_password" />
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_password"/>
 
-                <EditText
-                    android:id="@+id/old_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:text="" />
+        <EditText
+            android:id="@+id/new_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text=""
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/new_password" />
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reenter_new_password"/>
 
-                <EditText
-                    android:id="@+id/new_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:text="" />
+        <EditText
+            android:id="@+id/new_password_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text=""
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
+      </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/reenter_new_password" />
+      <LinearLayout
+          android:id="@+id/container_secondary_password"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/new_password_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:text="" />
-            </LinearLayout>
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_password_key"/>
 
-            <LinearLayout
-                android:id="@+id/container_secondary_password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+        <EditText
+            android:id="@+id/new_secondary_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberPassword"
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/new_password_key" />
+        <TextView
+            android:textColor="@color/colorSecondaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reenter_new_password_key"/>
 
-                <EditText
-                    android:id="@+id/new_secondary_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberPassword" />
+        <EditText
+            android:id="@+id/new_secondary_password_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberPassword"
+            android:text=""
+            android:background="@drawable/edit_text"
+            android:layout_marginBottom="10dp"/>
+      </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/reenter_new_password_key" />
+      <Button
+          android:id="@+id/sumbit"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/generic_sumbit"
+          android:background="@drawable/button"/>
 
-                <EditText
-                    android:id="@+id/new_secondary_password_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberPassword"
-                    android:text="" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/sumbit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/generic_sumbit" />
-
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+  </ScrollView>
 
 </LinearLayout>

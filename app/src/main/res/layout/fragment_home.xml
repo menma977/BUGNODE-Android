@@ -265,11 +265,17 @@
             android:textColor="@color/colorSecondaryDark"
             android:textSize="16sp"/>
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/sendDoge"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:srcCompat="@drawable/send_pin"
+            android:background="@color/Link"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/send_pin"/>
+            android:scaleType="centerInside"
+            android:tint="@color/colorSecondary"
+            android:cropToPadding="true"
+            android:adjustViewBounds="true"/>
 
       </LinearLayout>
 
@@ -313,11 +319,17 @@
             android:textColor="@color/colorSecondaryDark"
             android:textSize="16sp"/>
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/sendDogeBug"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:srcCompat="@drawable/send_pin"
+            android:background="@color/Link"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/send_pin"/>
+            android:scaleType="centerInside"
+            android:tint="@color/colorSecondary"
+            android:cropToPadding="true"
+            android:adjustViewBounds="true"/>
 
       </LinearLayout>
 
@@ -361,7 +373,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/manual_stake" />
+              app:srcCompat="@drawable/manual_stake"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -370,7 +382,7 @@
               android:textAlignment="center"
               android:textAllCaps="false"
               android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp" />
+              android:textSize="14sp"/>
 
         </LinearLayout>
 
@@ -387,7 +399,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/automatic_stake" />
+              app:srcCompat="@drawable/automatic_stake"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -395,7 +407,7 @@
               android:text="@string/my_team"
               android:textAlignment="center"
               android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp" />
+              android:textSize="14sp"/>
 
         </LinearLayout>
 
@@ -412,7 +424,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/history_lot" />
+              app:srcCompat="@drawable/history_lot"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -420,7 +432,7 @@
               android:text="@string/network"
               android:textAlignment="center"
               android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp" />
+              android:textSize="14sp"/>
 
         </LinearLayout>
 
@@ -449,7 +461,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/network" />
+              app:srcCompat="@drawable/network"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -457,7 +469,7 @@
               android:text="@string/withdrawal"
               android:textAlignment="center"
               android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp" />
+              android:textSize="14sp"/>
 
         </LinearLayout>
 
