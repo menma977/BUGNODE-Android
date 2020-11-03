@@ -141,10 +141,7 @@ class HomeFragment : Fragment() {
       move = Intent(parentActivity, HistoryActivity::class.java)
       move.putExtra("type", "bonus")
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> c4a51b98a6a0a04ff78ff315e320a05ab714f377
     sendDogeButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGE")
