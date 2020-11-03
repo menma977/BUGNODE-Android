@@ -43,7 +43,6 @@ class DataUser : Service() {
               break
             }
             json = WebController.Get("user.show", user.getString("token")).call()
-            Log.i("response", json.toString())
             if (json.getInt("code") == 200) {
               user.setString("username", json.getJSONObject("data").getString("username"))
               user.setString("cookie", json.getJSONObject("data").getString("sessionKey"))
