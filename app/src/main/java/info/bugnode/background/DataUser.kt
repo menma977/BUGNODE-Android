@@ -62,6 +62,7 @@ class DataUser : Service() {
 
               if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
                 user.setBoolean("isLogout", true)
+                sleep(1000)
               }
             } else {
               if (json.getString("data").contains("Unauthenticated.")) {

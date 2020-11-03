@@ -96,6 +96,7 @@ class UpgradeActivity : AppCompatActivity() {
 
   private fun setSpinner() {
     packageList = ArrayList()
+    packageList.add("20.00000000")
     var firstPackage = 1000
     while (true) {
       packageList.add("$firstPackage.00000000")
