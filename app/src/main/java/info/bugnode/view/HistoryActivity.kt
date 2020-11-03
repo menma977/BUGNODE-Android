@@ -45,6 +45,8 @@ class HistoryActivity : AppCompatActivity() {
                     fetchDogeHistory()
                 else if (intent.getStringExtra("type") == "dogebug")
                     WebController.Get("doge.index", user.getString("token")).call()
+                else if (intent.getStringExtra("type") == "roi")
+                    WebController.Get("roi.log", user.getString("token")).call()
                 else
                     WebController.Get("bonus.index", user.getString("token")).call()
             runOnUiThread {
@@ -52,6 +54,8 @@ class HistoryActivity : AppCompatActivity() {
                     val entries =
                         if(intent.getStringExtra("type") == "doge")
                             res.getJSONArray("history")
+                        else if (intent.getStringExtra("type") == "roi")
+                            res.getJSONObject("data").getJSONArray("history")
                         else if (intent.getStringExtra("type") == "dogebug")
                             res.getJSONObject("data").getJSONArray("dogeBugList")
                         else

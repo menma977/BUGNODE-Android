@@ -41,6 +41,7 @@ class HomeFragment : Fragment() {
   private lateinit var registerButton: LinearLayout
   private lateinit var stakeButton: LinearLayout
   private lateinit var buttonUpgrade: LinearLayout
+  private lateinit var buttonHistoryRoi: LinearLayout
   private lateinit var buttonHistoryDoge: LinearLayout
   private lateinit var buttonHistoryDogeBoge: LinearLayout
   private lateinit var buttonHistoryBonus: LinearLayout
@@ -73,6 +74,7 @@ class HomeFragment : Fragment() {
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
     buttonWithdraw = root.findViewById(R.id.buttonWithdraw)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
+    buttonHistoryRoi = root.findViewById(R.id.buttonHistoryRoi)
     buttonHistoryDoge = root.findViewById(R.id.buttonHistoryDoge)
     buttonHistoryDogeBoge = root.findViewById(R.id.buttonHistoryDogeBoge)
     buttonHistoryBonus = root.findViewById(R.id.buttonHistoryBonus)
@@ -122,6 +124,12 @@ class HomeFragment : Fragment() {
     teamLinearLayout.setOnClickListener {
       move = Intent(parentActivity, WebViewActivity::class.java)
       move.putExtra("url", "binary.android.sponsor")
+      startActivity(move)
+    }
+
+    buttonHistoryRoi.setOnClickListener {
+      move = Intent(parentActivity, HistoryActivity::class.java)
+      move.putExtra("type", "roi")
       startActivity(move)
     }
 
