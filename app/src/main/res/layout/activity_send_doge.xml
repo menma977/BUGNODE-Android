@@ -117,7 +117,7 @@
           tools:ignore="LabelFor"
           android:hint="@string/secondary_password"
           android:textColorHint="@color/Dark"
-          android:maxLength="4"/>
+          android:maxLength="6"/>
 
       <Space
           android:layout_width="match_parent"
