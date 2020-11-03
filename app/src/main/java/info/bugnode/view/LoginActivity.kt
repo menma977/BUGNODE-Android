@@ -46,10 +46,8 @@ class LoginActivity : AppCompatActivity() {
     updateButton = findViewById(R.id.buttonUpdate)
 
     version.text = BuildConfig.VERSION_NAME
-
-    username.setText("smitty32")
-    password.setText("admin")
-
+    //    username.setText("bugnode")
+    //    password.setText("admin")
     if (intent.getBooleanExtra("isUpdate", true)) {
       loginButton.visibility = Button.GONE
       updateButton.visibility = Button.VISIBLE
