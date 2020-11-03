@@ -204,7 +204,8 @@ class HomeFragment : Fragment() {
           notification.visibility = LinearLayout.GONE
         }
 
-        dollarTextView.text = BitCoinFormat.toDollar(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
+        val dollar = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal())
+        dollarTextView.text = BitCoinFormat.toDollar(dollar).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
