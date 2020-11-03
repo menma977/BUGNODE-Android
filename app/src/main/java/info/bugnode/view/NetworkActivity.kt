@@ -45,7 +45,7 @@ class NetworkActivity : AppCompatActivity() {
             Log.d("MEMEME", user.getString("id"))
             Log.d("MEMEME", ("==========="))
 
-            val res = WebController.WebView("binary", user.getString("token"), FormBody.Builder()).call()
+            val res = WebController.WebView("binary.android.binary", user.getString("token"), FormBody.Builder()).call()
             runOnUiThread() {
                 webView.loadData(res.getString("data"), "text/html", "UTF-8")
                 webView.loadDataWithBaseURL(

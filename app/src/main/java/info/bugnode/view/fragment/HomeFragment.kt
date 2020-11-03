@@ -8,10 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import info.bugnode.R
@@ -26,6 +23,7 @@ import info.bugnode.view.WebViewActivity
 import info.bugnode.view.doge.SendDogeActivity
 import info.bugnode.view.doge.UpgradeActivity
 import info.bugnode.view.doge.WithdrawActivity
+import info.bugnode.view.modal.WalletDialog
 import info.bugnode.view.stake.ManualStakeActivity
 
 class HomeFragment : Fragment() {
@@ -51,6 +49,9 @@ class HomeFragment : Fragment() {
   private lateinit var sendDogeButton: ImageButton
   private lateinit var sendDogeBugButton: ImageButton
 
+  private lateinit var walletdogeview: ImageView
+  private lateinit var walletdogebogeview: ImageView
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -67,7 +68,7 @@ class HomeFragment : Fragment() {
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
     registerButton = root.findViewById(R.id.buttonRegister)
-    stakeButton = root.findViewById(R.id.buttonHistoryBonus)
+    //stakeButton = root.findViewById(R.id.buttonHistoryBonus)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
     teamLinearLayout = root.findViewById(R.id.teamLinearLayout)
@@ -87,6 +88,9 @@ class HomeFragment : Fragment() {
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
+    walletdogeview = root.findViewById(R.id.wallet_doge_view)
+    walletdogebogeview = root.findViewById(R.id.wallet_dogebug_view)
+
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
@@ -95,6 +99,7 @@ class HomeFragment : Fragment() {
       startActivity(move)
     }
 
+    /*
     stakeButton.setOnClickListener {
       move = Intent(parentActivity, ManualStakeActivity::class.java)
       move.putExtra("balance", user.getString("balance"))
@@ -102,6 +107,7 @@ class HomeFragment : Fragment() {
       move.putExtra("balanceDogeBugView", BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString())
       startActivity(move)
     }
+     */
 
     buttonUpgrade.setOnClickListener {
       //      move = Intent(parentActivity, UpgradeActivity::class.java)
@@ -133,6 +139,7 @@ class HomeFragment : Fragment() {
     buttonHistoryBonus.setOnClickListener {
       move = Intent(parentActivity, HistoryActivity::class.java)
       move.putExtra("type", "bonus")
+    }
     sendDogeButton.setOnClickListener {
       move = Intent(parentActivity, SendDogeActivity::class.java)
       move.putExtra("title", "SEND DOGE")
@@ -145,6 +152,14 @@ class HomeFragment : Fragment() {
       move.putExtra("title", "SEND DOGEBOGE")
       move.putExtra("type", "1")
       startActivity(move)
+    }
+
+    walletdogeview.setOnClickListener {
+      WalletDialog.show(parentActivity, user.getString("wallet"), false)
+    }
+
+    walletdogebogeview.setOnClickListener {
+      WalletDialog.show(parentActivity, user.getString("wallet"), true)
     }
 
     return root
@@ -190,7 +205,7 @@ class HomeFragment : Fragment() {
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
         if (user.getBoolean("queue")) {
-          stakeButton.isEnabled = false
+          //stakeButton.isEnabled = false
         }
       }
     }

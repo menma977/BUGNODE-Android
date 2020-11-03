@@ -250,11 +250,12 @@
           tools:ignore="UseCompoundDrawables">
 
         <ImageView
+            android:id="@+id/wallet_doge_view"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/doge_gold"
             android:layout_marginEnd="10dp"
-            android:contentDescription="@string/icon"/>
+            android:contentDescription="@string/icon"
+            app:srcCompat="@drawable/doge_gold" />
 
         <TextView
             android:hint="@string/example_doge"
@@ -304,11 +305,12 @@
           tools:ignore="UseCompoundDrawables">
 
         <ImageView
+            android:id="@+id/wallet_dogebug_view"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/doge_green"
             android:layout_marginEnd="10dp"
-            android:contentDescription="@string/icon"/>
+            android:contentDescription="@string/icon"
+            app:srcCompat="@drawable/doge_green" />
 
         <TextView
             android:hint="@string/example_doge"
