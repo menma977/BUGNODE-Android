@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
   private lateinit var sendDogeBugButton: ImageButton
   private lateinit var walletdogeview: ImageView
   private lateinit var walletdogebogeview: ImageView
+  private lateinit var contentLinearLayout: LinearLayout
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -77,6 +78,7 @@ class HomeFragment : Fragment() {
     buttonHistoryBonus = root.findViewById(R.id.buttonHistoryBonus)
     sendDogeButton = root.findViewById(R.id.sendDoge)
     sendDogeBugButton = root.findViewById(R.id.sendDogeBug)
+    contentLinearLayout = root.findViewById(R.id.contentLinearLayout)
 
     if (!user.getBoolean("active")) {
       notificationMessage.text = "Your Account is not ready. please upgrade account"
@@ -179,6 +181,9 @@ class HomeFragment : Fragment() {
       WalletDialog.show(parentActivity, user.getString("wallet"), true)
     }
 
+    onQueue()
+    isActive()
+
     return root
   }
 
@@ -221,42 +226,53 @@ class HomeFragment : Fragment() {
         progressBar.progress = user.getInteger("progress")
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
-        if (user.getBoolean("queue")) {
-          //stakeButton.isEnabled = false
-          sendDogeButton.isEnabled = false
-          sendDogeBugButton.isEnabled = false
-          buttonUpgrade.isEnabled = false
-          buttonRoi.isEnabled = false
-        } else {
-          //stakeButton.isEnabled = true
-          sendDogeButton.isEnabled = true
-          sendDogeBugButton.isEnabled = true
-          buttonUpgrade.isEnabled = true
-          buttonRoi.isEnabled = true
-        }
-
-        if (user.getBoolean("active")) {
-          //stakeButton.isEnabled = true
-          sendDogeButton.isEnabled = true
-          sendDogeBugButton.isEnabled = true
-          buttonUpgrade.isEnabled = true
-          buttonRoi.isEnabled = true
-          registerButton.isEnabled = true
-          buttonNetwork.isEnabled = true
-          teamLinearLayout.isEnabled = true
-          buttonWithdraw.isEnabled = true
-        } else {
-          //stakeButton.isEnabled = false
-          sendDogeButton.isEnabled = false
-          sendDogeBugButton.isEnabled = false
-          buttonUpgrade.isEnabled = true
-          buttonRoi.isEnabled = false
-          registerButton.isEnabled = false
-          buttonNetwork.isEnabled = false
-          teamLinearLayout.isEnabled = false
-          buttonWithdraw.isEnabled = false
-        }
+        onQueue()
+        isActive()
       }
+    }
+  }
+
+  private fun onQueue() {
+    if (user.getBoolean("queue")) {
+      //stakeButton.isEnabled = false
+      sendDogeButton.isEnabled = false
+      sendDogeBugButton.isEnabled = false
+      buttonUpgrade.isEnabled = false
+      buttonRoi.isEnabled = false
+    } else {
+      //stakeButton.isEnabled = true
+      sendDogeButton.isEnabled = true
+      sendDogeBugButton.isEnabled = true
+      buttonUpgrade.isEnabled = true
+      buttonRoi.isEnabled = true
+    }
+  }
+
+  private fun isActive() {
+    if (user.getBoolean("active")) {
+      //stakeButton.isEnabled = true
+      //sendDogeButton.isEnabled = true
+      //sendDogeBugButton.isEnabled = true
+      buttonUpgrade.isEnabled = true
+      buttonRoi.isEnabled = true
+      registerButton.isEnabled = true
+      buttonNetwork.isEnabled = true
+      teamLinearLayout.isEnabled = true
+      buttonWithdraw.isEnabled = true
+
+      contentLinearLayout.visibility = LinearLayout.VISIBLE
+    } else {
+      //stakeButton.isEnabled = false
+      //sendDogeButton.isEnabled = false
+      //sendDogeBugButton.isEnabled = false
+      buttonUpgrade.isEnabled = true
+      buttonRoi.isEnabled = false
+      registerButton.isEnabled = false
+      buttonNetwork.isEnabled = false
+      teamLinearLayout.isEnabled = false
+      buttonWithdraw.isEnabled = false
+
+      contentLinearLayout.visibility = LinearLayout.GONE
     }
   }
 }
