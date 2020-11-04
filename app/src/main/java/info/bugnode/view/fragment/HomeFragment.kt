@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
   private lateinit var registerButton: LinearLayout
-  private lateinit var stakeButton: LinearLayout
   private lateinit var buttonUpgrade: LinearLayout
   private lateinit var buttonHistoryRoi: LinearLayout
   private lateinit var buttonHistoryDoge: LinearLayout
@@ -46,8 +45,8 @@ class HomeFragment : Fragment() {
   private lateinit var teamLinearLayout: LinearLayout
   private lateinit var sendDogeButton: ImageButton
   private lateinit var sendDogeBugButton: ImageButton
-  private lateinit var walletdogeview: ImageView
-  private lateinit var walletdogebogeview: ImageView
+  private lateinit var walletDogeImageView: ImageView
+  private lateinit var walletDogeBogeImageView: ImageView
   private lateinit var contentLinearLayout: LinearLayout
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -90,8 +89,8 @@ class HomeFragment : Fragment() {
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
-    walletdogeview = root.findViewById(R.id.wallet_doge_view)
-    walletdogebogeview = root.findViewById(R.id.wallet_dogebug_view)
+    walletDogeImageView = root.findViewById(R.id.wallet_doge_view)
+    walletDogeBogeImageView = root.findViewById(R.id.wallet_dogebug_view)
 
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
@@ -173,11 +172,11 @@ class HomeFragment : Fragment() {
       startActivity(move)
     }
 
-    walletdogeview.setOnClickListener {
+    walletDogeImageView.setOnClickListener {
       WalletDialog.show(parentActivity, user.getString("wallet"), false)
     }
 
-    walletdogebogeview.setOnClickListener {
+    walletDogeBogeImageView.setOnClickListener {
       WalletDialog.show(parentActivity, user.getString("wallet"), true)
     }
 
@@ -218,8 +217,8 @@ class HomeFragment : Fragment() {
         } else {
           notification.visibility = LinearLayout.GONE
         }
-        val dollar = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal())
-        dollarTextView.text = BitCoinFormat.toDollar(dollar).toPlainString()
+
+        dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
