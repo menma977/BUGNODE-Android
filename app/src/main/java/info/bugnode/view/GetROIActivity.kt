@@ -10,6 +10,7 @@ import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.controller.WebController
 import info.bugnode.model.User
+import kotlinx.android.synthetic.main.activity_get_r_o_i.*
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -30,6 +31,8 @@ class GetROIActivity : AppCompatActivity() {
     loading = Loading(this)
     balance = findViewById(R.id.textViewRoi)
     claim = findViewById(R.id.buttonClaim)
+
+    this.textViewUsername.text = user.getString("username")
 
     claim.setOnClickListener {
       loading.openDialog()

@@ -18,14 +18,12 @@
   <string name="do_you_have_account">Do you have account ?</string>
   <string name="icon">Icon</string>
   <string name="home">Home</string>
-  <string name="bug_chain">Bug Chain</string>
   <string name="info">Info</string>
   <string name="setting">Setting</string>
   <string name="dollar_example">$ 100</string>
   <string name="notification">Notification</string>
   <string name="upgrade_lot">Upgrade Account</string>
   <string name="register_account">Register Account</string>
-  <string name="buy_dogebug">Buy Doge</string>
   <string name="change_password">Edit Password</string>
   <string name="change_second_password">Edit Secondary Password</string>
   <string name="change_phone">Edit Phone Number</string>
@@ -44,7 +42,6 @@
   <string name="new_password_key">New Secondary Password</string>
   <string name="reenter_new_password_key">Confirm New Secondary Password</string>
   <string name="generic_sumbit">Submit</string>
-  <string name="generic_error">Something wrong happen</string>
   <string name="balance">Balance</string>
   <string name="wallet">Wallet</string>
   <string name="walletDoge">Wallet Doge</string>
@@ -62,9 +59,6 @@
   <string name="new_app">New APP</string>
   <string name="registering_new_members">Registering new members</string>
   <string name="top_up">Top Up</string>
-  <string name="title_activity_network">FullscreenActivity</string>
-  <string name="dummy_button">Dummy Button</string>
-  <string name="dummy_content">DUMMY\nCONTENT</string>
   <string name="update_profile">Update Profile</string>
   <string name="press_logo_to_open_barcode_scan">press logo to open barcode scan</string>
   <string name="send">Send</string>
@@ -72,7 +66,6 @@
   <string name="withdraw">Withdraw</string>
   <string name="get">Get</string>
   <string name="ration">Ration</string>
-  <string name="history_dogeboge">History DogeBoge</string>
   <string name="history_boge">History Boge</string>
   <string name="share">Share</string>
   <string name="dig">Dig</string>

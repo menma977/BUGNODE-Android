@@ -72,7 +72,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/additional_info"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -80,13 +79,11 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/additional_info_title"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/wallet" />
 
                 <TextView
-                    android:id="@+id/additional_info_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -101,7 +98,6 @@
             android:padding="12sp">
 
             <TableRow
-                android:id="@+id/table_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible">
