@@ -79,7 +79,7 @@ class SettingFragment : Fragment() {
       notification.visibility = LinearLayout.GONE
     }
 
-    dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
+    dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
@@ -111,7 +111,7 @@ class SettingFragment : Fragment() {
           notification.visibility = LinearLayout.GONE
         }
 
-        dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
+        dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 

@@ -23,7 +23,7 @@
       <ImageView
           android:layout_width="45dp"
           android:layout_height="45dp"
-          app:srcCompat="@drawable/logo_white"
+          app:srcCompat="@drawable/invest"
           android:layout_marginEnd="20dp"
           android:contentDescription="@string/logo"/>
 
@@ -96,7 +96,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/upgrade_account"/>
+            app:srcCompat="@drawable/topup"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -121,15 +121,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/automatic_stake" />
+            app:srcCompat="@drawable/ration"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="History"
+            android:text="@string/ration"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
       </LinearLayout>
 
@@ -146,15 +146,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/history_pin" />
+            app:srcCompat="@drawable/history_doge"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="History DOGE"
+            android:text="@string/history_doge"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
       </LinearLayout>
 
@@ -171,15 +171,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/history_pin" />
+            app:srcCompat="@drawable/history_boge"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="History DogeBoge"
+            android:text="@string/history_boge"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
       </LinearLayout>
 
@@ -209,7 +209,7 @@
           android:id="@+id/textViewProgressBar"
           android:text="@string/zero"
           android:background="@color/Link"
-          android:textColor="@color/colorSecondaryLight"
+          android:textColor="@color/colorSecondaryDark"
           android:textStyle="bold"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -241,6 +241,16 @@
         android:padding="10dp"
         android:elevation="15dp">
 
+
+      <TextView
+          android:text="@string/app_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/textViewUsername"
+          android:textColor="@color/colorSecondary"
+          android:textStyle="bold"
+          android:textAlignment="center"/>
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -256,7 +266,7 @@
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/doge_gold" />
+            app:srcCompat="@drawable/doge_gold"/>
 
         <TextView
             android:hint="@string/example_doge"
@@ -265,19 +275,8 @@
             android:id="@+id/textViewDogeBalance"
             android:layout_weight="1"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="16sp"/>
-
-        <ImageButton
-            android:id="@+id/sendDoge"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/send_pin"
-            android:background="@color/Link"
-            android:contentDescription="@string/icon"
-            android:scaleType="centerInside"
-            android:tint="@color/colorSecondary"
-            android:cropToPadding="true"
-            android:adjustViewBounds="true"/>
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
       </LinearLayout>
 
@@ -311,7 +310,7 @@
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/doge_green" />
+            app:srcCompat="@drawable/doge_green"/>
 
         <TextView
             android:hint="@string/example_doge"
@@ -320,19 +319,8 @@
             android:id="@+id/textViewDogeBugBalance"
             android:layout_weight="1"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="16sp"/>
-
-        <ImageButton
-            android:id="@+id/sendDogeBug"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/send_pin"
-            android:background="@color/Link"
-            android:contentDescription="@string/icon"
-            android:scaleType="centerInside"
-            android:tint="@color/colorSecondary"
-            android:cropToPadding="true"
-            android:adjustViewBounds="true"/>
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
       </LinearLayout>
 
@@ -343,6 +331,7 @@
         android:layout_height="20dp"/>
 
     <LinearLayout
+        android:id="@+id/contentLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -376,7 +365,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/register" />
+              app:srcCompat="@drawable/register"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -388,6 +377,69 @@
               android:textSize="14sp"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonRoi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+          <ImageView
+              android:layout_width="65dp"
+              android:layout_height="65dp"
+              android:contentDescription="@string/icon"
+              app:srcCompat="@drawable/income"/>
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/dig"
+              android:textAlignment="center"
+              android:textColor="@color/colorSecondaryDark"
+              android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonWithdraw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+          <ImageView
+              android:layout_width="65dp"
+              android:layout_height="65dp"
+              android:contentDescription="@string/icon"
+              app:srcCompat="@drawable/outgo"/>
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/withdrawal"
+              android:textAlignment="center"
+              android:textColor="@color/colorSecondaryDark"
+              android:textSize="14sp"/>
+
+        </LinearLayout>
+
+      </LinearLayout>
+
+      <Space
+          android:layout_width="match_parent"
+          android:layout_height="20dp"/>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:baselineAligned="false">
+
 
         <LinearLayout
             android:id="@+id/teamLinearLayout"
@@ -402,7 +454,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/network" />
+              app:srcCompat="@drawable/myteam"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -427,7 +479,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/network" />
+              app:srcCompat="@drawable/network"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -436,43 +488,6 @@
               android:textAlignment="center"
               android:textColor="@color/colorSecondaryDark"
               android:textSize="14sp"/>
-
-        </LinearLayout>
-
-      </LinearLayout>
-
-      <Space
-          android:layout_width="match_parent"
-          android:layout_height="20dp"/>
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:baselineAligned="false">
-
-        <LinearLayout
-            android:id="@+id/buttonWithdraw"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="UseCompoundDrawables">
-
-          <ImageView
-              android:layout_width="65dp"
-              android:layout_height="65dp"
-              android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/outgo" />
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/withdrawal"
-              android:textAlignment="center"
-              android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -489,7 +504,7 @@
               android:layout_width="65dp"
               android:layout_height="65dp"
               android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/history_lot" />
+              app:srcCompat="@drawable/history_lot"/>
 
           <TextView
               android:layout_width="match_parent"
@@ -497,34 +512,10 @@
               android:text="@string/history_bonus"
               android:textAlignment="center"
               android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp" />
+              android:textSize="14sp"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/buttonRoi"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="UseCompoundDrawables">
-
-          <ImageView
-              android:layout_width="65dp"
-              android:layout_height="65dp"
-              android:contentDescription="@string/icon"
-              app:srcCompat="@drawable/income" />
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="ROI"
-              android:textAlignment="center"
-              android:textColor="@color/colorSecondaryDark"
-              android:textSize="14sp" />
-
-        </LinearLayout>
 
       </LinearLayout>
 

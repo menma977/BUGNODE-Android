@@ -3,7 +3,6 @@ package info.bugnode.background
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import info.bugnode.BuildConfig
 import info.bugnode.controller.WebController
@@ -43,7 +42,6 @@ class DataUser : Service() {
               break
             }
             json = WebController.Get("user.show", user.getString("token")).call()
-            Log.i("response", json.toString())
             if (json.getInt("code") == 200) {
               user.setString("username", json.getJSONObject("data").getString("username"))
               user.setString("cookie", json.getJSONObject("data").getString("sessionKey"))
@@ -59,6 +57,7 @@ class DataUser : Service() {
               user.setInteger("progress", json.getJSONObject("data").getInt("progress"))
               user.setString("totalLimit", json.getJSONObject("data").getString("total"))
               user.setBoolean("queue", json.getJSONObject("data").getBoolean("queue"))
+              user.setString("lastPackage", json.getJSONObject("data").getString("lastPackage"))
 
               if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
                 user.setBoolean("isLogout", true)

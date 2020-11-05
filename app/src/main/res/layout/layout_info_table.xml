@@ -60,12 +60,15 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:text="@string/name" />
+                    android:text="@string/username"
+                    android:textColor="@color/colorSecondaryDark"/>
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSecondaryDark"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -108,7 +111,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/date"
                     android:textAlignment="center"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondaryDark"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -122,7 +126,8 @@
                         android:layout_weight="1"
                         android:text="@string/description"
                         android:textAlignment="center"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/colorSecondaryDark" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -130,7 +135,8 @@
                         android:layout_weight="1"
                         android:text="@string/total"
                         android:textAlignment="center"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/colorSecondaryDark" />
 
                 </LinearLayout>
             </TableRow>

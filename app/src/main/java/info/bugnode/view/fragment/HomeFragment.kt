@@ -19,13 +19,14 @@ import info.bugnode.view.*
 import info.bugnode.view.doge.SendDogeActivity
 import info.bugnode.view.doge.UpgradeActivity
 import info.bugnode.view.doge.WithdrawActivity
-import info.bugnode.view.modal.WalletDialog
+import java.math.BigDecimal
 
 class HomeFragment : Fragment() {
   private lateinit var move: Intent
   private lateinit var parentActivity: NavigationActivity
   private lateinit var user: User
   private lateinit var loading: Loading
+  private lateinit var usernameTextView: TextView
   private lateinit var dollarTextView: TextView
   private lateinit var balanceTextView: TextView
   private lateinit var balanceDogeBugTextView: TextView
@@ -34,7 +35,6 @@ class HomeFragment : Fragment() {
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
   private lateinit var registerButton: LinearLayout
-  private lateinit var stakeButton: LinearLayout
   private lateinit var buttonUpgrade: LinearLayout
   private lateinit var buttonHistoryRoi: LinearLayout
   private lateinit var buttonHistoryDoge: LinearLayout
@@ -44,10 +44,9 @@ class HomeFragment : Fragment() {
   private lateinit var buttonWithdraw: LinearLayout
   private lateinit var buttonRoi: LinearLayout
   private lateinit var teamLinearLayout: LinearLayout
-  private lateinit var sendDogeButton: ImageButton
-  private lateinit var sendDogeBugButton: ImageButton
-  private lateinit var walletdogeview: ImageView
-  private lateinit var walletdogebogeview: ImageView
+  private lateinit var walletDogeImageView: ImageView
+  private lateinit var walletDogeBogeImageView: ImageView
+  private lateinit var contentLinearLayout: LinearLayout
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -57,6 +56,7 @@ class HomeFragment : Fragment() {
     user = User(parentActivity)
     loading = Loading(parentActivity)
 
+    usernameTextView = root.findViewById(R.id.textViewUsername)
     dollarTextView = root.findViewById(R.id.textViewDollar)
     balanceTextView = root.findViewById(R.id.textViewDogeBalance)
     balanceDogeBugTextView = root.findViewById(R.id.textViewDogeBugBalance)
@@ -65,7 +65,6 @@ class HomeFragment : Fragment() {
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
     registerButton = root.findViewById(R.id.buttonRegister)
-    //stakeButton = root.findViewById(R.id.buttonHistoryBonus)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
     buttonWithdraw = root.findViewById(R.id.buttonWithdraw)
@@ -75,8 +74,7 @@ class HomeFragment : Fragment() {
     buttonHistoryDoge = root.findViewById(R.id.buttonHistoryDoge)
     buttonHistoryDogeBoge = root.findViewById(R.id.buttonHistoryDogeBoge)
     buttonHistoryBonus = root.findViewById(R.id.buttonHistoryBonus)
-    sendDogeButton = root.findViewById(R.id.sendDoge)
-    sendDogeBugButton = root.findViewById(R.id.sendDogeBug)
+    contentLinearLayout = root.findViewById(R.id.contentLinearLayout)
 
     if (!user.getBoolean("active")) {
       notificationMessage.text = "Your Account is not ready. please upgrade account"
@@ -84,32 +82,28 @@ class HomeFragment : Fragment() {
       notification.visibility = LinearLayout.GONE
     }
 
-    dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal()).toPlainString()
+    usernameTextView.text = user.getString("username")
+    dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
-    walletdogeview = root.findViewById(R.id.wallet_doge_view)
-    walletdogebogeview = root.findViewById(R.id.wallet_dogebug_view)
+    walletDogeImageView = root.findViewById(R.id.wallet_doge_view)
+    walletDogeBogeImageView = root.findViewById(R.id.wallet_dogebug_view)
 
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
+    buttonUpgrade.setOnClickListener {
+      if (dollarTextView.text.toString().toBigDecimal() != BigDecimal(0) && progressBar.progress >= 90) {
+        move = Intent(parentActivity, UpgradeActivity::class.java)
+        startActivity(move)
+      } else {
+        Toast.makeText(parentActivity, "You must complete the previous package rations", Toast.LENGTH_LONG).show()
+      }
+    }
+
     registerButton.setOnClickListener {
       move = Intent(parentActivity, AuthRegisterActivity::class.java)
-      startActivity(move)
-    }
-    /*
-    stakeButton.setOnClickListener {
-      move = Intent(parentActivity, ManualStakeActivity::class.java)
-      move.putExtra("balance", user.getString("balance"))
-      move.putExtra("balanceView", BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString())
-      move.putExtra("balanceDogeBugView", BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString())
-      startActivity(move)
-    }
-     */
-
-    buttonUpgrade.setOnClickListener {
-      move = Intent(parentActivity, UpgradeActivity::class.java)
       startActivity(move)
     }
 
@@ -147,20 +141,6 @@ class HomeFragment : Fragment() {
       startActivity(move)
     }
 
-    sendDogeButton.setOnClickListener {
-      move = Intent(parentActivity, SendDogeActivity::class.java)
-      move.putExtra("title", "SEND DOGE")
-      move.putExtra("type", 2)
-      startActivity(move)
-    }
-
-    sendDogeBugButton.setOnClickListener {
-      move = Intent(parentActivity, SendDogeActivity::class.java)
-      move.putExtra("title", "SEND DOGEBOGE")
-      move.putExtra("type", 1)
-      startActivity(move)
-    }
-
     buttonWithdraw.setOnClickListener {
       move = Intent(parentActivity, WithdrawActivity::class.java)
       startActivity(move)
@@ -171,13 +151,22 @@ class HomeFragment : Fragment() {
       startActivity(move)
     }
 
-    walletdogeview.setOnClickListener {
-      WalletDialog.show(parentActivity, user.getString("wallet"), false)
+    walletDogeImageView.setOnClickListener {
+      move = Intent(parentActivity, SendDogeActivity::class.java)
+      move.putExtra("title", "SEND DOGE")
+      move.putExtra("type", 2)
+      startActivity(move)
     }
 
-    walletdogebogeview.setOnClickListener {
-      WalletDialog.show(parentActivity, user.getString("wallet"), true)
+    walletDogeBogeImageView.setOnClickListener {
+      move = Intent(parentActivity, SendDogeActivity::class.java)
+      move.putExtra("title", "SEND BOGE")
+      move.putExtra("type", 1)
+      startActivity(move)
     }
+
+    onQueue()
+    isActive()
 
     return root
   }
@@ -213,50 +202,61 @@ class HomeFragment : Fragment() {
         } else {
           notification.visibility = LinearLayout.GONE
         }
-        val dollar = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).multiply(user.getString("dollar").toBigDecimal())
-        dollarTextView.text = BitCoinFormat.toDollar(dollar).toPlainString()
+
+        dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
         progressBar.progress = user.getInteger("progress")
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
 
-        if (user.getBoolean("queue")) {
-          //stakeButton.isEnabled = false
-          sendDogeButton.isEnabled = false
-          sendDogeBugButton.isEnabled = false
-          buttonUpgrade.isEnabled = false
-          buttonRoi.isEnabled = false
-        } else {
-          //stakeButton.isEnabled = true
-          sendDogeButton.isEnabled = true
-          sendDogeBugButton.isEnabled = true
-          buttonUpgrade.isEnabled = true
-          buttonRoi.isEnabled = true
-        }
-
-        if (user.getBoolean("active")) {
-          //stakeButton.isEnabled = true
-          sendDogeButton.isEnabled = true
-          sendDogeBugButton.isEnabled = true
-          buttonUpgrade.isEnabled = true
-          buttonRoi.isEnabled = true
-          registerButton.isEnabled = true
-          buttonNetwork.isEnabled = true
-          teamLinearLayout.isEnabled = true
-          buttonWithdraw.isEnabled = true
-        } else {
-          //stakeButton.isEnabled = false
-          sendDogeButton.isEnabled = false
-          sendDogeBugButton.isEnabled = false
-          buttonUpgrade.isEnabled = true
-          buttonRoi.isEnabled = false
-          registerButton.isEnabled = false
-          buttonNetwork.isEnabled = false
-          teamLinearLayout.isEnabled = false
-          buttonWithdraw.isEnabled = false
-        }
+        onQueue()
+        isActive()
       }
+    }
+  }
+
+  private fun onQueue() {
+    if (user.getBoolean("queue")) {
+      //stakeButton.isEnabled = false
+      walletDogeImageView.isEnabled = false
+      walletDogeBogeImageView.isEnabled = false
+      buttonUpgrade.isEnabled = false
+      buttonRoi.isEnabled = false
+    } else {
+      //stakeButton.isEnabled = true
+      walletDogeImageView.isEnabled = true
+      walletDogeBogeImageView.isEnabled = true
+      buttonUpgrade.isEnabled = true
+      buttonRoi.isEnabled = true
+    }
+  }
+
+  private fun isActive() {
+    if (user.getBoolean("active")) {
+      //stakeButton.isEnabled = true
+      //sendDogeButton.isEnabled = true
+      //sendDogeBugButton.isEnabled = true
+      buttonUpgrade.isEnabled = true
+      buttonRoi.isEnabled = true
+      registerButton.isEnabled = true
+      buttonNetwork.isEnabled = true
+      teamLinearLayout.isEnabled = true
+      buttonWithdraw.isEnabled = true
+
+      contentLinearLayout.visibility = LinearLayout.VISIBLE
+    } else {
+      //stakeButton.isEnabled = false
+      //sendDogeButton.isEnabled = false
+      //sendDogeBugButton.isEnabled = false
+      buttonUpgrade.isEnabled = true
+      buttonRoi.isEnabled = false
+      registerButton.isEnabled = false
+      buttonNetwork.isEnabled = false
+      teamLinearLayout.isEnabled = false
+      buttonWithdraw.isEnabled = false
+
+      contentLinearLayout.visibility = LinearLayout.GONE
     }
   }
 }

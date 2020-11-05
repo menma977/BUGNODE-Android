@@ -1,7 +1,6 @@
 package info.bugnode.view
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -36,7 +35,6 @@ class GetROIActivity : AppCompatActivity() {
       loading.openDialog()
       Timer().schedule(100) {
         val response = WebController.Get("bonus.roi.post", user.getString("token")).call()
-        Log.i("response", "ROI POST $response")
         if (response.getInt("code") == 200) {
           runOnUiThread {
             Toast.makeText(applicationContext, response.getString("data"), Toast.LENGTH_SHORT).show()
@@ -50,10 +48,6 @@ class GetROIActivity : AppCompatActivity() {
         }
       }
     }
-  }
-
-  override fun onStart() {
-    super.onStart()
     var target = 1000
     var time = System.currentTimeMillis()
     Timer().schedule(100) {
@@ -65,7 +59,6 @@ class GetROIActivity : AppCompatActivity() {
           if (delta > target) {
             time = System.currentTimeMillis()
             val response = WebController.Get("bonus.roi.get", user.getString("token")).call()
-            Log.i("response", "ROI $response")
             if (response.getInt("code") == 200) {
               target = 1000
               balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
