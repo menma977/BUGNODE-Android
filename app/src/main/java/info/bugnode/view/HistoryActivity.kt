@@ -37,7 +37,7 @@ class HistoryActivity : AppCompatActivity() {
     table = findViewById(R.id.table)
 
     findViewById<TextView>(R.id.title).text = user.getString("Bonus History")
-    findViewById<TextView>(R.id.name).text = user.getString("name")
+    findViewById<TextView>(R.id.name).text = user.getString("username")
 
     Timer().schedule(100) {
       val res: JSONObject = when {

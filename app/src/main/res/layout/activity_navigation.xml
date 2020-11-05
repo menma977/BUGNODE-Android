@@ -35,6 +35,18 @@
         android:textColor="@color/White"
         android:text="@string/app_name"/>
 
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:srcCompat="@drawable/barcode"
+        android:id="@+id/imageButtonQr"
+        android:background="@color/Link"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:tint="@color/White"
+        android:contentDescription="@string/icon"/>
+
   </LinearLayout>
 
   <FrameLayout
@@ -99,14 +111,14 @@
       <ImageView
           android:layout_width="40dp"
           android:layout_height="40dp"
-          app:srcCompat="@drawable/blockchain"
           android:scaleType="fitCenter"
           android:background="@color/Link"
           android:contentDescription="@string/icon"
-          android:backgroundTint="@color/Link"/>
+          android:backgroundTint="@color/Link"
+          app:srcCompat="@drawable/share"/>
 
       <TextView
-          android:text="@string/bug_chain"
+          android:text="@string/share"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:textAlignment="center"
@@ -127,7 +139,7 @@
       <ImageView
           android:layout_width="40dp"
           android:layout_height="40dp"
-          app:srcCompat="@drawable/info"
+          app:srcCompat="@drawable/me"
           android:scaleType="fitCenter"
           android:background="@color/Link"
           android:contentDescription="@string/icon"

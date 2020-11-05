@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.Uri
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -20,6 +20,7 @@ import info.bugnode.model.User
 import info.bugnode.view.fragment.HomeFragment
 import info.bugnode.view.fragment.InfoFragment
 import info.bugnode.view.fragment.SettingFragment
+import info.bugnode.view.modal.WalletDialog
 import org.json.JSONObject
 import java.util.*
 import kotlin.concurrent.schedule
@@ -35,6 +36,7 @@ class NavigationActivity : AppCompatActivity() {
   private lateinit var linearBugChain: LinearLayout
   private lateinit var linearInfo: LinearLayout
   private lateinit var linearSetting: LinearLayout
+  private lateinit var qrButton: ImageButton
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -47,6 +49,7 @@ class NavigationActivity : AppCompatActivity() {
     linearBugChain = findViewById(R.id.linearLayoutBugChain)
     linearInfo = findViewById(R.id.linearLayoutInfo)
     linearSetting = findViewById(R.id.linearLayoutSetting)
+    qrButton = findViewById(R.id.imageButtonQr)
 
     setNavigation()
     val fragment = HomeFragment()
@@ -60,8 +63,11 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     linearBugChain.setOnClickListener {
-      move = Intent(Intent.ACTION_VIEW, Uri.parse("https://dogechain.info/address/${user.getString("wallet")}"))
-      startActivity(move)
+      val intent = Intent()
+      intent.action = Intent.ACTION_SEND
+      intent.putExtra(Intent.EXTRA_TEXT, "Link Yang di share")
+      intent.type = "text/plain"
+      startActivity(Intent.createChooser(intent, "Share To:"))
     }
 
     linearInfo.setOnClickListener {
@@ -72,6 +78,10 @@ class NavigationActivity : AppCompatActivity() {
     linearSetting.setOnClickListener {
       val fragment = SettingFragment()
       addFragment(fragment)
+    }
+
+    qrButton.setOnClickListener {
+      WalletDialog.show(this, user.getString("wallet"), false)
     }
   }
 

@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.google.zxing.BarcodeFormat
-import com.journeyapps.barcodescanner.BarcodeEncoder
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
@@ -21,7 +18,6 @@ class InfoFragment : Fragment() {
   private lateinit var parentActivity: NavigationActivity
   private lateinit var user: User
   private lateinit var loading: Loading
-  //private lateinit var qrcode: ImageView
   private lateinit var walletdoge: TextView
   private lateinit var balancedoge: TextView
   private lateinit var walletdogeboge: TextView
@@ -30,7 +26,6 @@ class InfoFragment : Fragment() {
   private lateinit var name: TextView
   private lateinit var email: TextView
   private lateinit var phone: TextView
-
   private lateinit var walletdogeview: LinearLayout
   private lateinit var walletdogebogeview: LinearLayout
 
@@ -42,7 +37,6 @@ class InfoFragment : Fragment() {
     user = User(parentActivity)
     loading = Loading(parentActivity)
 
-    //qrcode = root.findViewById(R.id.qr_image)
     walletdoge = root.findViewById(R.id.walletdoge)
     balancedoge = root.findViewById(R.id.balancedoge)
     walletdogeboge = root.findViewById(R.id.wallet_dogebug)
@@ -58,7 +52,7 @@ class InfoFragment : Fragment() {
     walletdoge.text = user.getString("wallet")
     balancedoge.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     walletdogeboge.text = user.getString("wallet")
-    balancedogeboge.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
+    balancedogeboge.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
     username.text = user.getString("username")
     name.text = user.getString("name")
     email.text = user.getString("email")
@@ -71,10 +65,6 @@ class InfoFragment : Fragment() {
     walletdogebogeview.setOnClickListener {
       WalletDialog.show(parentActivity, user.getString("wallet"), true)
     }
-
-    //val barcodeEncoder = BarcodeEncoder()
-    //val bitmap = barcodeEncoder.encodeBitmap(user.getString("wallet"), BarcodeFormat.QR_CODE, 500, 500)
-    //qrcode.setImageBitmap(bitmap)
 
     return root
   }
