@@ -1,10 +1,13 @@
 package info.bugnode.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
@@ -51,7 +54,7 @@ class GetROIActivity : AppCompatActivity() {
         }
       }
     }
-    var target = 1000
+    var target = 500
     var time = System.currentTimeMillis()
     Timer().schedule(100) {
       while (true) {
@@ -62,14 +65,32 @@ class GetROIActivity : AppCompatActivity() {
           if (delta > target) {
             time = System.currentTimeMillis()
             val response = WebController.Get("bonus.roi.get", user.getString("token")).call()
+            Log.i("response", response.toString())
             if (response.getInt("code") == 200) {
-              target = 1000
-              balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
-            } else {
               target = 5000
+              balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
+              target = 1000
+            } else {
+              if (response.getString("data").contains("Unauthenticated.")) {
+                user.setBoolean("isLogout", true)
+                target = 1000
+                break
+              } else {
+                runOnUiThread {
+                  user.setBoolean("isLogout", false)
+                  balance.text = "timeout. please wait for it to respond"
+                  target = 10000
+                }
+              }
             }
           }
         }
+      }
+
+      if (user.getBoolean("isLogout")) {
+        user.clear()
+        val move = Intent(applicationContext, MainActivity::class.java)
+        startActivity(move)
       }
     }
   }

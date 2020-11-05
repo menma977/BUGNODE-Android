@@ -13,17 +13,6 @@ import java.util.concurrent.TimeUnit
 
 class DogeController {
   companion object {
-    private val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build()
-    private val request = Request.Builder()
-
-    fun declareRequest() {
-      request.url(Url.doge())
-      request.addHeader("Access-Control-Allow-Origin", "*")
-      request.addHeader("X-Requested-With", "XMLHttpRequest")
-      request.addHeader("Connection", "close")
-      request.header("Connection", "close")
-    }
-
     @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     fun responseHandler(jsonObject: JSONObject): JSONObject {
       return when {
@@ -67,7 +56,13 @@ class DogeController {
   class Post(private var bodyValue: FormBody.Builder) : Callable<JSONObject> {
     override fun call(): JSONObject {
       return try {
-        declareRequest()
+        val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build()
+        val request = Request.Builder()
+        request.url(Url.doge())
+        request.addHeader("Access-Control-Allow-Origin", "*")
+        request.addHeader("X-Requested-With", "XMLHttpRequest")
+        request.addHeader("Connection", "close")
+        request.header("Connection", "close")
         request.post(bodyValue.build())
         val response: Response = client.newCall(request.build()).execute()
         val input = BufferedReader(InputStreamReader(response.body!!.byteStream()))
