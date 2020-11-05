@@ -67,9 +67,10 @@ class GetROIActivity : AppCompatActivity() {
             val response = WebController.Get("bonus.roi.get", user.getString("token")).call()
             Log.i("response", response.toString())
             if (response.getInt("code") == 200) {
-              target = 5000
-              balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
-              target = 1000
+              runOnUiThread {
+                balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
+                target = 2000
+              }
             } else {
               if (response.getString("data").contains("Unauthenticated.")) {
                 user.setBoolean("isLogout", true)

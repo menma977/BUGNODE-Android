@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
   private lateinit var notificationMessage: TextView
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
+  private lateinit var progressBarTargetTextVIew: TextView
   private lateinit var registerButton: LinearLayout
   private lateinit var buttonUpgrade: LinearLayout
   private lateinit var buttonHistoryRoi: LinearLayout
@@ -64,6 +65,7 @@ class HomeFragment : Fragment() {
     notificationMessage = root.findViewById(R.id.textViewNotification)
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
+    progressBarTargetTextVIew = root.findViewById(R.id.textViewTarget)
     registerButton = root.findViewById(R.id.buttonRegister)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
@@ -92,6 +94,7 @@ class HomeFragment : Fragment() {
 
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+    progressBarTargetTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal().multiply(BigDecimal(4))).toPlainString()
 
     buttonUpgrade.setOnClickListener {
       if (dollarTextView.text.toString().toBigDecimal() != BigDecimal(0) && progressBar.progress >= 90) {
@@ -209,6 +212,7 @@ class HomeFragment : Fragment() {
 
         progressBar.progress = user.getInteger("progress")
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+        progressBarTargetTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal().multiply(BigDecimal(4))).toPlainString()
 
         onQueue()
         isActive()

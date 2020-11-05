@@ -16,7 +16,7 @@
   <ImageView
       android:layout_width="match_parent"
       android:layout_height="300dp"
-      app:srcCompat="@drawable/logo_type_vertical"
+      app:srcCompat="@drawable/logo_dark"
       android:scaleType="fitCenter"
       android:adjustViewBounds="true"
       android:cropToPadding="true"/>
