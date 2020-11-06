@@ -69,4 +69,5 @@
   <string name="history_boge">History Boge</string>
   <string name="share">Share</string>
   <string name="dig">Dig</string>
+  <string name="description_upgrade">Top up requires 50% Doge and 50% Boge, will be taken from your wallet balance.</string>
 </resources>
