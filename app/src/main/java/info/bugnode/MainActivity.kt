@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
               user.setInteger("progress", jsonObject.getJSONObject("data").getInt("progress"))
               user.setString("totalLimit", jsonObject.getJSONObject("data").getString("total"))
               user.setBoolean("queue", jsonObject.getJSONObject("data").getBoolean("queue"))
+              user.setString("lastPackage", jsonObject.getJSONObject("data").getString("lastPackage"))
               user.setBoolean("isLogout", false)
               val getBalanceDogeBug = jsonObject.getJSONObject("data").getString("balanceDogeBug").toBigDecimal()
 

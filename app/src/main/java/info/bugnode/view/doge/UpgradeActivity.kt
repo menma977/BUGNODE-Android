@@ -98,7 +98,7 @@ class UpgradeActivity : AppCompatActivity() {
     packageList = ArrayList()
     var firstPackage = 1000
     while (true) {
-      packageList.add("$firstPackage.00000000")
+      packageList.add("$firstPackage")
       firstPackage += if (firstPackage in 10000..99999) {
         10000
       } else if (firstPackage in 100000..999999) {

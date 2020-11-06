@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
   private lateinit var notificationMessage: TextView
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
+  private lateinit var progressBarTargetTextVIew: TextView
   private lateinit var registerButton: LinearLayout
   private lateinit var buttonUpgrade: LinearLayout
   private lateinit var buttonHistoryRoi: LinearLayout
@@ -64,6 +65,7 @@ class HomeFragment : Fragment() {
     notificationMessage = root.findViewById(R.id.textViewNotification)
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
+    progressBarTargetTextVIew = root.findViewById(R.id.textViewTarget)
     registerButton = root.findViewById(R.id.buttonRegister)
     buttonUpgrade = root.findViewById(R.id.buttonUpgrade)
     buttonNetwork = root.findViewById(R.id.buttonNetwork)
@@ -77,7 +79,7 @@ class HomeFragment : Fragment() {
     contentLinearLayout = root.findViewById(R.id.contentLinearLayout)
 
     if (!user.getBoolean("active")) {
-      notificationMessage.text = "Your Account is not ready. please upgrade account"
+      notificationMessage.text = "Your account is not in a network position yet, please top up. The wallet on this account is working"
     } else {
       notification.visibility = LinearLayout.GONE
     }
@@ -92,9 +94,13 @@ class HomeFragment : Fragment() {
 
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+    progressBarTargetTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal().multiply(BigDecimal(4))).toPlainString()
 
     buttonUpgrade.setOnClickListener {
-      if (dollarTextView.text.toString().toBigDecimal() != BigDecimal(0) && progressBar.progress >= 90) {
+      if (!user.getBoolean("active")) {
+        move = Intent(parentActivity, UpgradeActivity::class.java)
+        startActivity(move)
+      } else if (progressBar.progress >= 90) {
         move = Intent(parentActivity, UpgradeActivity::class.java)
         startActivity(move)
       } else {
@@ -197,7 +203,7 @@ class HomeFragment : Fragment() {
         parentActivity.onLogout()
       } else {
         if (!user.getBoolean("active")) {
-          val message = "Your Account is not ready. please upgrade account"
+          val message = "Your account is not in a network position yet, please top up. The wallet on this account is working"
           notificationMessage.text = message
         } else {
           notification.visibility = LinearLayout.GONE
@@ -209,6 +215,7 @@ class HomeFragment : Fragment() {
 
         progressBar.progress = user.getInteger("progress")
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+        progressBarTargetTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal().multiply(BigDecimal(4))).toPlainString()
 
         onQueue()
         isActive()

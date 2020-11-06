@@ -22,6 +22,7 @@ import info.bugnode.view.NavigationActivity
 import info.bugnode.view.settings.ChangePassword
 import info.bugnode.view.settings.ChangePhone
 import info.bugnode.view.settings.ChangeSecondaryPassword
+import java.math.BigDecimal
 
 class SettingFragment : Fragment() {
   private lateinit var parentActivity: NavigationActivity
@@ -38,6 +39,7 @@ class SettingFragment : Fragment() {
   private lateinit var logout: TableRow
   private lateinit var progressBar: ProgressBar
   private lateinit var progressBarTextVIew: TextView
+  private lateinit var progressBarTargetTextVIew: TextView
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_setting, container, false)
@@ -54,6 +56,7 @@ class SettingFragment : Fragment() {
     notificationMessage = root.findViewById(R.id.textViewNotification)
     progressBar = root.findViewById(R.id.progressBar)
     progressBarTextVIew = root.findViewById(R.id.textViewProgressBar)
+    progressBarTargetTextVIew = root.findViewById(R.id.textViewTarget)
     editPassword = root.findViewById(R.id.edit_password)
     editPasswordKey = root.findViewById(R.id.edit_password_key)
     editPhone = root.findViewById(R.id.edit_phone_number)
@@ -85,6 +88,7 @@ class SettingFragment : Fragment() {
 
     progressBar.progress = user.getInteger("progress")
     progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+    progressBarTargetTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal().multiply(BigDecimal(4))).toPlainString()
 
     return root
   }
@@ -117,6 +121,7 @@ class SettingFragment : Fragment() {
 
         progressBar.progress = user.getInteger("progress")
         progressBarTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("totalLimit").toBigDecimal()).toPlainString()
+        progressBarTargetTextVIew.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal().multiply(BigDecimal(4))).toPlainString()
       }
     }
   }
