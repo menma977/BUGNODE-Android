@@ -114,6 +114,10 @@
         android:layout_marginEnd="40dp"
         android:elevation="10dp">
 
+      <Space
+          android:layout_width="match_parent"
+          android:layout_height="5dp"/>
+
       <TextView
           android:text="@string/upgrade_lot"
           android:layout_width="match_parent"
@@ -121,6 +125,19 @@
           android:textColor="@color/textPrimary"
           android:textStyle="bold"
           android:textSize="18sp"
+          android:gravity="center"/>
+
+      <Space
+          android:layout_width="match_parent"
+          android:layout_height="5dp"/>
+
+      <TextView
+          android:text="@string/description_upgrade"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textColor="@color/textPrimary"
+          android:textStyle="bold"
+          android:textSize="12sp"
           android:gravity="center"/>
 
       <Space
