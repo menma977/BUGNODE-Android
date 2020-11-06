@@ -144,7 +144,7 @@ class HistoryActivity : AppCompatActivity() {
           ret.put(v)
         }
       }
-      val transfers = depores.getJSONArray("Transfers")
+      val transfers = wdres.getJSONArray("Transfers")
       if (transfers.length() > 0) {
         for (i in 0 until transfers.length()) {
           val transfer = transfers[i] as JSONObject
