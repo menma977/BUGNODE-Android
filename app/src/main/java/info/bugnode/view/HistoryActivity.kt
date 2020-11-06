@@ -108,7 +108,8 @@ class HistoryActivity : AppCompatActivity() {
           val deposit = deposits[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(deposit.getString("Date")))
-          v.put("description", "Deposit")
+          v.put("description", deposit.getString("Address").replace("XFER", "Internal DOGEBOGE / " + " | " + deposit.getString("TransactionHash"))
+          )
           v.put("debit", deposit.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
@@ -119,7 +120,7 @@ class HistoryActivity : AppCompatActivity() {
           val transfer = transfers[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(transfer.getString("Date")))
-          v.put("description", "Transfer Inbound")
+          v.put("description", transfer.getString("Address").replace("XFER", "Internal DOGEBOGE"))
           v.put("debit", transfer.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
@@ -139,7 +140,7 @@ class HistoryActivity : AppCompatActivity() {
           val withdrawal = withdrawals[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(withdrawal.getString("Completed")))
-          v.put("description", "Withdrawal")
+          v.put("description", withdrawal.getString("Address").replace("XFER", "Internal DOGEBOGE / " + " | " + withdrawal.getString("TransactionHash")))
           v.put("credit", withdrawal.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
@@ -150,7 +151,7 @@ class HistoryActivity : AppCompatActivity() {
           val transfer = transfers[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(transfer.getString("Completed")))
-          v.put("description", "Transfer Outbound")
+          v.put("description", transfer.getString("Address").replace("XFER", "Internal DOGEBOGE"))
           v.put("credit", transfer.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
