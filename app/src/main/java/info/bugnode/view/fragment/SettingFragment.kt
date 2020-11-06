@@ -28,7 +28,6 @@ class SettingFragment : Fragment() {
   private lateinit var parentActivity: NavigationActivity
   private lateinit var user: User
   private lateinit var loading: Loading
-  private lateinit var dollarTextView: TextView
   private lateinit var balanceTextView: TextView
   private lateinit var balanceDogeBugTextView: TextView
   private lateinit var notification: LinearLayout
@@ -49,7 +48,6 @@ class SettingFragment : Fragment() {
     user = User(parentActivity)
     loading = Loading(parentActivity)
 
-    dollarTextView = root.findViewById(R.id.textViewDollar)
     balanceTextView = root.findViewById(R.id.textViewDogeBalance)
     balanceDogeBugTextView = root.findViewById(R.id.textViewDogeBugBalance)
     notification = root.findViewById(R.id.notification)
@@ -82,7 +80,6 @@ class SettingFragment : Fragment() {
       notification.visibility = LinearLayout.GONE
     }
 
-    dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 
@@ -115,7 +112,6 @@ class SettingFragment : Fragment() {
           notification.visibility = LinearLayout.GONE
         }
 
-        dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
         balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
         balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
 

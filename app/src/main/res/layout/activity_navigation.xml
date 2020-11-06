@@ -24,16 +24,31 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         app:srcCompat="@drawable/logo_white"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:contentDescription="@string/logo"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20sp"
-        android:textColor="@color/White"
-        android:text="@string/app_name"/>
+        android:orientation="vertical">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/White"
+          android:text="@string/app_name"/>
+
+      <TextView
+          android:hint="@string/dollar_example"
+          android:id="@+id/textViewDollar"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/White"/>
+
+    </LinearLayout>
 
     <ImageButton
         android:layout_width="45dp"

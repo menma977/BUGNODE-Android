@@ -7,6 +7,7 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -14,6 +15,7 @@ import info.bugnode.MainActivity
 import info.bugnode.R
 import info.bugnode.background.Balance999Doge
 import info.bugnode.background.DataUser
+import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
 import info.bugnode.controller.WebController
 import info.bugnode.model.User
@@ -37,6 +39,7 @@ class NavigationActivity : AppCompatActivity() {
   private lateinit var linearInfo: LinearLayout
   private lateinit var linearSetting: LinearLayout
   private lateinit var qrButton: ImageButton
+  private lateinit var dollarTextView: TextView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -45,11 +48,14 @@ class NavigationActivity : AppCompatActivity() {
     user = User(this)
     loading = Loading(this)
 
+    dollarTextView = findViewById(R.id.textViewDollar)
     linearHome = findViewById(R.id.linearLayoutHome)
     linearBugChain = findViewById(R.id.linearLayoutBugChain)
     linearInfo = findViewById(R.id.linearLayoutInfo)
     linearSetting = findViewById(R.id.linearLayoutSetting)
     qrButton = findViewById(R.id.imageButtonQr)
+
+    dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
 
     setNavigation()
     val fragment = HomeFragment()
@@ -120,6 +126,8 @@ class NavigationActivity : AppCompatActivity() {
     override fun onReceive(context: Context, intent: Intent) {
       if (user.getBoolean("isLogout")) {
         onLogout()
+      } else {
+        dollarTextView.text = BitCoinFormat.decimalToDoge(user.getString("lastPackage").toBigDecimal()).toPlainString()
       }
     }
   }
