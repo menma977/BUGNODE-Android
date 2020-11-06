@@ -138,7 +138,7 @@ class HistoryActivity : AppCompatActivity() {
         for (i in 0 until withdrawals.length()) {
           val withdrawal = withdrawals[i] as JSONObject
           val v = JSONObject()
-          v.put("date", formatDate(withdrawal.getString("Date")))
+          v.put("date", formatDate(withdrawal.getString("Completed")))
           v.put("description", "Withdrawal")
           v.put("credit", withdrawal.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
@@ -149,7 +149,7 @@ class HistoryActivity : AppCompatActivity() {
         for (i in 0 until transfers.length()) {
           val transfer = transfers[i] as JSONObject
           val v = JSONObject()
-          v.put("date", formatDate(transfer.getString("Date")))
+          v.put("date", formatDate(transfer.getString("Completed")))
           v.put("description", "Transfer Outbound")
           v.put("credit", transfer.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
