@@ -170,6 +170,7 @@ class HistoryActivity : AppCompatActivity() {
   }
 
   private fun formatDate(date: String): String {
+    if(date == "null") return "-/-"
     val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     val formatter = SimpleDateFormat("dd/MM")
     return formatter.format(parser.parse(date)!!)
