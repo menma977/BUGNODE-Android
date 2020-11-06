@@ -39,6 +39,7 @@ class HistoryActivity : AppCompatActivity() {
 
     findViewById<TextView>(R.id.title).text = user.getString("Bonus History")
     findViewById<TextView>(R.id.name).text = user.getString("username")
+    findViewById<TextView>(R.id.total).text = "0"
 
     Timer().schedule(100) {
       val res: JSONObject = when {
@@ -49,6 +50,12 @@ class HistoryActivity : AppCompatActivity() {
       }
       runOnUiThread {
         if (res.getInt("code") == 200) {
+          if (intent.getStringExtra("type") == "doge") {
+            findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
+          } else {
+            val total = res.getJSONObject("data").getString("total").toBigDecimal()
+            findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(total).toPlainString()
+          }
           val entries = when {
             intent.getStringExtra("type") == "doge" -> res.getJSONArray("history")
             intent.getStringExtra("type") == "roi" -> res.getJSONObject("data").getJSONArray("history")
@@ -63,19 +70,11 @@ class HistoryActivity : AppCompatActivity() {
             if (entry.has("description")) row.findViewById<TextView>(R.id.desc).text = entry.getString("description")
             if (!entry.has("debit") || entry.getString("debit").isEmpty() || entry.getString("debit").toBigDecimal() == BigDecimal(0.0)) {
               if (!entry.has("description")) row.findViewById<TextView>(R.id.desc).text = resources.getString(R.string.income)
-              row.findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(
-                entry.getString(
-                  "credit"
-                ).toBigDecimal()
-              ).toPlainString()
+              row.findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(entry.getString("credit").toBigDecimal()).toPlainString()
               layoutRow.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.Danger))
             } else {
               if (!entry.has("description")) row.findViewById<TextView>(R.id.desc).text = resources.getString(R.string.outcome)
-              row.findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(
-                entry.getString(
-                  "debit"
-                ).toBigDecimal()
-              ).toPlainString()
+              row.findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(entry.getString("debit").toBigDecimal()).toPlainString()
               layoutRow.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.Success))
             }
             table.addView(row)
@@ -110,9 +109,7 @@ class HistoryActivity : AppCompatActivity() {
           val v = JSONObject()
           v.put("date", formatDate(deposit.getString("Date")))
           v.put("description", "Deposit")
-          v.put(
-            "debit", deposit.getString("Value").toBigDecimal().toPlainString()
-          )
+          v.put("debit", deposit.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
       }
@@ -143,9 +140,7 @@ class HistoryActivity : AppCompatActivity() {
           val v = JSONObject()
           v.put("date", formatDate(withdrawal.getString("Date")))
           v.put("description", "Withdrawal")
-          v.put(
-            "credit", withdrawal.getString("Value").toBigDecimal().toPlainString()
-          )
+          v.put("credit", withdrawal.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
       }
@@ -156,9 +151,7 @@ class HistoryActivity : AppCompatActivity() {
           val v = JSONObject()
           v.put("date", formatDate(transfer.getString("Date")))
           v.put("description", "Transfer Outbound")
-          v.put(
-            "credit", transfer.getString("Value").toBigDecimal().toPlainString()
-          )
+          v.put("credit", transfer.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
       }

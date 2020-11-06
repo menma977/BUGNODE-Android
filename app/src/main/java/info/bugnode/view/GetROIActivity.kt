@@ -2,7 +2,6 @@ package info.bugnode.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -54,6 +53,10 @@ class GetROIActivity : AppCompatActivity() {
         }
       }
     }
+    startROI()
+  }
+
+  private fun startROI() {
     var target = 500
     var time = System.currentTimeMillis()
     Timer().schedule(100) {
@@ -65,7 +68,6 @@ class GetROIActivity : AppCompatActivity() {
           if (delta > target) {
             time = System.currentTimeMillis()
             val response = WebController.Get("bonus.roi.get", user.getString("token")).call()
-            Log.i("response", response.toString())
             if (response.getInt("code") == 200) {
               runOnUiThread {
                 balance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("roi").toBigDecimal()).toPlainString()
@@ -94,6 +96,12 @@ class GetROIActivity : AppCompatActivity() {
         startActivity(move)
       }
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    isBreak = false
+    startROI()
   }
 
   override fun onDestroy() {
