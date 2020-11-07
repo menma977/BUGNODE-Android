@@ -10,9 +10,13 @@ import androidx.fragment.app.Fragment
 import info.bugnode.R
 import info.bugnode.config.BitCoinFormat
 import info.bugnode.config.Loading
+import info.bugnode.controller.WebController
 import info.bugnode.model.User
 import info.bugnode.view.NavigationActivity
 import info.bugnode.view.modal.WalletDialog
+import kotlinx.android.synthetic.main.fragment_info.*
+import java.util.*
+import kotlin.concurrent.schedule
 
 class InfoFragment : Fragment() {
   private lateinit var parentActivity: NavigationActivity
@@ -66,7 +70,38 @@ class InfoFragment : Fragment() {
       WalletDialog.show(parentActivity, user.getString("wallet"), true)
     }
 
+    loading.openDialog()
+    loadLog()
+
     return root
   }
 
+  private fun loadLog() {
+    Timer().schedule(100) {
+      val response = WebController.Get("user.log", user.getString("token")).call()
+      if (response.getInt("code") == 200) {
+        parentActivity.runOnUiThread {
+          countTopUp.text = response.getJSONObject("data").getString("totalTopUp")
+          dogeBalance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("logDoge").toBigDecimal()).toPlainString()
+          bogeBalance.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("logBoge").toBigDecimal()).toPlainString()
+          dogeWithdraw.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("logDogeWithdraw").toBigDecimal()).toPlainString()
+          bogeWithdraw.text = BitCoinFormat.decimalToDoge(response.getJSONObject("data").getString("logBogeWithdraw").toBigDecimal()).toPlainString()
+          totalTopUp.text = response.getJSONObject("data").getString("dailyPool")
+          sumTopReferrer.text = response.getJSONObject("data").getString("dataReferrer")
+          loading.closeDialog()
+        }
+      } else {
+        parentActivity.runOnUiThread {
+          countTopUp.text = "0"
+          dogeBalance.text = "0"
+          bogeBalance.text = "0"
+          dogeWithdraw.text = "0"
+          bogeWithdraw.text = "0"
+          totalTopUp.text = "0"
+          sumTopReferrer.text = "0"
+          loading.closeDialog()
+        }
+      }
+    }
+  }
 }

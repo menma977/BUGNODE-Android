@@ -39,6 +39,12 @@ class AuthRegisterActivity : AppCompatActivity() {
     rightRadioButton = findViewById(R.id.radioButtonRight)
     registerButton = findViewById(R.id.buttonRegister)
 
+    if (user.getInteger("position") == 1) {
+      leftRadioButton.isChecked = true
+    } else {
+      rightRadioButton.isChecked = true
+    }
+
     registerButton.setOnClickListener {
       if (!leftRadioButton.isChecked && !rightRadioButton.isChecked) {
         Toast.makeText(this, "Position required", Toast.LENGTH_SHORT).show()
