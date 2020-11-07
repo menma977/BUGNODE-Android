@@ -240,7 +240,7 @@ class HomeFragment : Fragment() {
   }
 
   private fun isActive() {
-    if (user.getBoolean("active") && progressBar.progress < 90) {
+    if (user.getBoolean("active") && progressBar.progress in 1..90) {
       imageUpgrade.setImageResource(R.drawable.upgrade_disebale)
     } else {
       imageUpgrade.setImageResource(R.drawable.upgrade_active)
