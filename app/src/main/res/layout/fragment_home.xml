@@ -34,10 +34,11 @@
           tools:ignore="UseCompoundDrawables">
 
         <ImageView
+            android:id="@+id/upgradeImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/topup"/>
+            app:srcCompat="@drawable/upgrade_active"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -62,7 +63,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/ration"/>
+            app:srcCompat="@drawable/ratio"/>
 
         <TextView
             android:layout_width="match_parent"

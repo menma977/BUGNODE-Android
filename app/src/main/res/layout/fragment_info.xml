@@ -145,7 +145,8 @@
           android:id="@+id/wallet_dogebug_view"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:orientation="vertical" android:visibility="gone">
+          android:orientation="vertical"
+          android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
@@ -182,6 +183,14 @@
         android:orientation="vertical"
         android:padding="12sp">
 
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Personal Info"
+          android:textAlignment="center"
+          android:textStyle="bold"
+          android:textColor="@color/colorSecondaryDark"/>
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -204,6 +213,7 @@
             android:textAlignment="textStart"
             tools:ignore="RtlSymmetry"
             android:textColor="@color/colorSecondaryDark"/>
+
       </LinearLayout>
 
       <LinearLayout
@@ -277,6 +287,201 @@
             android:layout_height="wrap_content"
             android:paddingStart="24sp"
             android:text="@string/phone"
+            android:textAlignment="textStart"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/colorSecondaryDark"/>
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="12sp"
+        android:layout_marginTop="28sp"
+        android:layout_marginEnd="12sp"
+        android:background="@drawable/card2"
+        android:orientation="vertical"
+        android:padding="12sp">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Decentralized Info"
+          android:textAlignment="center"
+          android:textStyle="bold"
+          android:textColor="@color/colorSecondaryDark"/>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Total TRX"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryDark"/>
+
+        <TextView
+            android:id="@+id/countTopUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="@string/zero"
+            android:textAlignment="textStart"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/colorSecondaryDark"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Doge Balance"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryDark"/>
+
+        <TextView
+            android:id="@+id/dogeBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="@string/zero"
+            android:textAlignment="textStart"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/colorSecondaryDark"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Boge Balance"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryDark"/>
+
+        <TextView
+            android:id="@+id/bogeBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="@string/zero"
+            android:textAlignment="textStart"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/colorSecondaryDark"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Doge Withdraw"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryDark"/>
+
+        <TextView
+            android:id="@+id/dogeWithdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="@string/zero"
+            android:textAlignment="textStart"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/colorSecondaryDark"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Boge Withdraw"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryDark"/>
+
+        <TextView
+            android:id="@+id/bogeWithdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="@string/zero"
+            android:textAlignment="textStart"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/colorSecondaryDark"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Daily Pool"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryDark"/>
+
+        <TextView
+            android:id="@+id/totalTopUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="@string/zero"
+            android:textAlignment="textStart"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/colorSecondaryDark"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Top Referrer"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryDark"/>
+
+        <TextView
+            android:id="@+id/sumTopReferrer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="@string/zero"
             android:textAlignment="textStart"
             tools:ignore="RtlSymmetry"
             android:textColor="@color/colorSecondaryDark"/>

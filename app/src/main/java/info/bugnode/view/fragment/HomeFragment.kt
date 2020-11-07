@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
   private lateinit var walletDogeImageView: ImageView
   private lateinit var walletDogeBogeImageView: ImageView
   private lateinit var contentLinearLayout: LinearLayout
+  private lateinit var imageUpgrade: ImageView
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -75,6 +76,7 @@ class HomeFragment : Fragment() {
     buttonHistoryDogeBoge = root.findViewById(R.id.buttonHistoryDogeBoge)
     buttonHistoryBonus = root.findViewById(R.id.buttonHistoryBonus)
     contentLinearLayout = root.findViewById(R.id.contentLinearLayout)
+    imageUpgrade = root.findViewById(R.id.upgradeImage)
 
     if (!user.getBoolean("active")) {
       notificationMessage.text = "Your account is not in a network position yet, please top up. The wallet on this account is working"
@@ -224,18 +226,26 @@ class HomeFragment : Fragment() {
       //stakeButton.isEnabled = false
       walletDogeImageView.isEnabled = false
       walletDogeBogeImageView.isEnabled = false
-      buttonUpgrade.isEnabled = false
       buttonRoi.isEnabled = false
+      buttonUpgrade.isEnabled = false
+      imageUpgrade.setImageResource(R.drawable.upgrade_disebale)
     } else {
       //stakeButton.isEnabled = true
       walletDogeImageView.isEnabled = true
       walletDogeBogeImageView.isEnabled = true
-      buttonUpgrade.isEnabled = true
       buttonRoi.isEnabled = true
+      buttonUpgrade.isEnabled = true
+      imageUpgrade.setImageResource(R.drawable.upgrade_active)
     }
   }
 
   private fun isActive() {
+    if (user.getBoolean("active") && progressBar.progress < 90) {
+      imageUpgrade.setImageResource(R.drawable.upgrade_disebale)
+    } else {
+      imageUpgrade.setImageResource(R.drawable.upgrade_active)
+    }
+
     if (user.getBoolean("active")) {
       //stakeButton.isEnabled = true
       //sendDogeButton.isEnabled = true

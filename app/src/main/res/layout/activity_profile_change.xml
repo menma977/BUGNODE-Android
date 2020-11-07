@@ -242,7 +242,7 @@
           android:id="@+id/sumbit"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="@string/generic_sumbit"
+          android:text="@string/generic_submit"
           android:background="@drawable/button"/>
 
     </LinearLayout>

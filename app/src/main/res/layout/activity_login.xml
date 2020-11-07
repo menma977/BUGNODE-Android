@@ -139,6 +139,29 @@
 
     <Space
         android:layout_width="wrap_content"
+        android:layout_height="15dp"/>
+
+    <TextView
+        android:text="@string/don_t_have_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/White"/>
+
+    <TextView
+        android:text="@string/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/textViewForgotPassword"/>
+
+    <Space
+        android:layout_width="wrap_content"
         android:layout_height="35dp"/>
 
   </LinearLayout>

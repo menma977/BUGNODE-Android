@@ -3,7 +3,7 @@
   <string name="logo">Logo</string>
   <string name="login_account">Login Account</string>
   <string name="version">Version</string>
-  <string name="username">username</string>
+  <string name="username">Username</string>
   <string name="password">password</string>
   <string name="log_in">Log In</string>
   <string name="don_t_have_account">Don\'t have account ?</string>
@@ -41,7 +41,7 @@
   <string name="reenter_new_password">Confirm New Password</string>
   <string name="new_password_key">New Secondary Password</string>
   <string name="reenter_new_password_key">Confirm New Secondary Password</string>
-  <string name="generic_sumbit">Submit</string>
+  <string name="generic_submit">Submit</string>
   <string name="balance">Balance</string>
   <string name="wallet">Wallet</string>
   <string name="walletDogeBug">Wallet DogeBoge</string>
