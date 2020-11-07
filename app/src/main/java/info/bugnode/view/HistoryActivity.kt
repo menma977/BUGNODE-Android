@@ -1,7 +1,6 @@
 package info.bugnode.view
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -99,7 +98,6 @@ class HistoryActivity : AppCompatActivity() {
     var wdres = DogeController.Post(body1).call()
     val ret = JSONArray()
     val returnObj = JSONObject()
-    Log.d("MEMEME", "fetchDogeHistory: ${depores.toString(2)}")
     if (depores.getInt("code") == 200) {
       depores = depores.getJSONObject("data")
       val deposits = depores.getJSONArray("Deposits")
@@ -108,8 +106,7 @@ class HistoryActivity : AppCompatActivity() {
           val deposit = deposits[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(deposit.getString("Date")))
-          v.put("description", deposit.getString("Address").replace("XFER", "Internal DOGEBOGE / " + " | " + deposit.getString("TransactionHash"))
-          )
+          v.put("description", deposit.getString("Address").replace("XFER", "Internal DOGEBOGE / " + " | " + deposit.getString("TransactionHash")))
           v.put("debit", deposit.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
@@ -171,7 +168,7 @@ class HistoryActivity : AppCompatActivity() {
   }
 
   private fun formatDate(date: String): String {
-    if(date == "null") return "-/-"
+    if (date == "null") return "-/-"
     val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     val formatter = SimpleDateFormat("dd/MM")
     return formatter.format(parser.parse(date)!!)
