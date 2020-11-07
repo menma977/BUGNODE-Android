@@ -69,4 +69,7 @@
   <string name="share">Share</string>
   <string name="dig">Dig</string>
   <string name="description_upgrade">Top up requires 50% Doge and 50% Boge, will be taken from your wallet balance.</string>
+  <string name="already_have_an_account">Already have an account ?</string>
+  <string name="send_email">Send email</string>
+  <string name="forgot_password">Forgot password</string>
 </resources>

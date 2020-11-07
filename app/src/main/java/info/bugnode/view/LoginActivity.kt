@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
   private lateinit var loginButton: Button
   private lateinit var textViewRegister: TextView
   private lateinit var updateButton: Button
+  private lateinit var textViewForgotPassword: TextView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -44,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
     username = findViewById(R.id.editTextUsername)
     password = findViewById(R.id.editTextPassword)
     updateButton = findViewById(R.id.buttonUpdate)
+    textViewForgotPassword = findViewById(R.id.textViewForgotPassword)
 
     version.text = BuildConfig.VERSION_NAME
     //    username.setText("bugnode")
@@ -84,6 +86,15 @@ class LoginActivity : AppCompatActivity() {
       loading.openDialog()
       Timer().schedule(1000) {
         move = Intent(applicationContext, RegisterActivity::class.java)
+        startActivity(move)
+        loading.closeDialog()
+      }
+    }
+
+    textViewForgotPassword.setOnClickListener {
+      loading.openDialog()
+      Timer().schedule(1000) {
+        move = Intent(applicationContext, ForgotPasswordActivity::class.java)
         startActivity(move)
         loading.closeDialog()
       }

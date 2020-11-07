@@ -19,8 +19,12 @@
       android:theme="@style/AppTheme"
       tools:targetApi="n">
     <activity
-        android:name=".view.GetROIActivity"
+        android:name=".view.ForgotPasswordActivity"
         android:configChanges="orientation|screenSize"
+        android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".view.GetROIActivity"
+        android:configChanges="orientation|screenSize|keyboardHidden"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".view.doge.WithdrawActivity"
@@ -40,7 +44,7 @@
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".view.WebViewActivity"
-        android:configChanges="orientation|screenSize"
+        android:configChanges="orientation|screenSize|keyboardHidden"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".view.HistoryActivity"
