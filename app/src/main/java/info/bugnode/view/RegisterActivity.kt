@@ -23,8 +23,6 @@ class RegisterActivity : AppCompatActivity() {
   private lateinit var passwordConfirmationEditText: EditText
   private lateinit var numberPasswordEditText: EditText
   private lateinit var numberPasswordConfirmationEditText: EditText
-  private lateinit var leftRadioButton: RadioButton
-  private lateinit var rightRadioButton: RadioButton
   private lateinit var registerButton: Button
   private lateinit var loginTextView: TextView
 
@@ -43,45 +41,51 @@ class RegisterActivity : AppCompatActivity() {
     passwordConfirmationEditText = findViewById(R.id.editTextPasswordConfirmation)
     numberPasswordEditText = findViewById(R.id.editTextNumberPassword)
     numberPasswordConfirmationEditText = findViewById(R.id.editTextNumberPasswordConfirmation)
-    leftRadioButton = findViewById(R.id.radioButtonLeft)
-    rightRadioButton = findViewById(R.id.radioButtonRight)
     registerButton = findViewById(R.id.buttonRegister)
     loginTextView = findViewById(R.id.textVIewLogin)
 
     registerButton.setOnClickListener {
-      if (!leftRadioButton.isChecked && !rightRadioButton.isChecked) {
-        Toast.makeText(this, "Position required", Toast.LENGTH_SHORT).show()
-        leftRadioButton.requestFocus()
-      } else if (sponsorEditText.text.isEmpty()) {
-        Toast.makeText(this, "Sponsor required", Toast.LENGTH_SHORT).show()
-        sponsorEditText.requestFocus()
-      } else if (nameEditText.text.isEmpty()) {
-        Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show()
-        nameEditText.requestFocus()
-      } else if (usernameEditText.text.isEmpty()) {
-        Toast.makeText(this, "Username required", Toast.LENGTH_SHORT).show()
-        usernameEditText.requestFocus()
-      } else if (emailEditText.text.isEmpty()) {
-        Toast.makeText(this, "Email required", Toast.LENGTH_SHORT).show()
-        emailEditText.requestFocus()
-      } else if (phoneEditText.text.isEmpty()) {
-        Toast.makeText(this, "Phone required", Toast.LENGTH_SHORT).show()
-        phoneEditText.requestFocus()
-      } else if (passwordEditText.text.isEmpty()) {
-        Toast.makeText(this, "Password required", Toast.LENGTH_SHORT).show()
-        passwordEditText.requestFocus()
-      } else if (passwordConfirmationEditText.text.isEmpty()) {
-        Toast.makeText(this, "Password confirmation required", Toast.LENGTH_SHORT).show()
-        passwordConfirmationEditText.requestFocus()
-      } else if (numberPasswordEditText.text.isEmpty()) {
-        Toast.makeText(this, "Secondary password required", Toast.LENGTH_SHORT).show()
-        numberPasswordEditText.requestFocus()
-      } else if (numberPasswordConfirmationEditText.text.isEmpty()) {
-        Toast.makeText(this, "Secondary password confirmation required", Toast.LENGTH_SHORT).show()
-        numberPasswordConfirmationEditText.requestFocus()
-      } else {
-        loading.openDialog()
-        onRegister()
+      when {
+        sponsorEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Sponsor required", Toast.LENGTH_SHORT).show()
+          sponsorEditText.requestFocus()
+        }
+        nameEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show()
+          nameEditText.requestFocus()
+        }
+        usernameEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Username required", Toast.LENGTH_SHORT).show()
+          usernameEditText.requestFocus()
+        }
+        emailEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Email required", Toast.LENGTH_SHORT).show()
+          emailEditText.requestFocus()
+        }
+        phoneEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Phone required", Toast.LENGTH_SHORT).show()
+          phoneEditText.requestFocus()
+        }
+        passwordEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Password required", Toast.LENGTH_SHORT).show()
+          passwordEditText.requestFocus()
+        }
+        passwordConfirmationEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Password confirmation required", Toast.LENGTH_SHORT).show()
+          passwordConfirmationEditText.requestFocus()
+        }
+        numberPasswordEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Secondary password required", Toast.LENGTH_SHORT).show()
+          numberPasswordEditText.requestFocus()
+        }
+        numberPasswordConfirmationEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Secondary password confirmation required", Toast.LENGTH_SHORT).show()
+          numberPasswordConfirmationEditText.requestFocus()
+        }
+        else -> {
+          loading.openDialog()
+          onRegister()
+        }
       }
     }
 
@@ -101,11 +105,6 @@ class RegisterActivity : AppCompatActivity() {
     body.addEncoded("password_confirmation", passwordConfirmationEditText.text.toString())
     body.addEncoded("password_key", numberPasswordEditText.text.toString())
     body.addEncoded("password_key_confirmation", numberPasswordConfirmationEditText.text.toString())
-    if (leftRadioButton.isChecked) {
-      body.addEncoded("position", "1")
-    } else {
-      body.addEncoded("position", "2")
-    }
     Timer().schedule(100) {
       jsonObject = WebController.Post("register", "", body).call()
       if (jsonObject.getInt("code") == 200) {

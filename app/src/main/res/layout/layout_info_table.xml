@@ -22,8 +22,8 @@
         android:layout_height="45dp"
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/logo"
-        app:srcCompat="@drawable/logo_white"
-        tools:srcCompat="@drawable/logo_white"/>
+        app:srcCompat="@drawable/logo"
+        tools:srcCompat="@drawable/logo"/>
 
     <TextView
         android:id="@+id/title"

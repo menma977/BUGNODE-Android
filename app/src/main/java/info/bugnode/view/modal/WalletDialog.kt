@@ -30,10 +30,10 @@ object WalletDialog {
         val bitmap = barcodeEncoder.encodeBitmap(wallet, BarcodeFormat.QR_CODE, 500, 500)
         if (isGold){
             title.text = "Doge Wallet"
-            icon.setImageResource(R.drawable.doge_green)
+            icon.setImageResource(R.drawable.ltc)
         }else{
             title.text = "DogeBoge Wallet"
-            icon.setImageResource(R.drawable.doge_gold)
+            icon.setImageResource(R.drawable.ltc_symbol)
         }
         imgWallet.setImageBitmap(bitmap)
         textWallet.text = wallet

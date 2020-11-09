@@ -40,7 +40,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/doge_gold"
+            app:srcCompat="@drawable/ltc_symbol"
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/icon"/>
 
@@ -82,7 +82,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/doge_green"
+            app:srcCompat="@drawable/ltc"
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/icon"/>
 

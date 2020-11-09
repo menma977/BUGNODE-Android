@@ -128,7 +128,6 @@ class LoginActivity : AppCompatActivity() {
             user.setString("totalLimit", result.getJSONObject("data").getString("total"))
             user.setBoolean("queue", result.getJSONObject("data").getBoolean("queue"))
             user.setString("lastPackage", result.getJSONObject("data").getString("lastPackage"))
-            user.setInteger("position", result.getJSONObject("data").getInt("position"))
             move = Intent(applicationContext, NavigationActivity::class.java)
             move.putExtra("balance", result.getJSONObject("data").getString("balance"))
             move.putExtra("balanceDogeBug", result.getJSONObject("data").getString("balanceDogeBug"))

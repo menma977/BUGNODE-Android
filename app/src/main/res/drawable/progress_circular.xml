@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list
     xmlns:android="http://schemas.android.com/apk/res/android">
-  <item>
+  <item
+      android:right="-15dp"
+      android:left="-15dp">
     <rotate
-        android:fromDegrees="-90"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:toDegrees="270">
+        android:fromDegrees="90"
+        android:toDegrees="-270">
       <shape
           android:shape="ring"
-          android:thickness="4dp"
+          android:thickness="5dp"
           android:useLevel="false">
         <gradient
-            android:endColor="@color/colorPrimaryDark"
+            android:endColor="#6f4bf7"
             android:centerColor="@color/colorPrimaryLight"
-            android:startColor="@color/colorPrimaryDark"
+            android:startColor="#6f4bf7"
             android:type="sweep"
             android:useLevel="false"/>
       </shape>
@@ -22,43 +24,21 @@
   </item>
 
   <item
-      android:right="-10dp"
-      android:left="-10dp">
+      android:right="-30dp"
+      android:left="-30dp">
     <rotate
-        android:fromDegrees="-90"
         android:pivotX="50%"
         android:pivotY="50%"
+        android:fromDegrees="-90"
         android:toDegrees="270">
       <shape
           android:shape="ring"
-          android:thickness="4dp"
+          android:thickness="10dp"
           android:useLevel="false">
         <gradient
-            android:endColor="@color/colorPrimaryDark"
+            android:endColor="#6f4bf7"
             android:centerColor="@color/colorPrimaryLight"
-            android:startColor="@color/colorPrimaryDark"
-            android:type="sweep"
-            android:useLevel="false"/>
-      </shape>
-    </rotate>
-  </item>
-
-  <item
-      android:right="-20dp"
-      android:left="-20dp">
-    <rotate
-        android:fromDegrees="-90"
-        android:pivotX="50%"
-        android:pivotY="50%"
-        android:toDegrees="270">
-      <shape
-          android:shape="ring"
-          android:thickness="4dp"
-          android:useLevel="false">
-        <gradient
-            android:endColor="@color/colorPrimaryDark"
-            android:centerColor="@color/colorPrimaryLight"
-            android:startColor="@color/colorPrimaryDark"
+            android:startColor="#6f4bf7"
             android:type="sweep"
             android:useLevel="false"/>
       </shape>

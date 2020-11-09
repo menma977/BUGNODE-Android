@@ -59,7 +59,6 @@ class DataUser : Service() {
               user.setString("totalLimit", json.getJSONObject("data").getString("total"))
               user.setBoolean("queue", json.getJSONObject("data").getBoolean("queue"))
               user.setString("lastPackage", json.getJSONObject("data").getString("lastPackage"))
-              user.setInteger("position", json.getJSONObject("data").getInt("position"))
 
               if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
                 user.setBoolean("isLogout", true)

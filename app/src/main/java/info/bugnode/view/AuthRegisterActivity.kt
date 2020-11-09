@@ -20,8 +20,6 @@ class AuthRegisterActivity : AppCompatActivity() {
   private lateinit var usernameEditText: EditText
   private lateinit var emailEditText: EditText
   private lateinit var phoneEditText: EditText
-  private lateinit var leftRadioButton: RadioButton
-  private lateinit var rightRadioButton: RadioButton
   private lateinit var registerButton: Button
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,35 +33,30 @@ class AuthRegisterActivity : AppCompatActivity() {
     usernameEditText = findViewById(R.id.editTextUsername)
     emailEditText = findViewById(R.id.editTextEmail)
     phoneEditText = findViewById(R.id.editTextPhone)
-    leftRadioButton = findViewById(R.id.radioButtonLeft)
-    rightRadioButton = findViewById(R.id.radioButtonRight)
     registerButton = findViewById(R.id.buttonRegister)
 
-    if (user.getInteger("position") == 1) {
-      leftRadioButton.isChecked = true
-    } else {
-      rightRadioButton.isChecked = true
-    }
-
     registerButton.setOnClickListener {
-      if (!leftRadioButton.isChecked && !rightRadioButton.isChecked) {
-        Toast.makeText(this, "Position required", Toast.LENGTH_SHORT).show()
-        leftRadioButton.requestFocus()
-      } else if (nameEditText.text.isEmpty()) {
-        Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show()
-        nameEditText.requestFocus()
-      } else if (usernameEditText.text.isEmpty()) {
-        Toast.makeText(this, "Username required", Toast.LENGTH_SHORT).show()
-        usernameEditText.requestFocus()
-      } else if (emailEditText.text.isEmpty()) {
-        Toast.makeText(this, "Email required", Toast.LENGTH_SHORT).show()
-        emailEditText.requestFocus()
-      } else if (phoneEditText.text.isEmpty()) {
-        Toast.makeText(this, "Phone required", Toast.LENGTH_SHORT).show()
-        phoneEditText.requestFocus()
-      } else {
-        loading.openDialog()
-        onRegister()
+      when {
+        nameEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show()
+          nameEditText.requestFocus()
+        }
+        usernameEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Username required", Toast.LENGTH_SHORT).show()
+          usernameEditText.requestFocus()
+        }
+        emailEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Email required", Toast.LENGTH_SHORT).show()
+          emailEditText.requestFocus()
+        }
+        phoneEditText.text.isEmpty() -> {
+          Toast.makeText(this, "Phone required", Toast.LENGTH_SHORT).show()
+          phoneEditText.requestFocus()
+        }
+        else -> {
+          loading.openDialog()
+          onRegister()
+        }
       }
     }
   }
@@ -75,11 +68,6 @@ class AuthRegisterActivity : AppCompatActivity() {
     body.addEncoded("username", usernameEditText.text.toString())
     body.addEncoded("email", emailEditText.text.toString())
     body.addEncoded("phone", phoneEditText.text.toString())
-    if (leftRadioButton.isChecked) {
-      body.addEncoded("position", "1")
-    } else {
-      body.addEncoded("position", "2")
-    }
     Timer().schedule(100) {
       jsonObject = WebController.Post("register", "", body).call()
       if (jsonObject.getInt("code") == 200) {
