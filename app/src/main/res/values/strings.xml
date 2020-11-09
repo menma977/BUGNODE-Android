@@ -73,4 +73,7 @@
   <string name="send_email">Send email</string>
   <string name="forgot_password">Forgot password</string>
   <string name="pulse">+</string>
+  <string name="wallet_ltc_boost">Wallet LTC Boost</string>
+  <string name="balance_ltc">Balance LTC</string>
+  <string name="balance_boost">Balance Boost</string>
 </resources>
