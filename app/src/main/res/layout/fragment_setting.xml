@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/textViewLevel"
-            android:textColor="#6f4bf7"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textAlignment="textStart"/>
 
