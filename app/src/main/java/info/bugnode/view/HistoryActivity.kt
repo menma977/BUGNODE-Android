@@ -1,7 +1,6 @@
 package info.bugnode.view
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -48,7 +47,6 @@ class HistoryActivity : AppCompatActivity() {
         intent.getStringExtra("type") == "roi" -> WebController.Get("roi.log", user.getString("token")).call()
         else -> WebController.Get("bonus.index", user.getString("token")).call()
       }
-      Log.i("response", res.toString())
       runOnUiThread {
         if (res.getInt("code") == 200) {
           if (intent.getStringExtra("type") == "ltc") {
