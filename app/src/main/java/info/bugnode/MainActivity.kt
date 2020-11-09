@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             body.addEncoded("a", "GetBalance")
             body.addEncoded("key", "f3023b66b9304852abddc71ccd8237e9")
             body.addEncoded("s", user.getString("cookie"))
-            body.addEncoded("Currency", "doge")
+            body.addEncoded("Currency", "ltc")
             val jsonObjectDoge = DogeController.Post(body).call()
             if (jsonObjectDoge.getInt("code") == 200) {
               user.setString("cookie", jsonObject.getJSONObject("data").getString("sessionKey"))
