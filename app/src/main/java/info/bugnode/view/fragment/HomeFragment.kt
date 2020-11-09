@@ -134,13 +134,13 @@ class HomeFragment : Fragment() {
 
     buttonHistoryDoge.setOnClickListener {
       move = Intent(parentActivity, HistoryActivity::class.java)
-      move.putExtra("type", "doge")
+      move.putExtra("type", "ltc")
       startActivity(move)
     }
 
     buttonHistoryDogeBoge.setOnClickListener {
       move = Intent(parentActivity, HistoryActivity::class.java)
-      move.putExtra("type", "dogebug")
+      move.putExtra("type", "boost")
       startActivity(move)
     }
     buttonHistoryBonus.setOnClickListener {
