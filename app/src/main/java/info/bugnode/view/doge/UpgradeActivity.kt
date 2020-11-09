@@ -96,17 +96,13 @@ class UpgradeActivity : AppCompatActivity() {
 
   private fun setSpinner() {
     packageList = ArrayList()
-    var firstPackage = 1000
+    var firstPackage = 1
     while (true) {
       packageList.add("$firstPackage")
-      firstPackage += if (firstPackage in 10000..99999) {
-        10000
-      } else if (firstPackage in 100000..999999) {
-        100000
-      } else if (firstPackage == 1000000) {
+      firstPackage += if (firstPackage == 100) {
         break
       } else {
-        1000
+        1
       }
     }
 

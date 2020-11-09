@@ -35,12 +35,15 @@ class MainActivity : AppCompatActivity() {
       } else {
         WebController.Get("user.show", user.getString("token")).call()
       }
+
+      println(jsonObject)
+
       if (jsonObject.getInt("code") == 200) {
         if (jsonObject.getJSONObject("data").getInt("version") == BuildConfig.VERSION_CODE) {
           if (user.getString("token").isNotEmpty()) {
             val body = FormBody.Builder()
             body.addEncoded("a", "GetBalance")
-            body.addEncoded("key", "1b4755ced78e4d91bce9128b9a053cad")
+            body.addEncoded("key", "f3023b66b9304852abddc71ccd8237e9")
             body.addEncoded("s", user.getString("cookie"))
             body.addEncoded("Currency", "doge")
             val jsonObjectDoge = DogeController.Post(body).call()

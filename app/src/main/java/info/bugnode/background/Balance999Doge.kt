@@ -43,7 +43,7 @@ class Balance999Doge : Service() {
               try {
                 val body = FormBody.Builder()
                 body.addEncoded("a", "GetBalance")
-                body.addEncoded("key", "1b4755ced78e4d91bce9128b9a053cad")
+                body.addEncoded("key", "f3023b66b9304852abddc71ccd8237e9")
                 body.addEncoded("s", user.getString("cookie"))
                 body.addEncoded("Currency", "doge")
                 json = DogeController.Post(body).call()

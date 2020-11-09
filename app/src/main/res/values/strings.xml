@@ -28,7 +28,7 @@
   <string name="change_second_password">Edit Secondary Password</string>
   <string name="change_phone">Edit Phone Number</string>
   <string name="logout">Logout</string>
-  <string name="history_doge">History Doge</string>
+  <string name="history_doge">History LTC</string>
   <string name="example_doge">99999.99999999</string>
   <string name="sponsor">Sponsor</string>
   <string name="right">Right</string>
@@ -44,7 +44,7 @@
   <string name="generic_submit">Submit</string>
   <string name="balance">Balance</string>
   <string name="wallet">Wallet</string>
-  <string name="walletDogeBug">Wallet DogeBoge</string>
+  <string name="walletDogeBug">Wallet Boost</string>
   <string name="zero">0</string>
   <string name="date">Date</string>
   <string name="description">Description</string>
@@ -65,10 +65,10 @@
   <string name="withdraw">Withdraw</string>
   <string name="get">Get</string>
   <string name="ration">Ration</string>
-  <string name="history_boge">History Boge</string>
+  <string name="history_boge">History Boost</string>
   <string name="share">Share</string>
   <string name="dig">Dig</string>
-  <string name="description_upgrade">Top up requires 50% Doge and 50% Boge, will be taken from your wallet balance.</string>
+  <string name="description_upgrade">Top up requires 50% LTC and 50% Boost, will be taken from your wallet balance.</string>
   <string name="already_have_an_account">Already have an account ?</string>
   <string name="send_email">Send email</string>
   <string name="forgot_password">Forgot password</string>
