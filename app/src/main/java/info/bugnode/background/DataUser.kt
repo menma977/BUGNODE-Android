@@ -3,7 +3,6 @@ package info.bugnode.background
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import info.bugnode.BuildConfig
 import info.bugnode.controller.WebController
@@ -59,6 +58,7 @@ class DataUser : Service() {
               user.setString("totalLimit", json.getJSONObject("data").getString("total"))
               user.setBoolean("queue", json.getJSONObject("data").getBoolean("queue"))
               user.setString("lastPackage", json.getJSONObject("data").getString("lastPackage"))
+              user.setInteger("level", json.getJSONObject("data").getInt("level"))
 
               if (json.getJSONObject("data").getInt("version") != BuildConfig.VERSION_CODE) {
                 user.setBoolean("isLogout", true)

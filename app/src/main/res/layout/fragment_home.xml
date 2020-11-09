@@ -156,7 +156,7 @@
           android:layout_height="wrap_content"
           android:id="@+id/textViewNotification"
           android:layout_weight="1"
-          android:textColor="@color/textSecondary"/>
+          android:textColor="@color/White"/>
 
     </LinearLayout>
 
@@ -166,7 +166,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp">
 
@@ -184,7 +184,7 @@
           android:id="@+id/textViewProgressBar"
           android:text="@string/zero"
           android:background="@color/Link"
-          android:textColor="@color/colorSecondaryDark"
+          android:textColor="@color/White"
           android:textStyle="bold"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -194,8 +194,8 @@
           android:layout_alignParentBottom="true"
           android:layout_alignParentStart="true"
           android:layout_alignParentTop="true"
-          android:layout_marginBottom="3dp"
-          android:layout_marginTop="3dp"
+          android:layout_marginBottom="5dp"
+          android:layout_marginTop="0dp"
           android:layout_marginStart="20dp"
           android:layout_marginEnd="0dp"/>
 
@@ -203,7 +203,7 @@
           android:id="@+id/textViewTarget"
           android:text="@string/zero"
           android:background="@color/Link"
-          android:textColor="@color/colorSecondaryDark"
+          android:textColor="@color/White"
           android:textStyle="bold"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -213,8 +213,8 @@
           android:layout_alignParentTop="true"
           android:layout_alignParentBottom="true"
           android:layout_alignParentEnd="true"
-          android:layout_marginBottom="3dp"
-          android:layout_marginTop="3dp"
+          android:layout_marginBottom="5dp"
+          android:layout_marginTop="0dp"
           android:layout_marginStart="0dp"
           android:layout_marginEnd="20dp"/>
 
@@ -234,15 +234,33 @@
         android:padding="10dp"
         android:elevation="15dp">
 
-
-      <TextView
-          android:text="@string/app_name"
+      <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:id="@+id/textViewUsername"
-          android:textColor="@color/colorPrimaryDark"
-          android:textStyle="bold"
-          android:textAlignment="textEnd"/>
+          android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/app_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/textViewLevel"
+            android:textColor="#6f4bf7"
+            android:textStyle="bold"
+            android:textAlignment="textStart"/>
+
+
+        <TextView
+            android:text="@string/app_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/textViewUsername"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textAlignment="textEnd"/>
+
+      </LinearLayout>
 
       <LinearLayout
           android:layout_width="match_parent"

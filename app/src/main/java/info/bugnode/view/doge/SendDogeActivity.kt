@@ -71,10 +71,10 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
 
     if (type == 1) {
-      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString() + " DOGE"
+      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString() + " BOOST"
       balanceValue = user.getString("balanceDogeBug").toBigDecimal()
     } else {
-      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " DOGE"
+      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " LTC"
       balanceValue = user.getString("balance").toBigDecimal()
     }
 
@@ -155,11 +155,12 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
       if (user.getBoolean("isLogout")) {
         onLogout()
       } else {
-        if (type == 1) {
-          userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()
+        val text = if (type == 1) {
+          BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString() + " BOOST"
         } else {
-          userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
+          BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " LTC"
         }
+        userBalance.text = text
       }
     }
   }

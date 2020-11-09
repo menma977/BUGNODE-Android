@@ -28,6 +28,8 @@ class SettingFragment : Fragment() {
   private lateinit var parentActivity: NavigationActivity
   private lateinit var user: User
   private lateinit var loading: Loading
+  private lateinit var usernameTextView: TextView
+  private lateinit var textLevel: TextView
   private lateinit var balanceTextView: TextView
   private lateinit var balanceDogeBugTextView: TextView
   private lateinit var notification: LinearLayout
@@ -48,6 +50,8 @@ class SettingFragment : Fragment() {
     user = User(parentActivity)
     loading = Loading(parentActivity)
 
+    usernameTextView = root.findViewById(R.id.textViewUsername)
+    textLevel = root.findViewById(R.id.textViewLevel)
     balanceTextView = root.findViewById(R.id.textViewDogeBalance)
     balanceDogeBugTextView = root.findViewById(R.id.textViewDogeBugBalance)
     notification = root.findViewById(R.id.notification)
@@ -59,6 +63,9 @@ class SettingFragment : Fragment() {
     editPasswordKey = root.findViewById(R.id.edit_password_key)
     editPhone = root.findViewById(R.id.edit_phone_number)
     logout = root.findViewById(R.id.logout)
+
+    textLevel.text = "Level :${user.getInteger("level")}"
+    usernameTextView.text = user.getString("username")
 
     editPassword.setOnClickListener {
       doEditPassword()

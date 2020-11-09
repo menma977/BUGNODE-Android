@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
   private lateinit var user: User
   private lateinit var loading: Loading
   private lateinit var usernameTextView: TextView
+  private lateinit var textLevel: TextView
   private lateinit var balanceTextView: TextView
   private lateinit var balanceDogeBugTextView: TextView
   private lateinit var notification: LinearLayout
@@ -58,6 +59,7 @@ class HomeFragment : Fragment() {
     loading = Loading(parentActivity)
 
     usernameTextView = root.findViewById(R.id.textViewUsername)
+    textLevel = root.findViewById(R.id.textViewLevel)
     balanceTextView = root.findViewById(R.id.textViewDogeBalance)
     balanceDogeBugTextView = root.findViewById(R.id.textViewDogeBugBalance)
     notification = root.findViewById(R.id.notification)
@@ -84,6 +86,7 @@ class HomeFragment : Fragment() {
       notification.visibility = LinearLayout.GONE
     }
 
+    textLevel.text = "Level :${user.getInteger("level")}"
     usernameTextView.text = user.getString("username")
     balanceTextView.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
     balanceDogeBugTextView.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString()

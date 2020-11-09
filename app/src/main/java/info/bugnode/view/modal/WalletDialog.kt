@@ -28,10 +28,10 @@ object WalletDialog {
     val barcodeEncoder = BarcodeEncoder()
     val bitmap = barcodeEncoder.encodeBitmap(wallet, BarcodeFormat.QR_CODE, 500, 500)
     if (isGold) {
-      title.text = "LTC Wallet"
+      title.text = "LTC BOOST Wallet"
       icon.setImageResource(R.drawable.ltc)
     } else {
-      title.text = "Boost Wallet"
+      title.text = "LTC BOOST Wallet"
       icon.setImageResource(R.drawable.ltc_symbol)
     }
     imgWallet.setImageBitmap(bitmap)

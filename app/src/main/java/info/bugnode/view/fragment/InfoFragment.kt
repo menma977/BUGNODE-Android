@@ -30,6 +30,7 @@ class InfoFragment : Fragment() {
   private lateinit var name: TextView
   private lateinit var email: TextView
   private lateinit var phone: TextView
+  private lateinit var level: TextView
   private lateinit var walletdogeview: LinearLayout
   private lateinit var walletdogebogeview: LinearLayout
 
@@ -49,6 +50,7 @@ class InfoFragment : Fragment() {
     name = root.findViewById(R.id.name)
     email = root.findViewById(R.id.email)
     phone = root.findViewById(R.id.phone)
+    level = root.findViewById(R.id.level)
 
     walletdogeview = root.findViewById(R.id.wallet_doge_view)
     walletdogebogeview = root.findViewById(R.id.wallet_dogebug_view)
@@ -61,6 +63,7 @@ class InfoFragment : Fragment() {
     name.text = user.getString("name")
     email.text = user.getString("email")
     phone.text = user.getString("phone")
+    level.text = user.getInteger("level").toString()
 
     walletdogeview.setOnClickListener {
       WalletDialog.show(parentActivity, user.getString("wallet"), false)

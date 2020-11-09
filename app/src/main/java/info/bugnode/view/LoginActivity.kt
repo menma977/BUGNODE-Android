@@ -48,8 +48,6 @@ class LoginActivity : AppCompatActivity() {
     textViewForgotPassword = findViewById(R.id.textViewForgotPassword)
 
     version.text = BuildConfig.VERSION_NAME
-    //    username.setText("bugnode")
-    //    password.setText("admin")
     if (intent.getBooleanExtra("isUpdate", true)) {
       loginButton.visibility = Button.GONE
       updateButton.visibility = Button.VISIBLE
@@ -128,6 +126,7 @@ class LoginActivity : AppCompatActivity() {
             user.setString("totalLimit", result.getJSONObject("data").getString("total"))
             user.setBoolean("queue", result.getJSONObject("data").getBoolean("queue"))
             user.setString("lastPackage", result.getJSONObject("data").getString("lastPackage"))
+            user.setInteger("level", result.getJSONObject("data").getInt("level"))
             move = Intent(applicationContext, NavigationActivity::class.java)
             move.putExtra("balance", result.getJSONObject("data").getString("balance"))
             move.putExtra("balanceDogeBug", result.getJSONObject("data").getString("balanceDogeBug"))
