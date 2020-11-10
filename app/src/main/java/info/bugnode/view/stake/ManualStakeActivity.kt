@@ -185,7 +185,7 @@ class ManualStakeActivity : AppCompatActivity() {
       body.addEncoded("PayIn", payIn.toPlainString())
       body.addEncoded("ProtocolVersion", "2")
       body.addEncoded("ClientSeed", seed)
-      body.addEncoded("Currency", "ltc")
+      body.addEncoded("Currency", "doge")
       response = DogeController.Post(body).call()
       if (response.getInt("code") == 200) {
         seed = response.getJSONObject("data")["Next"].toString()

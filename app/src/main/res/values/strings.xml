@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">LTC BOOST</string>
+  <string name="app_name">DOGE BOOST</string>
   <string name="logo">Logo</string>
   <string name="login_account">Login Account</string>
   <string name="version">Version</string>
@@ -28,7 +28,7 @@
   <string name="change_second_password">Edit Secondary Password</string>
   <string name="change_phone">Edit Phone Number</string>
   <string name="logout">Logout</string>
-  <string name="history_doge">History LTC</string>
+  <string name="history_doge">History DOGE</string>
   <string name="example_doge">99999.99999999</string>
   <string name="sponsor">Sponsor</string>
   <string name="stake">Stake</string>
@@ -66,20 +66,20 @@
   <string name="history_boge">History Boost</string>
   <string name="share">Share</string>
   <string name="dig">Dig</string>
-  <string name="description_upgrade">Top up requires 50% LTC and 50% Boost, will be taken from your wallet balance.</string>
+  <string name="description_upgrade">Top up requires 50% DOGE and 50% Boost, will be taken from your wallet balance.</string>
   <string name="already_have_an_account">Already have an account ?</string>
   <string name="send_email">Send email</string>
   <string name="forgot_password">Forgot password</string>
   <string name="pulse">+</string>
-  <string name="wallet_ltc_boost">Wallet LTC Boost</string>
-  <string name="balance_ltc">Balance LTC</string>
+  <string name="wallet_ltc_boost">Wallet DOGE Boost</string>
+  <string name="balance_ltc">Balance DOGE</string>
   <string name="balance_boost">Balance Boost</string>
   <string name="level">Level</string>
   <string name="decentralized_info">Decentralized Info</string>
   <string name="total_trx">Total TRX</string>
-  <string name="ltc_balance">LTC Balance</string>
+  <string name="ltc_balance">DOGE Balance</string>
   <string name="boost_balance">Boost Balance</string>
-  <string name="ltc_withdraw">LTC Withdraw</string>
+  <string name="ltc_withdraw">DOGE Withdraw</string>
   <string name="boost_withdraw">Boost Withdraw</string>
   <string name="daily_pool">Daily Pool</string>
   <string name="top_referrer">Top Referrer</string>

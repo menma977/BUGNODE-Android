@@ -42,21 +42,21 @@ class HistoryActivity : AppCompatActivity() {
 
     Timer().schedule(100) {
       val res: JSONObject = when {
-        intent.getStringExtra("type") == "ltc" -> fetchDogeHistory()
+        intent.getStringExtra("type") == "doge" -> fetchDogeHistory()
         intent.getStringExtra("type") == "boost" -> WebController.Get("doge.index", user.getString("token")).call()
         intent.getStringExtra("type") == "roi" -> WebController.Get("roi.log", user.getString("token")).call()
         else -> WebController.Get("bonus.index", user.getString("token")).call()
       }
       runOnUiThread {
         if (res.getInt("code") == 200) {
-          if (intent.getStringExtra("type") == "ltc") {
+          if (intent.getStringExtra("type") == "doge") {
             findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString()
           } else {
             val total = res.getJSONObject("data").getString("total").toBigDecimal()
             findViewById<TextView>(R.id.total).text = BitCoinFormat.decimalToDoge(total).toPlainString()
           }
           val entries = when {
-            intent.getStringExtra("type") == "ltc" -> res.getJSONArray("history")
+            intent.getStringExtra("type") == "doge" -> res.getJSONArray("history")
             intent.getStringExtra("type") == "roi" -> res.getJSONObject("data").getJSONArray("history")
             intent.getStringExtra("type") == "boost" -> res.getJSONObject("data").getJSONArray("dogeBugList")
             else -> res.getJSONObject("data").getJSONArray("bonus")
@@ -106,7 +106,7 @@ class HistoryActivity : AppCompatActivity() {
           val deposit = deposits[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(deposit.getString("Date")))
-          v.put("description", deposit.getString("Address").replace("XFER", "Internal LTC Boost / " + " | " + deposit.getString("TransactionHash")))
+          v.put("description", deposit.getString("Address").replace("XFER", "Internal DOGE Boost / " + " | " + deposit.getString("TransactionHash")))
           v.put("debit", deposit.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
@@ -117,7 +117,7 @@ class HistoryActivity : AppCompatActivity() {
           val transfer = transfers[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(transfer.getString("Date")))
-          v.put("description", transfer.getString("Address").replace("XFER", "Internal LTC Boost"))
+          v.put("description", transfer.getString("Address").replace("XFER", "Internal DOGE Boost"))
           v.put("debit", transfer.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
@@ -137,7 +137,7 @@ class HistoryActivity : AppCompatActivity() {
           val withdrawal = withdrawals[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(withdrawal.getString("Completed")))
-          v.put("description", withdrawal.getString("Address").replace("XFER", "Internal LTC Boost / " + " | " + withdrawal.getString("TransactionHash")))
+          v.put("description", withdrawal.getString("Address").replace("XFER", "Internal DOGE Boost / " + " | " + withdrawal.getString("TransactionHash")))
           v.put("credit", withdrawal.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }
@@ -148,7 +148,7 @@ class HistoryActivity : AppCompatActivity() {
           val transfer = transfers[i] as JSONObject
           val v = JSONObject()
           v.put("date", formatDate(transfer.getString("Completed")))
-          v.put("description", transfer.getString("Address").replace("XFER", "Internal LTC Boost"))
+          v.put("description", transfer.getString("Address").replace("XFER", "Internal DOGE Boost"))
           v.put("credit", transfer.getString("Value").toBigDecimal().toPlainString())
           ret.put(v)
         }

@@ -74,7 +74,7 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
       userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString() + " BOOST"
       balanceValue = user.getString("balanceDogeBug").toBigDecimal()
     } else {
-      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " LTC"
+      userBalance.text = BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " DOGE"
       balanceValue = user.getString("balance").toBigDecimal()
     }
 
@@ -158,7 +158,7 @@ class SendDogeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         val text = if (type == 1) {
           BitCoinFormat.decimalToDoge(user.getString("balanceDogeBug").toBigDecimal()).toPlainString() + " BOOST"
         } else {
-          BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " LTC"
+          BitCoinFormat.decimalToDoge(user.getString("balance").toBigDecimal()).toPlainString() + " DOGE"
         }
         userBalance.text = text
       }
